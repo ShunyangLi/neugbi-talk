@@ -342,32 +342,32 @@
   </section>
 
   <!-- ========== SLIDE 2: WHAT IS TRADITIONAL BI ========== -->
-  <section class="slide slide--light">
+  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 25% 30%, rgba(0,113,227,0.08), transparent 50%), linear-gradient(160deg, #111, #0a0a0a, #0e0e12);">
     <div class="content grid-split">
       <div class="flex-col gap-32">
         <div class="flex-col gap-16">
           <span class="t-caption t-accent">Background</span>
           <h2 class="t-title">What is Traditional<br>Business Intelligence?</h2>
-          <p class="t-body" style="color:var(--gray-500); max-width:500px;">BI helps organizations turn raw data into actionable insights. It works beautifully &mdash; when you already know exactly what question to ask.</p>
+          <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:500px;">BI helps organizations turn raw data into actionable insights. It works beautifully &mdash; when you already know exactly what question to ask.</p>
         </div>
         <div class="grid-3" style="gap:16px;">
           <div class="flex-col gap-8">
             <div class="step-num">1</div>
             <span style="font-size:20px; font-weight:600;">Frame</span>
-            <span class="t-small" style="color:var(--gray-500);">Define the question.</span>
+            <span class="t-small" style="color:rgba(255,255,255,0.5);">Define the question.</span>
           </div>
           <div class="flex-col gap-8">
             <div class="step-num" style="background:var(--accent-warm);">2</div>
             <span style="font-size:20px; font-weight:600;">Shape</span>
-            <span class="t-small" style="color:var(--gray-500);">Organize data into a model.</span>
+            <span class="t-small" style="color:rgba(255,255,255,0.5);">Organize data into a model.</span>
           </div>
           <div class="flex-col gap-8">
             <div class="step-num" style="background:var(--accent-green);">3</div>
             <span style="font-size:20px; font-weight:600;">Read</span>
-            <span class="t-small" style="color:var(--gray-500);">Interpret results and decide.</span>
+            <span class="t-small" style="color:rgba(255,255,255,0.5);">Interpret results and decide.</span>
           </div>
         </div>
-        <div class="blockquote blockquote--light">Traditional BI is like assembling a puzzle when you already know the picture on the box.</div>
+        <div class="blockquote blockquote--dark">Traditional BI is like assembling a puzzle when you already know the picture on the box.</div>
       </div>
       <div class="img-frame">
         <img src="assets/bi-workflow-step-1.png" alt="Traditional BI workflow" style="padding:20px;" />
@@ -376,84 +376,84 @@
   </section>
 
   <!-- ========== SLIDE 3: TRADITIONAL BI EXAMPLE ========== -->
-  <section class="slide slide--light" style="background: linear-gradient(180deg, #fff, #f6f6f8);">
+  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 70% 30%, rgba(0,113,227,0.08), transparent 50%), linear-gradient(160deg, #0e0e12, #0a0a0a);">
     <div class="content flex-col gap-24">
       <div class="flex-col gap-12 center">
         <span class="t-caption t-accent">A Concrete Example</span>
         <h2 class="t-title" style="text-align:center;">How Traditional BI Answers<br>a Single Question</h2>
-        <p class="t-body" style="color:var(--gray-500); max-width:700px; text-align:center;">Suppose a researcher asks: <em style="color:var(--gray-700);">"How has Russian publication output changed in recent years?"</em><br>Here is how traditional BI would handle it.</p>
+        <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:700px; text-align:center;">Suppose a researcher asks: <em style="color:rgba(255,255,255,0.85);">"How has Russian publication output changed in recent years?"</em><br>Here is how traditional BI would handle it.</p>
       </div>
       <div class="grid-3" style="gap:20px;">
-        <div class="card-light flex-col gap-16" style="padding:24px;">
+        <div class="card-dark flex-col gap-16" style="padding:24px;">
           <div class="flex-row gap-10">
             <div class="step-num">1</div>
             <span style="font-size:17px; font-weight:600;">Communicate Requirements</span>
           </div>
-          <p class="t-small" style="color:var(--gray-600);">The analyst meets with domain experts to clarify the question: Which data sources? What time range? What counts as "Russian"?</p>
-          <div style="padding:14px; border-radius:14px; background:rgba(0,113,227,0.05); border:1px solid rgba(0,113,227,0.1);">
-            <p class="t-small" style="color:var(--gray-600);">Analyst &harr; Domain Expert &harr; Database Admin &mdash; multiple rounds of discussion before any data is touched.</p>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">The analyst meets with domain experts to clarify the question: Which data sources? What time range? What counts as "Russian"?</p>
+          <div style="padding:14px; border-radius:14px; background:rgba(0,113,227,0.08); border:1px solid rgba(0,113,227,0.18);">
+            <p class="t-small" style="color:rgba(255,255,255,0.6);">Analyst &harr; Domain Expert &harr; Database Admin &mdash; multiple rounds of discussion before any data is touched.</p>
           </div>
         </div>
-        <div class="card-light flex-col gap-16" style="padding:24px;">
+        <div class="card-dark flex-col gap-16" style="padding:24px;">
           <div class="flex-row gap-10">
             <div class="step-num" style="background:var(--accent-warm);">2</div>
             <span style="font-size:17px; font-weight:600;">Build the Wide Table</span>
           </div>
-          <p class="t-small" style="color:var(--gray-600);">The BI analyst constructs a wide table by joining <strong>Publication</strong>, <strong>Organization</strong>, and other related tables, filtered by country and year.</p>
-          <div style="padding:14px; border-radius:14px; background:rgba(255,103,35,0.05); border:1px solid rgba(255,103,35,0.1);">
-            <p class="t-small" style="color:var(--gray-600);"><strong>Publication &#x2a1d; Organization</strong><br>This step is manual, time-consuming, and requires deep schema knowledge.</p>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">The BI analyst constructs a wide table by joining <strong>Publication</strong>, <strong>Organization</strong>, and other related tables, filtered by country and year.</p>
+          <div style="padding:14px; border-radius:14px; background:rgba(255,103,35,0.08); border:1px solid rgba(255,103,35,0.18);">
+            <p class="t-small" style="color:rgba(255,255,255,0.6);"><strong>Publication &#x2a1d; Organization</strong><br>This step is manual, time-consuming, and requires deep schema knowledge.</p>
           </div>
         </div>
-        <div class="card-light flex-col gap-16" style="padding:24px;">
+        <div class="card-dark flex-col gap-16" style="padding:24px;">
           <div class="flex-row gap-10">
             <div class="step-num" style="background:var(--accent-green);">3</div>
             <span style="font-size:17px; font-weight:600;">Analyze &amp; Report</span>
           </div>
-          <p class="t-small" style="color:var(--gray-600);">Finally, the analyst aggregates, slices by year, and produces a trend chart. One question answered.</p>
-          <div style="padding:14px; border-radius:14px; background:rgba(48,209,88,0.05); border:1px solid rgba(48,209,88,0.1);">
-            <p class="t-small" style="color:var(--gray-600);"><strong>But what if the result raises a new question?</strong> The entire pipeline restarts from Step 1.</p>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">Finally, the analyst aggregates, slices by year, and produces a trend chart. One question answered.</p>
+          <div style="padding:14px; border-radius:14px; background:rgba(48,209,88,0.08); border:1px solid rgba(48,209,88,0.18);">
+            <p class="t-small" style="color:rgba(255,255,255,0.6);"><strong>But what if the result raises a new question?</strong> The entire pipeline restarts from Step 1.</p>
           </div>
         </div>
       </div>
-      <div class="blockquote blockquote--light" style="text-align:center; max-width:820px; margin:0 auto;">Traditional BI can answer <strong>one known question well</strong>. But real investigation is rarely just one question &mdash; each answer leads to the next.</div>
+      <div class="blockquote blockquote--dark" style="text-align:center; max-width:820px; margin:0 auto;">Traditional BI can answer <strong>one known question well</strong>. But real investigation is rarely just one question &mdash; each answer leads to the next.</div>
     </div>
   </section>
 
   <!-- ========== SLIDE 4: CASE INTRO ========== -->
-  <section class="slide slide--light" style="background: linear-gradient(180deg, #fafafa, #f2f2f5);">
+  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 30% 80%, rgba(255,103,35,0.07), transparent 45%), linear-gradient(160deg, #111, #0a0a0a);">
     <div class="content flex-col gap-28">
       <div class="flex-col gap-12 center">
         <span class="t-caption t-warm">Case Study</span>
         <h2 class="t-title" style="text-align:center;">BI in Action: Russia-Ukraine<br>& Russian Academia</h2>
-        <p class="t-subtitle" style="color:var(--gray-500); max-width:750px; text-align:center; font-style:italic;">"What is the impact of the Russia-Ukraine conflict on Russian scientific research?"</p>
+        <p class="t-subtitle" style="color:rgba(255,255,255,0.5); max-width:750px; text-align:center; font-style:italic;">"What is the impact of the Russia-Ukraine conflict on Russian scientific research?"</p>
       </div>
       <div class="grid-3" style="gap:20px;">
-        <div class="step-card">
+        <div class="step-card" style="background:var(--glass); border-color:var(--glass-border); box-shadow:0 8px 30px rgba(0,0,0,0.25);">
           <div class="flex-row gap-10">
             <div class="step-num">1</div>
-            <span class="t-caption" style="color:var(--gray-500);">Measure Output</span>
+            <span class="t-caption" style="color:rgba(255,255,255,0.5);">Measure Output</span>
           </div>
           <img src="assets/bi-workflow-step-1.png" alt="Step 1" />
-          <p class="t-small" style="color:var(--gray-600);">Count Russian publications over time. Found a steep decline starting 2022.</p>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">Count Russian publications over time. Found a steep decline starting 2022.</p>
         </div>
-        <div class="step-card">
+        <div class="step-card" style="background:var(--glass); border-color:var(--glass-border); box-shadow:0 8px 30px rgba(0,0,0,0.25);">
           <div class="flex-row gap-10">
             <div class="step-num" style="background:var(--accent-warm);">2</div>
-            <span class="t-caption" style="color:var(--gray-500);">Explore Funding</span>
+            <span class="t-caption" style="color:rgba(255,255,255,0.5);">Explore Funding</span>
           </div>
           <img src="assets/bi-workflow-step-2.png" alt="Step 2" />
-          <p class="t-small" style="color:var(--gray-600);">Add funding data. The European Commission stopped funding Russian projects after 2022.</p>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">Add funding data. The European Commission stopped funding Russian projects after 2022.</p>
         </div>
-        <div class="step-card">
+        <div class="step-card" style="background:var(--glass); border-color:var(--glass-border); box-shadow:0 8px 30px rgba(0,0,0,0.25);">
           <div class="flex-row gap-10">
             <div class="step-num" style="background:var(--accent-green);">3</div>
-            <span class="t-caption" style="color:var(--gray-500);">Compare Partners</span>
+            <span class="t-caption" style="color:rgba(255,255,255,0.5);">Compare Partners</span>
           </div>
           <img src="assets/bi-workflow-step-3.png" alt="Step 3" />
-          <p class="t-small" style="color:var(--gray-600);">Add a second organization layer. Compared EC support for Russia vs. Ukraine.</p>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">Add a second organization layer. Compared EC support for Russia vs. Ukraine.</p>
         </div>
       </div>
-      <div class="blockquote blockquote--light" style="text-align:center; max-width:800px; margin:0 auto;"><strong>Each round produced a new question.</strong> But each round also required rebuilding the data setup from scratch.</div>
+      <div class="blockquote blockquote--dark" style="text-align:center; max-width:800px; margin:0 auto;"><strong>Each round produced a new question.</strong> But each round also required rebuilding the data setup from scratch.</div>
     </div>
   </section>
 
@@ -584,46 +584,46 @@
   </section>
 
   <!-- ========== SLIDE 7: ROOT CAUSE ========== -->
-  <section class="slide slide--light">
+  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 50% 30%, rgba(0,113,227,0.06), transparent 50%), linear-gradient(160deg, #111, #0a0a0a);">
     <div class="content flex-col gap-40">
       <div class="flex-col gap-16 center">
         <span class="t-caption t-accent">Root Cause Analysis</span>
         <h2 class="t-title" style="text-align:center;">The Causal Chain</h2>
-        <p class="t-body" style="color:var(--gray-500); max-width:620px; text-align:center;">The investigation revealed a multi-layered mechanism, not a simple cause-and-effect.</p>
+        <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:620px; text-align:center;">The investigation revealed a multi-layered mechanism, not a simple cause-and-effect.</p>
       </div>
       <div class="chain">
-        <div class="chain-node card-light" style="background:rgba(255,69,58,0.08); border-color:rgba(255,69,58,0.15);">
+        <div class="chain-node card-dark" style="background:rgba(255,69,58,0.12); border-color:rgba(255,69,58,0.25);">
           <span style="font-size:24px;">&#9888;</span><br>
           <strong>Russia-Ukraine War</strong>
         </div>
         <div class="chain-arrow">&rarr;</div>
-        <div class="chain-node card-light" style="background:rgba(255,103,35,0.08); border-color:rgba(255,103,35,0.15);">
+        <div class="chain-node card-dark" style="background:rgba(255,103,35,0.12); border-color:rgba(255,103,35,0.25);">
           <span style="font-size:24px;">&#9949;</span><br>
           <strong>Western Sanctions</strong><br>
-          <span style="font-size:13px; color:var(--gray-500);">+ Academic platform isolation</span>
+          <span style="font-size:13px; color:rgba(255,255,255,0.55);">+ Academic platform isolation</span>
         </div>
         <div class="chain-arrow">&rarr;</div>
-        <div class="chain-node card-light" style="background:rgba(0,113,227,0.08); border-color:rgba(0,113,227,0.15);">
+        <div class="chain-node card-dark" style="background:rgba(0,113,227,0.14); border-color:rgba(0,113,227,0.3);">
           <span style="font-size:24px;">&#128279;</span><br>
           <strong>Collaboration Severed</strong><br>
-          <span style="font-size:13px; color:var(--gray-500);">With ALL countries</span>
+          <span style="font-size:13px; color:rgba(255,255,255,0.55);">With ALL countries</span>
         </div>
         <div class="chain-arrow">&rarr;</div>
-        <div class="chain-node card-light" style="background:rgba(167,139,250,0.08); border-color:rgba(167,139,250,0.15);">
+        <div class="chain-node card-dark" style="background:rgba(167,139,250,0.14); border-color:rgba(167,139,250,0.3);">
           <span style="font-size:24px;">&#128200;</span><br>
           <strong>Output Collapsed</strong><br>
-          <span style="font-size:13px; color:var(--gray-500);">-47.8% by 2024</span>
+          <span style="font-size:13px; color:rgba(255,255,255,0.55);">-47.8% by 2024</span>
         </div>
       </div>
       <div class="grid-2" style="max-width:900px; margin:0 auto; gap:20px;">
-        <div class="card-light">
-          <p class="t-body" style="color:var(--gray-600);"><strong style="color:var(--gray-800);">High dependence = high vulnerability.</strong> Turkey, with the highest pre-war reliance on Russian collaboration (8.74% of output), suffered the worst decline (-87.9% in collaboration ratio).</p>
+        <div class="card-dark">
+          <p class="t-body" style="color:rgba(255,255,255,0.6);"><strong style="color:#fff;">High dependence = high vulnerability.</strong> Turkey, with the highest pre-war reliance on Russian collaboration (8.74% of output), suffered the worst decline (-87.9% in collaboration ratio).</p>
         </div>
-        <div class="card-light">
-          <p class="t-body" style="color:var(--gray-600);"><strong style="color:var(--gray-800);">Platform isolation is the fundamental cause.</strong> International databases (OpenAIRE, Crossref, publishers) systematically reduced Russian paper visibility &mdash; this is sanction-agnostic and affects all partners equally.</p>
+        <div class="card-dark">
+          <p class="t-body" style="color:rgba(255,255,255,0.6);"><strong style="color:#fff;">Platform isolation is the fundamental cause.</strong> International databases (OpenAIRE, Crossref, publishers) systematically reduced Russian paper visibility &mdash; this is sanction-agnostic and affects all partners equally.</p>
         </div>
       </div>
-      <div class="blockquote blockquote--light" style="max-width:800px; margin:0 auto; text-align:center;">This kind of multi-layered, hypothesis-driven investigation is exactly what traditional BI struggles to support.</div>
+      <div class="blockquote blockquote--dark" style="max-width:800px; margin:0 auto; text-align:center;">This kind of multi-layered, hypothesis-driven investigation is exactly what traditional BI struggles to support.</div>
     </div>
   </section>
 
@@ -661,34 +661,34 @@
   </section>
 
   <!-- ========== SLIDE 9: EXPLORATORY BI ========== -->
-  <section class="slide slide--light">
+  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 30% 30%, rgba(0,113,227,0.09), transparent 50%), linear-gradient(160deg, #0e0e14, #0a0a0a);">
     <div class="content grid-split">
       <div class="flex-col gap-32">
         <div class="flex-col gap-16">
           <span class="t-caption t-accent">The Shift</span>
           <h2 class="t-title">What If BI Could<br>Evolve With Your<br>Thinking?</h2>
-          <p class="t-body" style="color:var(--gray-500); max-width:480px;">Instead of one-shot analysis, exploration should be iterative &mdash; each insight naturally leads to the next, better question.</p>
+          <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:480px;">Instead of one-shot analysis, exploration should be iterative &mdash; each insight naturally leads to the next, better question.</p>
         </div>
         <div class="flex-col gap-20">
           <div class="flex-row gap-16" style="align-items:flex-start;">
             <div class="pillar-icon" style="background:var(--accent); flex-shrink:0;">1</div>
             <div class="flex-col gap-4">
               <span style="font-size:18px; font-weight:600;">Observe</span>
-              <span class="t-body" style="color:var(--gray-500); font-size:15px;">Start from one visible signal. Read the first pattern clearly.</span>
+              <span class="t-body" style="color:rgba(255,255,255,0.55); font-size:15px;">Start from one visible signal. Read the first pattern clearly.</span>
             </div>
           </div>
           <div class="flex-row gap-16" style="align-items:flex-start;">
             <div class="pillar-icon" style="background:var(--accent-warm); flex-shrink:0;">2</div>
             <div class="flex-col gap-4">
               <span style="font-size:18px; font-weight:600;">Deepen</span>
-              <span class="t-body" style="color:var(--gray-500); font-size:15px;">Follow the evidence instead of rebuilding the whole process from zero.</span>
+              <span class="t-body" style="color:rgba(255,255,255,0.55); font-size:15px;">Follow the evidence instead of rebuilding the whole process from zero.</span>
             </div>
           </div>
           <div class="flex-row gap-16" style="align-items:flex-start;">
             <div class="pillar-icon" style="background:var(--accent-green); flex-shrink:0;">3</div>
             <div class="flex-col gap-4">
               <span style="font-size:18px; font-weight:600;">Connect</span>
-              <span class="t-body" style="color:var(--gray-500); font-size:15px;">Carry forward what was already learned. Assemble the story progressively.</span>
+              <span class="t-body" style="color:rgba(255,255,255,0.55); font-size:15px;">Carry forward what was already learned. Assemble the story progressively.</span>
             </div>
           </div>
         </div>
@@ -697,7 +697,63 @@
         <div class="img-frame">
           <img src="assets/bi-workflow-step-4.png" alt="Exploratory BI workflow" style="padding:16px;" />
         </div>
-        <p class="t-small" style="color:var(--gray-500); text-align:center;">From Paper I: analysis becomes <strong>cumulative rather than repetitive</strong>.</p>
+        <p class="t-small" style="color:rgba(255,255,255,0.45); text-align:center;">From Paper I: analysis becomes <strong style="color:rgba(255,255,255,0.75);">cumulative rather than repetitive</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 10: SAMPLING — CORE CONTRIBUTION ========== -->
+  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 20% 70%, rgba(255,69,58,0.06), transparent 40%), radial-gradient(ellipse at 80% 20%, rgba(0,113,227,0.08), transparent 45%), linear-gradient(160deg, #111, #0a0a0a);">
+    <div class="content flex-col gap-20">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption t-accent">Core Contribution</span>
+        <h2 class="t-title" style="text-align:center;">Making Exploration Feasible:<br>Sampling-Based Operators</h2>
+        <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:740px; text-align:center;">Iterative exploration means running <strong>Source</strong> and <strong>Join</strong> over and over. Both hit performance walls &mdash; sampling tears them down.</p>
+      </div>
+      <div class="grid-2" style="gap:18px;">
+        <div class="card-dark flex-col gap-10" style="padding:20px; border-top:3px solid var(--accent-red);">
+          <span class="t-caption t-red">Bottleneck 1 &mdash; Source</span>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">Subgraph matching is <strong style="color:#fff;">NP-complete</strong>. Finding a 4-path on a tiny 9,892-vertex graph already takes <strong style="color:#fff;">~4 minutes</strong> &mdash; far from interactive.</p>
+        </div>
+        <div class="card-dark flex-col gap-10" style="padding:20px; border-top:3px solid var(--accent-warm);">
+          <span class="t-caption t-warm">Bottleneck 2 &mdash; Join Explosion</span>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">Merging hypergraphs blows up fast. On OpenAIRE, a single citation join yields <strong style="color:#fff;">1.4 billion</strong> rows &mdash; and exploration keeps joining again.</p>
+        </div>
+      </div>
+      <div class="blockquote blockquote--dark" style="text-align:center; max-width:860px; margin:0 auto; padding:16px 22px; font-size:19px;"><strong style="color:#fff;">Key insight.</strong> BI analysts care about <em>aggregates</em> (COUNT, SUM, trends), not individual records. If the aggregate can be accurately estimated, the full result set is unnecessary.</div>
+      <div class="grid-3" style="gap:14px;">
+        <div class="card-dark flex-col gap-8" style="padding:18px; background:rgba(0,113,227,0.1); border-color:rgba(0,113,227,0.22);">
+          <div class="flex-row gap-10">
+            <div class="pillar-icon" style="background:var(--accent); width:32px; height:32px; font-size:14px;">S</div>
+            <span style="font-size:16px; font-weight:600;">Source-Sample</span>
+          </div>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">Adapt FaSTest tree sampling for subgraph matching &mdash; returns a uniform sample instead of enumerating every match.</p>
+        </div>
+        <div class="card-dark flex-col gap-8" style="padding:18px; background:rgba(255,103,35,0.1); border-color:rgba(255,103,35,0.22);">
+          <div class="flex-row gap-10">
+            <div class="pillar-icon" style="background:var(--accent-warm); width:32px; height:32px; font-size:14px;">J</div>
+            <span style="font-size:16px; font-weight:600;">Join-Sample</span>
+          </div>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">Weighted group-sample on one side, then one match per sampled hyperedge &mdash; equivalent to uniform sampling of the full join result.</p>
+        </div>
+        <div class="card-dark flex-col gap-8" style="padding:18px; background:rgba(48,209,88,0.1); border-color:rgba(48,209,88,0.22);">
+          <div class="flex-row gap-10">
+            <div class="pillar-icon" style="background:var(--accent-green); width:32px; height:32px; font-size:14px;">&#10003;</div>
+            <span style="font-size:16px; font-weight:600;">Unbiased End-to-End</span>
+          </div>
+          <p class="t-small" style="color:rgba(255,255,255,0.6);">We prove any composition of Source-Sample and Join-Sample still yields a uniform sample &mdash; so COUNT/SUM estimates remain unbiased across long exploratory chains.</p>
+        </div>
+      </div>
+      <div class="flex-row gap-32" style="justify-content:center; padding-top:2px;">
+        <div class="flex-col center gap-2">
+          <span class="metric-big t-accent" style="font-size:48px;">36.7&times;</span>
+          <span class="t-small" style="color:rgba(255,255,255,0.45);">end-to-end speedup vs. no-sample</span>
+        </div>
+        <div style="width:1px; height:44px; background:rgba(255,255,255,0.12); align-self:center;"></div>
+        <div class="flex-col center gap-2">
+          <span class="metric-big t-green" style="font-size:48px;">&lt;1%</span>
+          <span class="t-small" style="color:rgba(255,255,255,0.45);">error at 1M samples on SF1</span>
+        </div>
       </div>
     </div>
   </section>
@@ -764,42 +820,42 @@
   </section>
 
   <!-- ========== SLIDE 11: OPENCLAW INTRO ========== -->
-  <section class="slide slide--light">
+  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 50% 30%, rgba(48,209,88,0.07), transparent 50%), linear-gradient(160deg, #0e0e12, #0a0a0a);">
     <div class="content flex-col gap-24">
       <div class="flex-col gap-12 center">
         <span class="t-caption t-green">Usability</span>
         <h2 class="t-title" style="text-align:center;">Enhancing Usability with<br>the OpenCLAW Platform</h2>
-        <p class="t-body" style="color:var(--gray-500); max-width:620px; text-align:center;">Powerful analysis is only valuable if people can actually use it. We integrated NeuGBI into <strong>OpenClaw</strong> and deployed it on <strong>Lark (Feishu)</strong>.</p>
+        <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:620px; text-align:center;">Powerful analysis is only valuable if people can actually use it. We integrated NeuGBI into <strong style="color:#fff;">OpenClaw</strong> and deployed it on <strong style="color:#fff;">Lark (Feishu)</strong>.</p>
       </div>
       <div class="grid-3" style="gap:16px; max-width:960px; margin:0 auto;">
-        <div class="card-light flex-col gap-12" style="padding:22px;">
+        <div class="card-dark flex-col gap-12" style="padding:22px;">
           <div class="pillar-icon" style="background:linear-gradient(135deg, #0071e3, #5ac8fa); width:42px; height:42px;">
             <span style="font-size:20px;">&#128172;</span>
           </div>
           <h3 style="font-size:18px; font-weight:600;">Natural Language Input</h3>
-          <p class="t-small" style="color:var(--gray-500);">Type questions in plain language &mdash; no SQL, no query builders, no schema knowledge required.</p>
+          <p class="t-small" style="color:rgba(255,255,255,0.55);">Type questions in plain language &mdash; no SQL, no query builders, no schema knowledge required.</p>
         </div>
-        <div class="card-light flex-col gap-12" style="padding:22px;">
+        <div class="card-dark flex-col gap-12" style="padding:22px;">
           <div class="pillar-icon" style="background:linear-gradient(135deg, #ff6723, #ff9f43); width:42px; height:42px;">
             <span style="font-size:20px;">&#128241;</span>
           </div>
           <h3 style="font-size:18px; font-weight:600;">Familiar Chat Interface</h3>
-          <p class="t-small" style="color:var(--gray-500);">Deployed as a bot within Lark (Feishu), the platform teams already use every day. Zero learning curve.</p>
+          <p class="t-small" style="color:rgba(255,255,255,0.55);">Deployed as a bot within Lark (Feishu), the platform teams already use every day. Zero learning curve.</p>
         </div>
-        <div class="card-light flex-col gap-12" style="padding:22px;">
+        <div class="card-dark flex-col gap-12" style="padding:22px;">
           <div class="pillar-icon" style="background:linear-gradient(135deg, #30d158, #63e6be); width:42px; height:42px;">
             <span style="font-size:20px;">&#128203;</span>
           </div>
           <h3 style="font-size:18px; font-weight:600;">Structured Report Output</h3>
-          <p class="t-small" style="color:var(--gray-500);">Generates professional reports with tables, key findings, and causal analysis &mdash; ready to share.</p>
+          <p class="t-small" style="color:rgba(255,255,255,0.55);">Generates professional reports with tables, key findings, and causal analysis &mdash; ready to share.</p>
         </div>
       </div>
       <div class="grid-2" style="max-width:900px; margin:0 auto; gap:16px;">
-        <div class="card-light" style="padding:20px;">
-          <p class="t-small" style="color:var(--gray-600);"><strong style="color:var(--gray-800);">Real-world scale.</strong> Connected to OpenAIRE with 22.4M vertices and 94.4M edges of publications, organizations, authors, and funding data.</p>
+        <div class="card-dark" style="padding:20px;">
+          <p class="t-small" style="color:rgba(255,255,255,0.6);"><strong style="color:#fff;">Real-world scale.</strong> Connected to OpenAIRE with 22.4M vertices and 94.4M edges of publications, organizations, authors, and funding data.</p>
         </div>
-        <div class="card-light" style="padding:20px;">
-          <p class="t-small" style="color:var(--gray-600);"><strong style="color:var(--gray-800);">From question to report.</strong> The entire Russia-Ukraine analysis was generated autonomously through this chat interface.</p>
+        <div class="card-dark" style="padding:20px;">
+          <p class="t-small" style="color:rgba(255,255,255,0.6);"><strong style="color:#fff;">From question to report.</strong> The entire Russia-Ukraine analysis was generated autonomously through this chat interface.</p>
         </div>
       </div>
     </div>
@@ -905,7 +961,7 @@
 </main>
 
 <!-- Navigation -->
-<div class="slide-counter" id="slideCounter">01 / 13</div>
+<div class="slide-counter" id="slideCounter">01 / 16</div>
 <div class="nav">
   <div class="nav-dots" id="navDots"></div>
   <button class="nav-btn" id="prevBtn">&#8592;</button>
