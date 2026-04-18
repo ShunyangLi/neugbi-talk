@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>speech_zh.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="slide-1--%E6%A0%87%E9%A2%98%E9%A1%B5-from-traditional-bi-to-neugbi">Slide 1 — 标题页 (From Traditional BI to NeuGBI)</h2>
+<p>大家好。今天我想和大家分享的话题是：<strong>&quot;从传统 BI 到 NeuGBI&quot;</strong>——商业智能，是如何从静态的仪表盘，一步步演变成可以迭代、由问题驱动的自主探索的。</p>
+<hr>
+<h2 id="slide-2--%E4%BB%80%E4%B9%88%E6%98%AF%E4%BC%A0%E7%BB%9F-bi">Slide 2 — 什么是传统 BI？</h2>
+<p>•BI（商业智能）是通过整合、分析和可视化企业数据，帮助决策者快速获取洞察、支持业务决策的一套技术、流程和工具</p>
+<p>•BI的核心功能：数据收集和处理（比如聚合数据）、可视化数据</p>
+<p>BI的工作流程：</p>
+<p>步骤1：业务分析师提出需求</p>
+<p>步骤2: 工程师和分析师沟通确认需求</p>
+<p>步骤3: 重复步骤1和步骤2直到确定方案</p>
+<p>步骤4: 工程师创建宽表数据</p>
+<p>步骤5: 业务分析师分析宽表数据</p>
+<p>数据越来越复杂，导致沟通成本急剧上升，数据大量重复的构建，分析需求越来越深入</p>
+<hr>
+<h2 id="slide-3--%E4%BC%A0%E7%BB%9F-bi-%E5%A6%82%E4%BD%95%E5%9B%9E%E7%AD%94%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98">Slide 3 — 传统 BI 如何回答一个问题</h2>
+<p>我们用一个具体的例子看一下。假设研究员问：<strong>&quot;俄罗斯最近几年的论文产出变化如何？&quot;</strong> 传统 BI 要经过三步：</p>
+<ol>
+<li><strong>沟通需求</strong>。分析师要跟领域专家、数据库管理员反复沟通：用哪些数据源？时间范围？什么算&quot;俄罗斯&quot;？——这一轮还没碰数据，就已经耗了大量时间。</li>
+<li><strong>构建宽表</strong>。把 Publication、Organization 以及相关的表按国家、按年份做 Join。这个过程是手动的，非常依赖对 schema 的深度理解。</li>
+<li><strong>分析与出图</strong>。最后才是聚合、切片、画趋势图。一个问题，终于回答了。</li>
+</ol>
+<p>然后呢？<strong>如果结果引出了新的问题——整条流水线得从第一步重来一次</strong>。</p>
+<hr>
+<h2 id="slide-4--%E6%A1%88%E4%BE%8B%E4%BF%84%E4%B9%8C%E5%86%B2%E7%AA%81%E5%AF%B9%E4%BF%84%E7%BD%97%E6%96%AF%E5%AD%A6%E6%9C%AF%E7%9A%84%E5%BD%B1%E5%93%8D">Slide 4 — 案例：俄乌冲突对俄罗斯学术的影响</h2>
+<p>把这个场景放大。我们来问一个更大的问题：<strong>&quot;俄乌冲突对俄罗斯科研的影响到底是什么？&quot;</strong></p>
+<p>用传统 BI 做这个分析，本质上是跑三轮：先统计<strong>产出</strong>、再看<strong>资助</strong>、再比较<strong>合作伙伴</strong>。每一轮都会产生新的问题，但每一轮都要从头把数据环境搭一遍。</p>
+<p>下面我先带大家看看，这个案例能挖出多少东西。</p>
+<hr>
+<h2 id="slide-5--%E5%8F%91%E7%8E%B0%E4%B8%80%E4%BF%84%E7%BD%97%E6%96%AF%E5%AD%A6%E6%9C%AF%E4%BA%A7%E5%87%BA%E5%B7%B2%E7%BB%8F%E5%B4%A9%E5%A1%8C">Slide 5 — 发现一：俄罗斯学术产出已经崩塌</h2>
+<p>第一个发现。俄罗斯机构 2021 年产出是 <strong>8,976 篇</strong>论文，到 2024 年只剩 <strong>4,686 篇</strong>——下降将近 <strong>48%</strong>。</p>
+<p>这是全球趋势吗？<strong>不是</strong>。同期美国和德国大概跌了 27.6%，而中国还在涨 14.8%。俄罗斯比全球基线<strong>多跌了 20 个百分点</strong>，这是战争专属的冲击。</p>
+<p>而且下降是在<strong>加速</strong>的：2022 年 -6%、2023 年 -4.8%，但 2024 年直接跳到 <strong>-39.4%</strong>——是一个累积、复利式的下跌。</p>
+<hr>
+<h2 id="slide-6--%E5%8F%91%E7%8E%B0%E4%BA%8C%E5%9B%BD%E9%99%85%E5%90%88%E4%BD%9C%E5%87%A0%E4%B9%8E%E5%BD%92%E9%9B%B6">Slide 6 — 发现二：国际合作几乎归零</h2>
+<p>第二个发现，比第一个更严重。</p>
+<ul>
+<li>美俄合作论文，从 3,614 篇降到 271 篇——<strong>-92.5%</strong>；</li>
+<li>德俄合作 —— <strong>-93%</strong>；</li>
+<li>中俄合作 —— <strong>-80%</strong>；</li>
+<li>国际合作在俄罗斯总产出中的占比，从 10% 压到 5% 以下。</li>
+</ul>
+<p>这不是&quot;下降&quot;，是&quot;<strong>几乎消失</strong>&quot;。曾经撑起俄罗斯科研的国际合作网络，和几乎所有主要伙伴都断开了。</p>
+<hr>
+<h2 id="slide-7--%E5%8F%91%E7%8E%B0%E4%B8%89%E5%9C%9F%E8%80%B3%E5%85%B6%E7%9A%84%E6%84%8F%E5%A4%96">Slide 7 — 发现三：土耳其的意外</h2>
+<p>第三个发现是整个分析里最反常识的一点。</p>
+<p>土耳其——<strong>没有参与对俄制裁</strong>。按直觉，土俄合作应该相对稳定才对。但事实是：土俄合作论文跌了 <strong>-98.4%</strong>，比执行制裁的德国（-93%）还要严重。</p>
+<p>这说明什么？<strong>仅靠制裁，无法解释俄罗斯的科研崩塌</strong>。真正的根因，是<strong>学术平台的&quot;去俄罗斯化&quot;</strong>——像 OpenAIRE、Crossref 这样的国际数据库、出版商，系统性地降低了俄罗斯论文的可见性，而这影响的是<strong>所有合作国家</strong>，不只制裁方。</p>
+<hr>
+<h2 id="slide-8--%E6%A0%B9%E5%9B%A0%E5%AE%8C%E6%95%B4%E7%9A%84%E5%9B%A0%E6%9E%9C%E9%93%BE%E6%9D%A1">Slide 8 — 根因：完整的因果链条</h2>
+<p>把整条链串起来：<strong>俄乌战争 → 西方制裁 + 学术平台隔离 → 国际合作断裂 → 产出崩塌</strong>。</p>
+<p>而这种<strong>多层次、假设驱动</strong>的调查过程，恰好是传统 BI 最难支持的。</p>
+<hr>
+<h2 id="slide-9--%E4%BC%A0%E7%BB%9F-bi-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%A4%9F%E7%94%A8">Slide 9 — 传统 BI 为什么不够用？</h2>
+<p>为什么不行？我们总结了四个问题：</p>
+<ol>
+<li><strong>要求事先知道完整的分析路径</strong>——漏一个关键因素，整个流程都得重来；</li>
+<li><strong>schema 是写死的</strong>——问题会不断演化，但数据模型跟不上；</li>
+<li><strong>轮次之间没有复用</strong>——刚才的案例里，Publication–Organization 的 Join 被重复计算了 <strong>3 次</strong>；</li>
+<li><strong>重复计算的成本不断累积</strong>——分析师的时间花在了重搭环境，而不是产出下一个洞见。</li>
+</ol>
+<hr>
+<h2 id="slide-10--%E5%A6%82%E6%9E%9C-bi-%E8%83%BD%E8%B7%9F%E7%9D%80%E4%BD%A0%E7%9A%84%E6%80%9D%E8%80%83%E4%B8%80%E8%B5%B7%E6%BC%94%E5%8C%96%E5%91%A2">Slide 10 — 如果 BI 能跟着你的思考一起演化呢？</h2>
+<p>于是我们提出一个问题：<strong>如果 BI 能跟着你的思考一起演化，会怎样？</strong></p>
+<p>这就是我们说的&quot;<strong>探索式 BI</strong>&quot;——把&quot;一次性出结果&quot;改成&quot;<strong>迭代式探索</strong>&quot;。三个关键词：</p>
+<ul>
+<li><strong>Observe</strong>（观察）——从一个可见的信号出发；</li>
+<li><strong>Deepen</strong>（深入）——顺着证据往下走，而不是推倒重来；</li>
+<li><strong>Connect</strong>（关联）——把之前学到的东西继承下来。</li>
+</ul>
+<p>分析因此变成<strong>累加式</strong>，而不是<strong>重复式</strong>的。</p>
+<hr>
+<h2 id="slide-11--%E6%A0%B8%E5%BF%83%E8%B4%A1%E7%8C%AE%E9%87%87%E6%A0%B7%E7%AE%97%E5%AD%90%E8%AE%A9%E6%8E%A2%E7%B4%A2%E5%BC%8F-bi-%E7%9C%9F%E6%AD%A3%E8%90%BD%E5%9C%B0">Slide 11 — 核心贡献：采样算子让探索式 BI 真正落地</h2>
+<p>但要让探索式 BI 真正跑起来，我们要翻过两堵<strong>性能墙</strong>：</p>
+<ul>
+<li><strong>第一堵墙：Source 算子</strong>。在我们的图数据模型下，Source 对应的是子图匹配，<strong>而子图匹配是 NP-complete 的</strong>。实验里，我们在一张只有 <strong>9,892 个顶点</strong>的小图上找一个 4-path，就要跑大约 <strong>4 分钟</strong>——这对交互式 BI 是致命的。</li>
+<li><strong>第二堵墙：Join 爆炸</strong>。在 OpenAIRE 上，一次简单的引用 Join 就会产生 <strong>14 亿行</strong>结果。而探索过程要反复 Join，完全扛不住。</li>
+</ul>
+<p>我们的<strong>关键洞察</strong>是：BI 分析师关心的是<strong>聚合值</strong>——COUNT、SUM、趋势——而不是每条原始记录。<strong>只要聚合可以被准确估计，就根本不需要物化所有结果</strong>。</p>
+<p>基于这个洞察，我们做了三件事：</p>
+<ul>
+<li><strong>Source-Sample</strong>：改造 FaSTest 的 tree-sampling——子图匹配返回一个<strong>均匀样本</strong>，而不是穷举所有匹配；</li>
+<li><strong>Join-Sample</strong>：用 Chaudhuri 的 weighted group-sample——先按权重采样一侧，再为每条被采样的边匹配一个连接结果，等价于对整个 Join 结果做均匀采样；</li>
+<li><strong>端到端的无偏保证</strong>：我们在论文里证明了，无论这两个算子如何嵌套组合，输出始终是<strong>均匀样本</strong>。所以 COUNT 和 SUM 的估计，在任意长的探索链上，都是<strong>无偏的</strong>。</li>
+</ul>
+<p>实验效果：端到端最高 <strong>36.7 倍</strong>加速，1M 样本下误差 <strong>小于 1%</strong>。</p>
+<hr>
+<h2 id="slide-12--neugbi%E6%8E%A2%E7%B4%A2%E5%BC%8F-bi-%E7%9A%84%E8%87%AA%E4%B8%BB%E5%8C%96%E7%B3%BB%E7%BB%9F">Slide 12 — NeuGBI：探索式 BI 的自主化系统</h2>
+<p>有了探索式 BI 的范式，加上采样算子的性能保障，我们进一步构建了 <strong>NeuGBI</strong> 系统。</p>
+<p>对比一下：</p>
+<ul>
+<li><strong>传统 BI</strong>：专家定义问题 → 建模 → 得到一个答案。新问题？——全部重来。</li>
+<li><strong>NeuGBI</strong>：用户抛出一个宽泛的问题 → 系统<strong>自主探索</strong> → 每个发现引出下一个更深的问题 → 最终生成一份连贯的报告。</li>
+</ul>
+<p>它的四个关键词：</p>
+<ul>
+<li><strong>E</strong>xploratory（探索性，不需要预先定义问题）</li>
+<li><strong>P</strong>rogressive（渐进式，每一步都更深一层）</li>
+<li><strong>R</strong>eusable（可复用，前面的结果不会丢）</li>
+<li><strong>A</strong>utonomous（自主，无需专家持续介入）</li>
+</ul>
+<hr>
+<h2 id="slide-13--openclaw%E8%AE%A9%E8%83%BD%E5%8A%9B%E7%9C%9F%E6%AD%A3%E5%8F%AF%E7%94%A8">Slide 13 — OpenCLAW：让能力真正可用</h2>
+<p>能力再强，用不起来也是零。所以我们把 NeuGBI 集成进了 <strong>OpenCLAW</strong> 平台，并部署到<strong>飞书（Lark）</strong> 上。</p>
+<p>三个关键点：</p>
+<ol>
+<li><strong>自然语言输入</strong>——不用写 SQL，不用懂 schema；</li>
+<li><strong>熟悉的聊天界面</strong>——就是你每天都在用的飞书——零学习成本；</li>
+<li><strong>结构化的报告输出</strong>——表格、关键发现、因果分析，开箱即用。</li>
+</ol>
+<p>规模上，我们接入了 <strong>OpenAIRE</strong> 数据集——<strong>2,240 万</strong>个顶点，<strong>9,440 万</strong>条边。<strong>刚才那整份俄乌分析，就是通过飞书上一个 bot 自主生成出来的</strong>。</p>
+<hr>
+<h2 id="slide-14--neugbi-%E5%9C%A8%E9%A3%9E%E4%B9%A6%E4%B8%8A%E7%9A%84%E5%AE%9E%E9%99%85%E8%BF%90%E8%A1%8C">Slide 14 — NeuGBI 在飞书上的实际运行</h2>
+<p>这是在飞书上运行的三个阶段：</p>
+<ol>
+<li><strong>Schema 探索</strong>——用户说&quot;给我看一下 schema&quot;，系统展示数据结构和规模；</li>
+<li><strong>自主分析</strong>——主智能体拆解问题、派出子智能体做根因分析、搭建报告结构；</li>
+<li><strong>最终报告</strong>——一份完整的报告，包含关键发现、执行摘要、因果分析。</li>
+</ol>
+<p>整个过程中，用户需要做的，就是<strong>提出最初的那个问题</strong>。</p>
+<hr>
+<h2 id="slide-15--demo-%E8%A7%86%E9%A2%91">Slide 15 — Demo 视频</h2>
+<p>下面我们直接来看一下 NeuGBI 的完整演示。</p>
+<p>（播放视频）</p>
+<blockquote>
+<p>一句话总结：
+<strong>传统 BI 回答的是&quot;已知的&quot;问题；NeuGBI 找到的是&quot;下一个&quot;问题——并且让整个调查保持连贯。</strong></p>
+</blockquote>
+<hr>
+<h2 id="slide-16--%E8%87%AA%E5%B7%B1%E4%B8%8A%E6%89%8B%E8%AF%95%E8%AF%95">Slide 16 — 自己上手试试</h2>
+<p>如果大家感兴趣，欢迎扫这个二维码，或者访问 GitHub 链接——我们把整个环境都打包好了：<strong>数据集、Demo 系统、以及生成的分析报告</strong>，都能直接跑起来。</p>
+<p>谢谢大家，欢迎提问。</p>
+<hr>
+<h2 id="%E8%AE%B2%E7%A8%BF%E7%BB%93%E6%9E%84%E9%80%9F%E6%9F%A5%E8%A1%A8">讲稿结构速查表</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Slide 主题</th>
+<th>节奏建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>标题</td>
+<td>30 秒，不要拖</td>
+</tr>
+<tr>
+<td>2</td>
+<td>什么是传统 BI</td>
+<td>45 秒，引入三步流程</td>
+</tr>
+<tr>
+<td>3</td>
+<td>单个问题的例子</td>
+<td>60 秒，突出&quot;又要重来&quot;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>俄乌案例引入</td>
+<td>30 秒，承上启下</td>
+</tr>
+<tr>
+<td>5</td>
+<td>发现一：产出崩塌</td>
+<td>60 秒，核心数字慢读</td>
+</tr>
+<tr>
+<td>6</td>
+<td>发现二：合作归零</td>
+<td>60 秒</td>
+</tr>
+<tr>
+<td>7</td>
+<td>发现三：土耳其意外</td>
+<td>75 秒，这是全文高光</td>
+</tr>
+<tr>
+<td>8</td>
+<td>因果链</td>
+<td>45 秒</td>
+</tr>
+<tr>
+<td>9</td>
+<td>传统 BI 的四大局限</td>
+<td>45 秒，节奏可以快</td>
+</tr>
+<tr>
+<td>10</td>
+<td>探索式 BI 的转向</td>
+<td>45 秒</td>
+</tr>
+<tr>
+<td>11</td>
+<td>采样（核心贡献）</td>
+<td>90 秒，技术细节最多的一页</td>
+</tr>
+<tr>
+<td>12</td>
+<td>NeuGBI 系统</td>
+<td>60 秒</td>
+</tr>
+<tr>
+<td>13</td>
+<td>OpenCLAW 部署</td>
+<td>45 秒</td>
+</tr>
+<tr>
+<td>14</td>
+<td>飞书三阶段</td>
+<td>45 秒</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Demo</td>
+<td>视频长度</td>
+</tr>
+<tr>
+<td>16</td>
+<td>结语 / QR</td>
+<td>20 秒</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
