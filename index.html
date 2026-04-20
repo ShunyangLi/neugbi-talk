@@ -2196,7 +2196,7 @@
     dots = Array.from(dotsContainer.querySelectorAll('.nav-dot'));
   }
 
-  function goTo(index) {
+  function goTo(index, opts) {
     if (!slides.length) return;
     current = Math.max(0, Math.min(index, slides.length - 1));
     document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
@@ -2208,6 +2208,17 @@
     document.querySelectorAll('video').forEach(v => {
       if (!v.closest('.slide').classList.contains('active')) v.pause();
     });
+
+    if (!opts || !opts.fromHash) {
+      const target = '#/' + (current + 1);
+      if (location.hash !== target) history.replaceState(null, '', target);
+    }
+  }
+
+  function slideFromHash() {
+    const m = /^#\/(\d+)$/.exec(location.hash);
+    if (!m) return null;
+    return Math.max(1, Math.min(parseInt(m[1], 10), slides.length)) - 1;
   }
 
   function syncLangButtons() {
@@ -2256,8 +2267,14 @@
 
   refreshSlides();
   buildDots();
-  goTo(0);
+  const initial = slideFromHash();
+  goTo(initial == null ? 0 : initial, { fromHash: initial != null });
   syncLangButtons();
+
+  window.addEventListener('hashchange', () => {
+    const i = slideFromHash();
+    if (i != null && i !== current) goTo(i, { fromHash: true });
+  });
 </script>
 
 </body>
