@@ -443,12 +443,12 @@
     <div class="content flex-col gap-18">
       <div class="flex-col gap-10 center">
         <span class="t-caption-warm">Case Study</span>
-        <h2 class="t-title" style="text-align:center;">The Russia-Ukraine Impact<br>on Russian Academia</h2>
+        <h2 class="t-title" style="text-align:center;">The Russia-Ukraine Impact on Russian Academia</h2>
       </div>
-      <div class="blockquote blockquote-warm" style="max-width:780px; margin:0 auto; font-style:italic; font-size:22px;">"What is the impact of the Russia-Ukraine conflict on Russian academic research?"</div>
+      <div class="blockquote blockquote-warm" style="max-width:980px; margin:0 auto; margin-top: 1%; margin-bottom: 1%; font-style:italic; font-size:22px;">"What is the impact of the Russia-Ukraine conflict on Russian academic research?"</div>
 
       <!-- OpenAIRE dataset card -->
-      <div class="card-lift" style="max-width:1160px; margin:0 auto;">
+      <div class="card-lift" style="max-width:1160px; margin:0 auto; margin-top: 1%; margin-bottom: 1%;">
         <div class="grid-split" style="gap:28px; align-items:center;">
           <div class="flex-col gap-12">
             <span class="t-caption-warm">Dataset &middot; OpenAIRE</span>
@@ -1068,79 +1068,97 @@
     </div>
   </section>
 
-  <!-- ========== SLIDE 19: SKILL SUITE + OPENCLAW × LARK ========== -->
+  <!-- ========== SLIDE 19: NEUGBI SKILL SUITE ========== -->
   <section class="slide slide-bg-green">
-    <div class="content flex-col gap-18">
+    <div class="content flex-col gap-20">
       <div class="flex-col gap-10 center">
-        <span class="t-caption-green">Deployment</span>
+        <span class="t-caption-green">Analysis Capabilities Layer</span>
         <h2 class="t-title" style="text-align:center;">Making NeuGBI Platform-Agnostic</h2>
-        <p class="t-subtitle" style="max-width:880px; text-align:center;">NeuGBI ships with a <strong class="t-ink-bold">full Skill Suite</strong> &mdash; any Agent platform that loads these skills can host NeuGBI's exploratory analysis end-to-end.</p>
+        <p class="t-subtitle" style="max-width:880px; text-align:center;">NeuGBI ships with a <strong class="t-ink-bold">full Skill Suite</strong> &mdash; any Agent platform that loads these skills can immediately run NeuGBI's exploratory analysis.</p>
       </div>
 
-      <!-- Skill Suite card -->
-      <div class="card-lift" style="max-width:1160px; margin:0 auto;">
-        <div class="flex-col gap-10">
-          <div class="flex-row gap-10" style="align-items:center; flex-wrap:wrap;">
-            <span class="t-caption-green">NeuGBI Skill Suite &middot; 6 composable capabilities</span>
-            <span class="t-tiny" style="color:var(--gray-500);">(modular building blocks for the analysis layer)</span>
-          </div>
-          <div class="grid-3" style="gap:10px;">
-            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
-              <span style="font-size:14px; font-weight:600;">① Database &amp; Schema Understanding</span>
-            </div>
-            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
-              <span style="font-size:14px; font-weight:600;">② Entity Alignment</span>
-            </div>
-            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
-              <span style="font-size:14px; font-weight:600;">③ Question Decomposition</span>
-            </div>
-            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
-              <span style="font-size:14px; font-weight:600;">④ Query Generation</span>
-            </div>
-            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
-              <span style="font-size:14px; font-weight:600;">⑤ Control Group Design</span>
-            </div>
-            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
-              <span style="font-size:14px; font-weight:600;">⑥ Exploratory Analysis Pipeline</span>
-            </div>
-          </div>
+      <div class="grid-3" style="gap:16px;">
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">① Database &amp; Schema Understanding</span>
+          <p class="t-small">Grasp the semantics of every vertex type and edge type from schema and sample data &mdash; an accurate foundation for every query that follows.</p>
+        </div>
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">② Entity Alignment</span>
+          <p class="t-small">Map entities in the user's question ("Russia", "2022"&hellip;) precisely to database fields, avoiding misinterpretation.</p>
+        </div>
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">③ Question Decomposition</span>
+          <p class="t-small">Break a broad question into sub-questions, reducing single-step complexity so the analysis can unfold from multiple angles at once.</p>
+        </div>
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">④ Query Generation</span>
+          <p class="t-small">For each sub-question, generate the right graph query and dispatch it to the compute layer (Source / Join / View).</p>
+        </div>
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">⑤ Control Group Design</span>
+          <p class="t-small">Autonomously design control experiments for query results and conclusions &mdash; validate findings, strengthen credibility. <em>"Russia dropped &mdash; what about other countries?"</em></p>
+        </div>
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">⑥ Exploratory Analysis Pipeline</span>
+          <p class="t-small">Chain the first five skills into an iterative exploration loop &mdash; each round's findings automatically trigger the next round's questions and queries.</p>
         </div>
       </div>
 
-      <!-- Concrete deployment line -->
       <div class="blockquote blockquote-green" style="text-align:center; max-width:1000px; margin:0 auto; padding:14px 22px; font-size:18px;">
-        <strong class="t-ink-bold">For this demo:</strong> we host the skill suite on <strong class="t-ink-bold">OpenCLAW</strong> as the Agent platform, and deploy it inside <strong class="t-ink-bold">Lark (Feishu)</strong> &mdash; a chat tool users already touch daily. Zero learning curve.
+        The user only poses a single question; <strong class="t-ink-bold">the Skill Suite autonomously closes the "decompose &rarr; query &rarr; validate &rarr; next round" loop</strong>, producing a structured analysis report at the end.
       </div>
-
-      <!-- 3-phone stages -->
-      <div class="flex-row gap-28" style="justify-content:center; align-items:flex-start; flex-wrap:wrap;">
-        <div class="flex-col center gap-8" style="max-width:210px;">
-          <div class="phone-mockup" style="max-width:200px;"><img src="assets/openclaw-schema.jpg" alt="Schema" style="height:300px;" /></div>
-          <div class="flex-row gap-8">
-            <div class="step-num bg-accent" style="width:24px; height:24px; font-size:11px;">1</div>
-            <span style="font-size:14px; font-weight:600;">Schema Exploration</span>
-          </div>
-        </div>
-        <div class="flex-col center gap-8" style="max-width:210px;">
-          <div class="phone-mockup" style="max-width:200px;"><img src="assets/openclaw-analysis.jpg" alt="Analysis" style="height:300px;" /></div>
-          <div class="flex-row gap-8">
-            <div class="step-num bg-warm" style="width:24px; height:24px; font-size:11px;">2</div>
-            <span style="font-size:14px; font-weight:600;">Autonomous Analysis</span>
-          </div>
-        </div>
-        <div class="flex-col center gap-8" style="max-width:210px;">
-          <div class="phone-mockup" style="max-width:200px;"><img src="assets/openclaw-report.jpg" alt="Report" style="height:300px;" /></div>
-          <div class="flex-row gap-8">
-            <div class="step-num bg-green" style="width:24px; height:24px; font-size:11px;">3</div>
-            <span style="font-size:14px; font-weight:600;">Final Report</span>
-          </div>
-        </div>
-      </div>
-      <p class="t-tiny" style="text-align:center;">Connected to <strong class="t-ink-bold">OpenAIRE</strong> &mdash; 22.4M vertices, 94.4M edges. The full Russia-Ukraine analysis was generated autonomously via this bot.</p>
     </div>
   </section>
 
-  <!-- ========== SLIDE 20: DEMO VIDEO ========== -->
+  <!-- ========== SLIDE 20: OPENCLAW × LARK DEMO ========== -->
+  <section class="slide slide-bg-green">
+    <div class="content flex-col gap-20">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-green">Deployment Example</span>
+        <h2 class="t-title" style="text-align:center;">OpenCLAW &times; Lark</h2>
+        <p class="t-subtitle" style="max-width:880px; text-align:center;">For this demo, we use <strong class="t-ink-bold">OpenCLAW</strong> as the Agent platform hosting the Skill Suite, and deploy it inside <strong class="t-ink-bold">Lark (Feishu)</strong> &mdash; a chat tool users already use every day. Zero learning curve.</p>
+      </div>
+
+      <div class="flex-row gap-32" style="justify-content:center; align-items:flex-start; flex-wrap:wrap;">
+        <div class="flex-col center gap-10" style="max-width:260px;">
+          <div class="phone-mockup"><img src="assets/openclaw-schema.jpg" alt="Schema" /></div>
+          <div class="flex-col center gap-4">
+            <div class="flex-row gap-8">
+              <div class="step-num bg-accent" style="width:28px; height:28px; font-size:13px;">1</div>
+              <span style="font-size:16px; font-weight:600;">Schema Exploration</span>
+            </div>
+            <p class="t-small" style="text-align:center;">User says "show me the schema" &mdash; the system presents the data structure and scale.</p>
+          </div>
+        </div>
+        <div class="flex-col center gap-10" style="max-width:260px;">
+          <div class="phone-mockup"><img src="assets/openclaw-analysis.jpg" alt="Analysis" /></div>
+          <div class="flex-col center gap-4">
+            <div class="flex-row gap-8">
+              <div class="step-num bg-warm" style="width:28px; height:28px; font-size:13px;">2</div>
+              <span style="font-size:16px; font-weight:600;">Autonomous Analysis</span>
+            </div>
+            <p class="t-small" style="text-align:center;">The main agent decomposes the question, dispatches sub-agents, and digs into root causes layer by layer.</p>
+          </div>
+        </div>
+        <div class="flex-col center gap-10" style="max-width:260px;">
+          <div class="phone-mockup"><img src="assets/openclaw-report.jpg" alt="Report" /></div>
+          <div class="flex-col center gap-4">
+            <div class="flex-row gap-8">
+              <div class="step-num bg-green" style="width:28px; height:28px; font-size:13px;">3</div>
+              <span style="font-size:16px; font-weight:600;">Final Report</span>
+            </div>
+            <p class="t-small" style="text-align:center;">A complete report &mdash; key findings, causal analysis &mdash; ready to share.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="max-width:1000px; margin:0 auto; padding:16px 22px;">
+        <p class="t-body" style="text-align:center;">Connected to <strong class="t-ink-bold">OpenAIRE</strong>: 22.4M vertices, 94.4M edges.<br><strong class="t-ink-bold">The full Russia-Ukraine analysis was generated autonomously by this bot</strong> &mdash; the user said a single sentence, start to finish.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 21: DEMO VIDEO ========== -->
   <section class="slide slide-bg-title">
     <div class="content flex-col gap-20 center">
       <div class="flex-col gap-6 center">
@@ -1160,7 +1178,7 @@
     </div>
   </section>
 
-  <!-- ========== SLIDE 21: QR + THANK YOU ========== -->
+  <!-- ========== SLIDE 22: QR + THANK YOU ========== -->
   <section class="slide slide-bg-title">
     <div class="content flex-col gap-20 center">
       <div class="flex-col gap-8 center">
@@ -1183,7 +1201,7 @@
 
 </main>
 
-<div class="slide-counter" id="slideCounter">01 / 21</div>
+<div class="slide-counter" id="slideCounter">01 / 22</div>
 <div class="nav">
   <div class="nav-dots" id="navDots"></div>
   <button class="nav-btn" id="prevBtn">&#8592;</button>
