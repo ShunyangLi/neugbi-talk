@@ -1,594 +1,1281 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-<title>speech_zh.md</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
-<style>
-/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-body {
-	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
-	font-size: var(--vscode-markdown-font-size, 14px);
-	padding: 0 26px;
-	line-height: var(--vscode-markdown-line-height, 22px);
-	word-wrap: break-word;
-}
-
-#code-csp-warning {
-	position: fixed;
-	top: 0;
-	right: 0;
-	color: white;
-	margin: 16px;
-	text-align: center;
-	font-size: 12px;
-	font-family: sans-serif;
-	background-color:#444444;
-	cursor: pointer;
-	padding: 6px;
-	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
-}
-
-#code-csp-warning:hover {
-	text-decoration: none;
-	background-color:#007acc;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
-}
-
-body.scrollBeyondLastLine {
-	margin-bottom: calc(100vh - 22px);
-}
-
-body.showEditorSelection .code-line {
-	position: relative;
-}
-
-body.showEditorSelection .code-active-line:before,
-body.showEditorSelection .code-line:hover:before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: -12px;
-	height: 100%;
-}
-
-body.showEditorSelection li.code-active-line:before,
-body.showEditorSelection li.code-line:hover:before {
-	left: -30px;
-}
-
-.vscode-light.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.15);
-}
-
-.vscode-light.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.40);
-}
-
-.vscode-light.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-dark.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.4);
-}
-
-.vscode-dark.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.60);
-}
-
-.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-high-contrast.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 160, 0, 0.7);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 160, 0, 1);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-img {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-a {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 1px solid -webkit-focus-ring-color;
-	outline-offset: -1px;
-}
-
-hr {
-	border: 0;
-	height: 2px;
-	border-bottom: 2px solid;
-}
-
-h1 {
-	padding-bottom: 0.3em;
-	line-height: 1.2;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-}
-
-h1, h2, h3 {
-	font-weight: normal;
-}
-
-table {
-	border-collapse: collapse;
-}
-
-table > thead > tr > th {
-	text-align: left;
-	border-bottom: 1px solid;
-}
-
-table > thead > tr > th,
-table > thead > tr > td,
-table > tbody > tr > th,
-table > tbody > tr > td {
-	padding: 5px 10px;
-}
-
-table > tbody > tr + tr > td {
-	border-top: 1px solid;
-}
-
-blockquote {
-	margin: 0 7px 0 5px;
-	padding: 0 16px 0 10px;
-	border-left-width: 5px;
-	border-left-style: solid;
-}
-
-code {
-	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 1em;
-	line-height: 1.357em;
-}
-
-body.wordWrap pre {
-	white-space: pre-wrap;
-}
-
-pre:not(.hljs),
-pre.hljs code > div {
-	padding: 16px;
-	border-radius: 3px;
-	overflow: auto;
-}
-
-pre code {
-	color: var(--vscode-editor-foreground);
-	tab-size: 4;
-}
-
-/** Theming */
-
-.vscode-light pre {
-	background-color: rgba(220, 220, 220, 0.4);
-}
-
-.vscode-dark pre {
-	background-color: rgba(10, 10, 10, 0.4);
-}
-
-.vscode-high-contrast pre {
-	background-color: rgb(0, 0, 0);
-}
-
-.vscode-high-contrast h1 {
-	border-color: rgb(0, 0, 0);
-}
-
-.vscode-light table > thead > tr > th {
-	border-color: rgba(0, 0, 0, 0.69);
-}
-
-.vscode-dark table > thead > tr > th {
-	border-color: rgba(255, 255, 255, 0.69);
-}
-
-.vscode-light h1,
-.vscode-light hr,
-.vscode-light table > tbody > tr + tr > td {
-	border-color: rgba(0, 0, 0, 0.18);
-}
-
-.vscode-dark h1,
-.vscode-dark hr,
-.vscode-dark table > tbody > tr + tr > td {
-	border-color: rgba(255, 255, 255, 0.18);
-}
-
-</style>
-
-<style>
-/* Tomorrow Theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
-
-/* Tomorrow Comment */
-.hljs-comment,
-.hljs-quote {
-	color: #8e908c;
-}
-
-/* Tomorrow Red */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-deletion {
-	color: #c82829;
-}
-
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-	color: #f5871f;
-}
-
-/* Tomorrow Yellow */
-.hljs-attribute {
-	color: #eab700;
-}
-
-/* Tomorrow Green */
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
-	color: #718c00;
-}
-
-/* Tomorrow Blue */
-.hljs-title,
-.hljs-section {
-	color: #4271ae;
-}
-
-/* Tomorrow Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-	color: #8959a8;
-}
-
-.hljs {
-	display: block;
-	overflow-x: auto;
-	color: #4d4d4c;
-	padding: 0.5em;
-}
-
-.hljs-emphasis {
-	font-style: italic;
-}
-
-.hljs-strong {
-	font-weight: bold;
-}
-</style>
-
-<style>
-/*
- * Markdown PDF CSS
- */
-
- body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-	padding: 0 12px;
-}
-
-pre {
-	background-color: #f8f8f8;
-	border: 1px solid #cccccc;
-	border-radius: 3px;
-	overflow-x: auto;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
-}
-
-pre:not(.hljs) {
-	padding: 23px;
-	line-height: 19px;
-}
-
-blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.emoji {
-	height: 1.4em;
-}
-
-code {
-	font-size: 14px;
-	line-height: 19px;
-}
-
-/* for inline code */
-:not(pre):not(.hljs) > code {
-	color: #C9AE75; /* Change the old color so it seems less like an error */
-	font-size: inherit;
-}
-
-/* Page Break : use <div class="page"/> to insert page break
--------------------------------------------------------- */
-.page {
-	page-break-after: always;
-}
-
-</style>
-
-<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>从 BI 到 NeuGBI</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font: "SF Pro Display", "PingFang SC", "Helvetica Neue", -apple-system, sans-serif;
+      --font-body: "SF Pro Text", "PingFang SC", "Helvetica Neue", -apple-system, sans-serif;
+      --ink: #1a1a1a;
+      --ink-soft: #2a2a2a;
+      --gray-900: #111;
+      --gray-700: #333;
+      --gray-600: #555;
+      --gray-500: #777;
+      --gray-400: #999;
+      --gray-300: #c7c7cc;
+      --gray-200: #e5e5ea;
+      --gray-100: #f2f2f4;
+      --gray-50: #fafafa;
+      --accent: #0071e3;
+      --accent-soft: #e5f0ff;
+      --accent-warm: #ff6723;
+      --accent-warm-soft: #ffece3;
+      --accent-green: #2ea84a;
+      --accent-green-soft: #e5f7e9;
+      --accent-red: #d9342a;
+      --accent-red-soft: #fde8e6;
+      --accent-yellow: #e6b400;
+      --accent-yellow-soft: #fff8db;
+      --accent-purple: #7a5af8;
+      --accent-purple-soft: #ede9ff;
+      --panel: #ffffff;
+      --panel-soft: #fafafb;
+      --border: rgba(0,0,0,0.08);
+      --border-soft: rgba(0,0,0,0.05);
+      --shadow: 0 16px 48px rgba(0,0,0,0.06);
+      --shadow-sm: 0 6px 18px rgba(0,0,0,0.04);
+      --radius: 22px;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      background: #eaeaec;
+      color: var(--ink);
+    }
+
+    .deck {
+      width: 1440px; height: 900px;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform-origin: center center;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.97);
+      transition: opacity 0.55s cubic-bezier(0.4,0,0.2,1), transform 0.55s cubic-bezier(0.4,0,0.2,1);
+      pointer-events: none;
+      overflow: hidden;
+      padding: 48px;
+      background: linear-gradient(180deg, #ffffff 0%, #f7f7f9 100%);
+      color: var(--ink);
+    }
+    .slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+
+    .slide-bg-blue    { background: radial-gradient(ellipse at 20% 20%, #e8f1ff 0%, transparent 55%), linear-gradient(180deg, #ffffff 0%, #f7f7f9 100%); }
+    .slide-bg-warm    { background: radial-gradient(ellipse at 80% 80%, #fff0e8 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f7f7f9 100%); }
+    .slide-bg-red     { background: radial-gradient(ellipse at 20% 80%, #fde8e6 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f8f8fa 100%); }
+    .slide-bg-green   { background: radial-gradient(ellipse at 80% 20%, #e6f6ea 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f7f8f7 100%); }
+    .slide-bg-yellow  { background: radial-gradient(ellipse at 50% 30%, #fff6d6 0%, transparent 55%), linear-gradient(180deg, #ffffff 0%, #f8f8f5 100%); }
+    .slide-bg-purple  { background: radial-gradient(ellipse at 70% 30%, #eee8ff 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f7f7fa 100%); }
+    .slide-bg-title   { background: radial-gradient(ellipse at 30% 20%, #dce8ff 0%, transparent 55%), radial-gradient(ellipse at 70% 80%, #ede9ff 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f4f5fa 100%); }
+
+    .t-hero { font-size: 88px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
+    .t-title { font-size: 54px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+    .t-heading { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+    .t-subtitle { font-size: 22px; font-weight: 400; line-height: 1.45; color: var(--gray-600); letter-spacing: -0.005em; }
+    .t-body { font-size: 17px; font-weight: 400; line-height: 1.55; color: var(--gray-600); font-family: var(--font-body); }
+    .t-small { font-size: 14px; line-height: 1.55; color: var(--gray-600); font-family: var(--font-body); }
+    .t-tiny { font-size: 12px; line-height: 1.4; color: var(--gray-500); font-family: var(--font-body); }
+    .t-caption { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+    .t-caption-warm { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-warm); }
+    .t-caption-red { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-red); }
+    .t-caption-green { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-green); }
+    .t-caption-yellow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: #b38800; }
+    .t-caption-purple { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-purple); }
+
+    .t-gradient {
+      background: linear-gradient(120deg, #0071e3 0%, #7a5af8 55%, #ff6723 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .t-accent { color: var(--accent); }
+    .t-warm { color: var(--accent-warm); }
+    .t-green { color: var(--accent-green); }
+    .t-red { color: var(--accent-red); }
+    .t-yellow { color: #b38800; }
+    .t-ink { color: var(--ink); }
+    .t-ink-bold { color: var(--ink); font-weight: 600; }
+
+    .content {
+      width: min(1260px, 100%);
+      max-height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      position: relative; z-index: 1;
+      scrollbar-width: none;
+      word-break: normal;
+      overflow-wrap: break-word;
+      line-break: strict;
+    }
+    .content::-webkit-scrollbar { display: none; }
+    .content h2, .content h3, .content p, .content span, .content li, .content div {
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+    .nowrap { white-space: nowrap; }
+
+    .flex-col { display: flex; flex-direction: column; }
+    .flex-row { display: flex; align-items: center; }
+    .flex-wrap { flex-wrap: wrap; }
+    .center { text-align: center; align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+
+    .gap-4{gap:4px} .gap-6{gap:6px} .gap-8{gap:8px} .gap-10{gap:10px} .gap-12{gap:12px} .gap-14{gap:14px}
+    .gap-16{gap:16px} .gap-20{gap:20px} .gap-24{gap:24px} .gap-28{gap:28px} .gap-32{gap:32px} .gap-40{gap:40px}
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .grid-split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: center; }
+    .grid-split-r { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 36px; align-items: center; }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .card-soft {
+      background: var(--panel-soft);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .card-lift {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .img-frame {
+      border-radius: 18px; overflow: hidden; background: #fff;
+      border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+    }
+    .img-frame img { width: 100%; display: block; }
+
+    .metric-big { font-size: 68px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+    .metric-mid { font-size: 42px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .metric-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--gray-500); }
+
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; flex-shrink: 0;
+      color: #fff;
+    }
+    .bg-accent { background: var(--accent); }
+    .bg-warm   { background: var(--accent-warm); }
+    .bg-green  { background: var(--accent-green); }
+    .bg-red    { background: var(--accent-red); }
+    .bg-yellow { background: #e6b400; }
+    .bg-purple { background: var(--accent-purple); }
+
+    .pillar-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; color: #fff;
+      flex-shrink: 0;
+    }
+
+    .blockquote {
+      padding: 22px 26px; border-radius: 18px;
+      font-size: 20px; line-height: 1.45;
+      letter-spacing: -0.01em; font-weight: 500;
+      color: var(--gray-700);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+    .blockquote-warm { border-left-color: var(--accent-warm); }
+    .blockquote-green { border-left-color: var(--accent-green); }
+    .blockquote-yellow { border-left-color: #e6b400; }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 999px; font-size: 12px;
+      font-weight: 600; letter-spacing: 0.04em;
+      background: var(--gray-100);
+      border: 1px solid var(--border-soft);
+      color: var(--gray-700);
+    }
+    .tag-blue   { background: var(--accent-soft); color: var(--accent); border-color: rgba(0,113,227,0.15); }
+    .tag-warm   { background: var(--accent-warm-soft); color: var(--accent-warm); border-color: rgba(255,103,35,0.2); }
+    .tag-green  { background: var(--accent-green-soft); color: var(--accent-green); border-color: rgba(46,168,74,0.2); }
+    .tag-red    { background: var(--accent-red-soft); color: var(--accent-red); border-color: rgba(217,52,42,0.2); }
+    .tag-yellow { background: var(--accent-yellow-soft); color: #b38800; border-color: rgba(230,180,0,0.25); }
+
+    .divider { width: 56px; height: 4px; border-radius: 2px; background: var(--accent); }
+
+    .chain {
+      display: flex; align-items: center; gap: 0;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .chain-node {
+      padding: 14px 20px; border-radius: 16px;
+      font-size: 14px; font-weight: 600; text-align: center;
+      max-width: 220px;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .chain-arrow {
+      font-size: 24px; color: var(--gray-400); padding: 0 10px;
+      flex-shrink: 0;
+    }
+
+    .phone-mockup {
+      background: #1a1a1a;
+      border-radius: 28px;
+      padding: 10px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.08);
+      max-width: 240px;
+      width: 100%;
+    }
+    .phone-mockup img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .video-container {
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      max-width: 760px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .video-container video { width: 100%; display: block; }
+
+    .code-box {
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-family: "SF Mono", "Menlo", monospace;
+      font-size: 13px;
+      color: var(--gray-700);
+      line-height: 1.55;
+    }
+
+    .formula {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-family: "SF Mono", "Menlo", monospace;
+      font-size: 14.5px;
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+      line-height: 1.65;
+    }
+
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: var(--accent);
+      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+      z-index: 100;
+    }
+
+    .nav {
+      position: fixed; bottom: 24px; right: 32px; z-index: 50;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-dots {
+      display: flex; gap: 5px; padding: 8px 14px;
+      background: rgba(255,255,255,0.85); border: 1px solid var(--border);
+      border-radius: 999px; backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gray-300);
+      transition: all 0.3s ease; cursor: pointer;
+    }
+    .nav-dot.active { background: var(--ink); transform: scale(1.5); }
+
+    .nav-btn {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--ink); font-size: 15px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-sm);
+      transition: background 0.2s;
+    }
+    .nav-btn:hover { background: var(--gray-100); }
+
+    .slide-counter {
+      position: fixed; bottom: 28px; left: 32px; z-index: 50;
+      font-size: 11px; letter-spacing: 0.14em;
+      color: var(--gray-400); font-weight: 600;
+    }
+
+    .callout {
+      padding: 14px 16px; border-radius: 14px;
+      font-size: 14px; line-height: 1.55; color: var(--gray-700);
+    }
+    .callout-blue   { background: var(--accent-soft); border: 1px solid rgba(0,113,227,0.15); }
+    .callout-warm   { background: var(--accent-warm-soft); border: 1px solid rgba(255,103,35,0.18); }
+    .callout-green  { background: var(--accent-green-soft); border: 1px solid rgba(46,168,74,0.18); }
+    .callout-red    { background: var(--accent-red-soft); border: 1px solid rgba(217,52,42,0.18); }
+    .callout-yellow { background: var(--accent-yellow-soft); border: 1px solid rgba(230,180,0,0.22); }
+  </style>
 </head>
 <body>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
-          ? 'dark'
-          : 'default'
+
+<div class="progress-bar" id="progressBar"></div>
+
+<main class="deck">
+
+  <!-- ========== SLIDE 1: TITLE ========== -->
+  <section class="slide slide-bg-title active">
+    <div class="content flex-col center gap-32">
+      <div class="flex-row gap-10" style="justify-content: center; flex-wrap: wrap;">
+        <span class="tag tag-blue">VLDB Journal</span>
+        <span class="tag tag-warm">PVLDB Demo</span>
+        <span class="tag tag-green">OpenAIRE 案例</span>
+      </div>
+      <div class="flex-col center gap-16">
+        <h1 class="t-hero" style="text-align:center;">从 BI<br><span class="t-gradient">到 NeuGBI</span></h1>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">商业智能的演进：从静态仪表盘，到可迭代、由问题驱动的自主探索式分析。</p>
+      </div>
+      <div class="divider" style="margin:0 auto;"></div>
+      <p class="t-tiny" style="letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:var(--gray-400);">探索式 BI 框架 &nbsp;&middot;&nbsp; 采样算子 &nbsp;&middot;&nbsp; NeuGBI 系统 &nbsp;&middot;&nbsp; 俄乌学术案例</p>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 2: WHAT IS TRADITIONAL BI ========== -->
+  <section class="slide slide-bg-blue">
+    <div class="content grid-split">
+      <div class="flex-col gap-28">
+        <div class="flex-col gap-12">
+          <span class="t-caption">背景</span>
+          <h2 class="t-title">什么是商业智能 (BI)？</h2>
+          <p class="t-body" style="max-width:520px;">BI 帮助组织把原始数据转化为可行动的洞察。<strong class="t-ink-bold"></br>——前提是你已经知道要问什么。</strong></p>
+        </div>
+        <div class="grid-3" style="gap:16px;">
+          <div class="card" style="padding:18px;">
+            <div class="flex-col gap-10">
+              <div class="step-num bg-accent">1</div>
+              <span style="font-size:18px; font-weight:600;">提出需求</span>
+              <span class="t-small">业务方定义好要回答的具体问题。</span>
+            </div>
+          </div>
+          <div class="card" style="padding:18px;">
+            <div class="flex-col gap-10">
+              <div class="step-num bg-warm">2</div>
+              <span style="font-size:18px; font-weight:600;">建模构建</span>
+              <span class="t-small">工程师按需求做宽表、建数据模型。</span>
+            </div>
+          </div>
+          <div class="card" style="padding:18px;">
+            <div class="flex-col gap-10">
+              <div class="step-num bg-green">3</div>
+              <span style="font-size:18px; font-weight:600;">解读结果</span>
+              <span class="t-small">业务方看图、做决策、输出报告。</span>
+            </div>
+          </div>
+        </div>
+        <div class="blockquote">BI 就像拼一幅你已经看过封面的拼图&mdash;&mdash;<strong class="t-ink-bold">答案的轮廓早已确定</strong>。</div>
+      </div>
+      <div class="img-frame">
+        <img src="assets/bi-workflow-step-1.png" alt="BI workflow" style="padding:20px;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 3: TRADITIONAL BI FLOW ========== -->
+  <section class="slide slide-bg-blue">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption">一个具体的问题</span>
+        <h2 class="t-title" style="text-align:center;">BI 如何回答一个问题？</h2>
+        <p class="t-body" style="max-width:720px; text-align:center;">研究员问：<em class="t-ink-bold">"俄罗斯最近几年的论文产出有变化吗？"</em><br>一套典型的 BI 流程，要走完以下三步才能给出第一个答案。</p>
+      </div>
+      <div class="grid-3" style="gap:20px;">
+        <div class="card flex-col gap-14" style="padding:22px;">
+          <div class="flex-row gap-10">
+            <div class="step-num bg-accent">1</div>
+            <span style="font-size:17px; font-weight:600;">沟通需求</span>
+          </div>
+          <p class="t-small">分析师要和领域专家、DBA 反复确认：<strong class="t-ink-bold">用哪些数据源</strong>？时间窗口？"俄罗斯"怎么定义？</p>
+          <div class="callout callout-blue">数据还没动，时间已经过去了。</div>
+        </div>
+        <div class="card flex-col gap-14" style="padding:22px;">
+          <div class="flex-row gap-10">
+            <div class="step-num bg-warm">2</div>
+            <span style="font-size:17px; font-weight:600;">构建宽表</span>
+          </div>
+          <p class="t-small">手动把 <strong class="t-ink-bold">Publication &times; Organization</strong> 按国家、年份 Join 起来&mdash;&mdash;强依赖 schema 知识。</p>
+          <div class="callout callout-warm">这一步通常最耗时，也最容易返工。</div>
+        </div>
+        <div class="card flex-col gap-14" style="padding:22px;">
+          <div class="flex-row gap-10">
+            <div class="step-num bg-green">3</div>
+            <span style="font-size:17px; font-weight:600;">分析与出图</span>
+          </div>
+          <p class="t-small">终于开始聚合、切片、画趋势图。一个问题，终于回答了。</p>
+          <div class="callout callout-green"><strong class="t-ink-bold">但如果结果引出了新问题&mdash;&mdash;整条流水线要从第一步重来。</strong></div>
+        </div>
+      </div>
+      <div class="blockquote" style="text-align:center; max-width:900px; margin:0 auto;">BI 很擅长把<strong class="t-ink-bold">某一个已知问题</strong>答清楚。但真实研究里，<strong class="t-ink-bold">很少会停在“就这一问一答”</strong></br>&mdash;&mdash;每个答案往往都会引出下一个问题。</div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 4: CASE INTRO + OPENAIRE DATASET ========== -->
+  <section class="slide slide-bg-warm">
+    <div class="content flex-col gap-18">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-warm">案例研究</span>
+        <h2 class="t-title" style="text-align:center;">俄乌冲突<br>对俄罗斯学术的影响</h2>
+      </div>
+      <div class="blockquote blockquote-warm" style="max-width:780px; margin:0 auto; font-style:italic; font-size:22px;">"俄乌冲突对俄罗斯科研的影响，到底是什么？"</div>
+
+      <!-- OpenAIRE dataset card -->
+      <div class="card-lift" style="max-width:1160px; margin:0 auto;">
+        <div class="grid-split" style="gap:28px; align-items:center;">
+          <div class="flex-col gap-12">
+            <span class="t-caption-warm">数据集 &middot; OpenAIRE</span>
+            <p class="t-body">欧洲最大的开放科研知识图谱。包含<strong class="t-ink-bold">论文、作者、机构、项目、资助方、数据源</strong>等实体，以及它们之间的 <strong class="t-ink-bold">12 种关系</strong>&mdash;&mdash;一张 2,240 万顶点的科研大图。</p>
+            <div class="flex-row gap-24" style="flex-wrap:wrap;">
+              <div class="flex-col gap-2">
+                <span class="metric-label">总顶点数</span>
+                <span class="metric-mid t-warm">22.4M</span>
+              </div>
+              <div class="flex-col gap-2">
+                <span class="metric-label">总边数</span>
+                <span class="metric-mid t-warm">94.4M</span>
+              </div>
+              <div class="flex-col gap-2">
+                <span class="metric-label">关系种类</span>
+                <span class="metric-mid t-warm">12</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-col gap-8">
+            <span class="t-caption-warm" style="color:var(--gray-500);">主要实体</span>
+            <div class="flex-col gap-6">
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.18); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Publication 论文</span>
+                <span class="t-small"><strong class="t-ink-bold">17.9M</strong></span>
+              </div>
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.12); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Project 项目</span>
+                <span class="t-small"><strong class="t-ink-bold">3.5M</strong></span>
+              </div>
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.12); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Organization 机构</span>
+                <span class="t-small"><strong class="t-ink-bold">454K</strong></span>
+              </div>
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.12); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Author 作者</span>
+                <span class="t-small"><strong class="t-ink-bold">401K</strong></span>
+              </div>
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.12); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Funding 资助方 &middot; Datasource &middot; &hellip;</span>
+                <span class="t-small"><strong class="t-ink-bold">185 &middot; 142K</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-step preview -->
+      <div class="flex-col gap-10 center">
+        <p class="t-body" style="max-width:820px; text-align:center;">下面我们就在这张图上，用 BI 一步一步尝试回答&mdash;&mdash;<strong class="t-ink-bold">三个问题，三次建表</strong>：</p>
+        <div class="grid-3" style="gap:14px; max-width:1100px;">
+          <div class="card-soft flex-col gap-4" style="padding:14px;">
+            <span class="t-caption-warm">Step 1</span>
+            <span style="font-size:15px; font-weight:600;">产出在变吗？</span>
+          </div>
+          <div class="card-soft flex-col gap-4" style="padding:14px;">
+            <span class="t-caption-warm">Step 2</span>
+            <span style="font-size:15px; font-weight:600;">资助同步变了吗？</span>
+          </div>
+          <div class="card-soft flex-col gap-4" style="padding:14px;">
+            <span class="t-caption-warm">Step 3</span>
+            <span style="font-size:15px; font-weight:600;">欧委会转向乌克兰了吗？</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 5: CASE STEP 1 — BI DOES THE FIRST QUERY ========== -->
+  <section class="slide slide-bg-red">
+    <div class="content grid-split">
+      <div class="flex-col gap-20">
+        <div class="flex-col gap-10">
+          <div class="flex-row gap-12">
+            <div class="step-num bg-red" style="width:40px; height:40px; font-size:16px;">1</div>
+            <span class="t-caption-red">Step 1 &middot; 观察现象</span>
+          </div>
+          <h2 class="t-title">先问：产出<br>到底在不在变？</h2>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-red">BI 要怎么做这一步？</span>
+          <p class="t-body">分析师先找 DBA 沟通：<strong class="t-ink-bold">Publication 和 Organization 怎么连？"俄罗斯"按哪个字段筛选？</strong>反复确认之后，手动 Join 出一张宽表，再按年份聚合。</p>
+        </div>
+        <div class="img-frame"><img src="assets/bi-workflow-step-1.png" alt="Step 1 wide table" style="padding:12px;" /></div>
+      </div>
+      <div class="flex-col gap-16">
+        <div class="img-frame"><img src="assets/russia_pubs_trend.png" alt="Russian publication trend" /></div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-red">查询结果</span>
+          <div class="flex-row gap-14" style="flex-wrap:wrap;">
+            <div class="flex-col gap-2">
+              <span class="metric-label">2021 (战前)</span>
+              <span class="metric-mid">8,976</span>
+            </div>
+            <div style="font-size:22px; color:var(--gray-300); align-self:center;">&rarr;</div>
+            <div class="flex-col gap-2">
+              <span class="metric-label">2024 (战后)</span>
+              <span class="metric-mid t-red">4,686</span>
+            </div>
+            <div class="flex-col gap-2" style="margin-left:auto;">
+              <span class="metric-label">变化</span>
+              <span class="metric-mid t-red">&minus;47.8%</span>
+            </div>
+          </div>
+          <p class="t-small">结果一出来，下一个问题立刻冒出来：<strong class="t-ink-bold">为什么会掉？</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 6: CASE STEP 2 — BI REBUILDS FOR FUNDING ========== -->
+  <section class="slide slide-bg-warm">
+    <div class="content grid-split-r">
+      <div class="flex-col gap-16">
+        <div class="img-frame"><img src="assets/bi-workflow-step-2.png" alt="Step 2 rebuilt wide table" style="padding:12px;" /></div>
+        <div class="callout callout-warm">
+          <strong class="t-ink-bold">整个流程又来了一遍。</strong><br>
+          新一轮的需求沟通、新一张宽表、新一次全量 Join。<br>
+          <strong class="t-warm">Step 1 的工作几乎不能复用。</strong>
+        </div>
+      </div>
+      <div class="flex-col gap-20">
+        <div class="flex-col gap-10">
+          <div class="flex-row gap-12">
+            <div class="step-num bg-warm" style="width:40px; height:40px; font-size:16px;">2</div>
+            <span class="t-caption-warm">Step 2 &middot; 追问原因</span>
+          </div>
+          <h2 class="t-title">再问：资助<br>有没有同步变化？</h2>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-warm">BI 要怎么做这一步？</span>
+          <p class="t-body">产出掉了，想看资助&mdash;&mdash;<strong class="t-ink-bold">需要一张全新的宽表：Publication &times; Organization &times; Funding</strong>。Schema 是写死的，没办法把 Funding 加到上一步的结果里；分析师只能重新和 DBA 对齐、重新建表、重新计算。</p>
+        </div>
+        <div class="callout callout-warm">
+          <strong class="t-ink-bold">查询结果：</strong>俄罗斯机构在 2020&ndash;2021 年拿到过多个来源的资助；<strong class="t-warm">2022 年起全部断掉</strong>。资助切断与产出下降几乎同步发生。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 7: CASE STEP 3 — BI REBUILDS AGAIN ========== -->
+  <section class="slide slide-bg-green">
+    <div class="content grid-split">
+      <div class="flex-col gap-20">
+        <div class="flex-col gap-10">
+          <div class="flex-row gap-12">
+            <div class="step-num bg-green" style="width:40px; height:40px; font-size:16px;">3</div>
+            <span class="t-caption-green">Step 3 &middot; 验证假设</span>
+          </div>
+          <h2 class="t-title">再问：欧委会是不是<br>转向了乌克兰？</h2>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-green">BI 要怎么做这一步？</span>
+          <p class="t-body">要对比俄乌的资助关系，还得<strong class="t-ink-bold">再加一张 Organization 表</strong>&mdash;&mdash;变成 4 张表的 Join。分析师再一次和 DBA 沟通、再一次重建宽表、再一次全量计算。</p>
+        </div>
+        <div class="callout callout-green">
+          <strong class="t-ink-bold">查询结果：</strong>欧盟委员会 (EC) 命中这个模式&mdash;&mdash;战前同时资助俄、乌；<strong class="t-green">2022 年起停止俄罗斯资助，继续支持乌克兰</strong>。已由 EC 官网证实。
+        </div>
+        <div class="callout callout-red" style="background:#fff; border-color:rgba(217,52,42,0.25);">
+          <strong class="t-red">3 轮分析，3 张宽表。</strong> Publication &times; Organization 的 Join 被重复做了 3 次&mdash;&mdash;每一轮都在付同样的建表代价，却没有一次复用。
+        </div>
+      </div>
+      <div class="flex-col gap-14">
+        <div class="img-frame"><img src="assets/bi-workflow-step-3.png" alt="Step 3 wide table" style="padding:12px;" /></div>
+        <div class="img-frame"><img src="assets/country_comparison.png" alt="Country comparison" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 8: DEEPER FINDINGS ========== -->
+  <section class="slide slide-bg-yellow">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-yellow">继续深挖</span>
+        <h2 class="t-title" style="text-align:center;">三轮分析之外，<br>还能看到什么？</h2>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">如果愿意继续再开几轮 BI 分析、再搭几张宽表&mdash;&mdash;数据里还藏着更反常识的信号。</p>
+      </div>
+      <div class="grid-3" style="gap:20px;">
+        <div class="card-lift flex-col gap-10">
+          <span class="t-caption-red">发现 &middot; 产出</span>
+          <div class="flex-row gap-10" style="align-items:flex-end;">
+            <span class="metric-big t-red">&minus;47.8%</span>
+          </div>
+          <p class="t-small">2021 &rarr; 2024 年，俄罗斯学术产出接近腰斩。全球基线仅 &minus;27.6%。</p>
+        </div>
+        <div class="card-lift flex-col gap-10">
+          <span class="t-caption-warm">发现 &middot; 国际合作</span>
+          <div class="flex-row gap-10" style="align-items:flex-end;">
+            <span class="metric-big t-warm">&minus;92%+</span>
+          </div>
+          <p class="t-small">美俄 &minus;92.5%、德俄 &minus;93.0%、中俄 &minus;80.4%，几乎全部合作伙伴断裂。</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-color:rgba(230,180,0,0.35);">
+          <span class="t-caption-yellow">反常识 &middot; 土耳其</span>
+          <div class="flex-row gap-10" style="align-items:flex-end;">
+            <span class="metric-big t-yellow">&minus;98.4%</span>
+          </div>
+          <p class="t-small">土耳其<strong class="t-ink-bold">没有制裁</strong>俄罗斯，但土俄合作跌幅<strong class="t-ink-bold">超过</strong>所有制裁国。</p>
+        </div>
+      </div>
+      <div class="grid-2" style="gap:18px;">
+        <div class="img-frame"><img src="assets/intl_collab_bars.png" alt="International collaboration" /></div>
+        <div class="img-frame"><img src="assets/key_finding_turkey.png" alt="Turkey surprise" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 9: CAUSAL CHAIN ========== -->
+  <section class="slide slide-bg-purple">
+    <div class="content flex-col gap-28">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-purple">根因分析</span>
+        <h2 class="t-title" style="text-align:center;">完整的因果链条</h2>
+        <p class="t-body" style="max-width:680px; text-align:center;">探索的真正价值：从一个现象出发，层层深入，最后拼出一条<strong class="t-ink-bold">谁都没预先想到的因果路径</strong>。</p>
+      </div>
+      <div class="chain">
+        <div class="chain-node" style="background:var(--accent-red-soft); border-color:rgba(217,52,42,0.25);">
+          <strong>俄乌战争</strong>
+        </div>
+        <div class="chain-arrow">&rarr;</div>
+        <div class="chain-node" style="background:var(--accent-warm-soft); border-color:rgba(255,103,35,0.25);">
+          <strong>西方制裁 +<br>学术平台隔离</strong>
+        </div>
+        <div class="chain-arrow">&rarr;</div>
+        <div class="chain-node" style="background:var(--accent-soft); border-color:rgba(0,113,227,0.25);">
+          <strong>国际合作<br>几乎全面断裂</strong>
+        </div>
+        <div class="chain-arrow">&rarr;</div>
+        <div class="chain-node" style="background:var(--accent-purple-soft); border-color:rgba(122,90,248,0.25);">
+          <strong>产出崩塌<br>&minus;47.8%</strong>
+        </div>
+      </div>
+      <div class="grid-2" style="gap:20px;">
+        <div class="card">
+          <p class="t-body"><strong class="t-ink-bold">土耳其之谜的答案&mdash;&mdash;平台隔离是底层驱动</strong>。OpenAIRE、Crossref 等国际数据库系统性降低了俄罗斯论文可见度，这种隔离<strong class="t-ink-bold">与制裁无关</strong>，所以影响所有国家。</p>
+        </div>
+        <div class="card">
+          <p class="t-body"><strong class="t-ink-bold">依赖越深，冲击越大</strong>。土耳其战前对俄合作占比最高 (8.74%)，因此跌得最惨 (合作比率 &minus;87.9%)。</p>
+        </div>
+      </div>
+      <div class="blockquote" style="text-align:center; max-width:860px; margin:0 auto;">这种<strong class="t-ink-bold">多层次、假设驱动</strong>的调查&mdash;&mdash;恰恰是经典 BI 流程最难支持的。</div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 10: WHY TRADITIONAL BI FAILS ========== -->
+  <section class="slide slide-bg-red">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-red">经典 BI 流程的困境</span>
+        <h2 class="t-title" style="text-align:center;">为什么这套工作流<br>撑不起探索？</h2>
+      </div>
+      <div class="grid-2" style="gap:20px;">
+        <div class="card flex-col gap-10" style="padding:26px;">
+          <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">01</span>
+          <h3 style="font-size:22px; font-weight:700;">重度依赖专家经验</h3>
+          <p class="t-body">分析师必须预先识别所有可能相关的表，和 DBA 反复沟通才能建表。<strong class="t-ink-bold">遗漏或误判，结论就偏。</strong></p>
+        </div>
+        <div class="card flex-col gap-10" style="padding:26px;">
+          <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">02</span>
+          <h3 style="font-size:22px; font-weight:700;">宽表的计算成本高</h3>
+          <p class="t-body">大规模数据下，多表 Join 的物化耗时耗存。 Step 3 那张 4 表宽表，在 OpenAIRE 上成本爆炸&mdash;&mdash;<strong class="t-ink-bold">1.93 亿条论文、5100 万条 Pub&ndash;Org 边</strong>。</p>
+        </div>
+        <div class="card flex-col gap-10" style="padding:26px;">
+          <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">03</span>
+          <h3 style="font-size:22px; font-weight:700;">Schema 是写死的</h3>
+          <p class="t-body">星型 / 雪花 schema 一旦定下，分析期间<strong class="t-ink-bold">不能实时修改</strong>。发现新维度？只能重启一轮从零搭建&mdash;&mdash;探索没法"边走边改"。</p>
+        </div>
+        <div class="card flex-col gap-10" style="padding:26px;">
+          <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">04</span>
+          <h3 style="font-size:22px; font-weight:700;">结果与中间数据无法复用</h3>
+          <p class="t-body">刚才案例里，<strong class="t-ink-bold">Publication&ndash;Organization 的 Join 被重复做了 3 次</strong>。每一轮都从零开始，上一轮的表、中间计算都被丢掉。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 11: EXPLORATORY BI ========== -->
+  <section class="slide slide-bg-blue">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption">范式转变</span>
+        <h2 class="t-title" style="text-align:center;">同一个 case，换一种方式做&mdash;&mdash;<br>探索式 BI</h2>
+        <p class="t-subtitle" style="max-width:820px; text-align:center;">不再"三张宽表"，而是<strong class="t-ink-bold">一份不断生长的数据</strong>：每下一步都在上一步的结果上做增量。</p>
+      </div>
+      <div class="grid-split" style="gap:36px; align-items:flex-start;">
+        <div class="flex-col gap-14">
+          <div class="img-frame">
+            <img src="assets/bi-workflow-step-4.png" alt="Exploratory BI workflow" style="padding:14px;" />
+          </div>
+          <p class="t-tiny" style="text-align:center;">回到刚才的案例：从 D<sub>1</sub> 到 D<sub>2</sub> 到 D<sub>3</sub>&mdash;&mdash;<strong class="t-ink-bold">没有重建，没有重复 Join</strong>。</p>
+        </div>
+        <div class="flex-col gap-14">
+          <div class="card flex-col gap-8">
+            <div class="flex-row gap-12">
+              <div class="pillar-icon bg-accent" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">1</sub></div>
+              <span style="font-size:16px; font-weight:600;">Step 1：Publication &harr; Organization</span>
+            </div>
+            <p class="t-small">得到俄罗斯产出的时序数据。</p>
+          </div>
+          <div class="card flex-col gap-8">
+            <div class="flex-row gap-12">
+              <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">2</sub></div>
+              <span style="font-size:16px; font-weight:600;">Step 2：在 D<sub>1</sub> 上加入 Funding</span>
+            </div>
+            <p class="t-small">Schema 演化&mdash;&mdash;不用重开一轮，只是<strong class="t-ink-bold">把新维度接到旧结果上</strong>。</p>
+          </div>
+          <div class="card flex-col gap-8">
+            <div class="flex-row gap-12">
+              <div class="pillar-icon bg-green" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">3</sub></div>
+              <span style="font-size:16px; font-weight:600;">Step 3：在 D<sub>2</sub> 上再加一层 Org</span>
+            </div>
+            <p class="t-small">各轮之间<strong class="t-ink-bold">有逻辑连接</strong>&mdash;&mdash;洞察可以跨步综合，而不是三份孤立的报告。</p>
+          </div>
+        </div>
+      </div>
+      <div class="blockquote" style="text-align:center; max-width:880px; margin:0 auto;">两个核心变化：<strong class="t-ink-bold">Schema 可增量演化</strong>，<strong class="t-ink-bold">各轮结果可复用与串联</strong>。分析的节奏从"重复"变成"累加"。</div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 12: HYPERGRAPH DATA MODEL + OPERATORS ========== -->
+  <section class="slide slide-bg-purple">
+    <div class="content flex-col gap-20">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-purple">数据模型 &amp; 算子</span>
+        <h2 class="t-title" style="text-align:center;">要支撑这种探索，<br>底层需要一套新的表达方式</h2>
+      </div>
+
+      <!-- The key insight -->
+      <div class="blockquote" style="max-width:980px; margin:0 auto; text-align:center; border-left:none; border-top:4px solid var(--accent-purple);">
+        <strong class="t-ink-bold">关键观察：</strong>传统 BI 里，<strong class="t-ink-bold">"宽表 = 多张表做 Join"</strong>&mdash;&mdash;而 Join 本质上就是<strong class="t-ink-bold">在图里做子图匹配</strong>。<br>
+        既然分析的本质是图操作，我们索性把数据直接建模成<strong style="color:var(--accent-purple);">超图 (HyperGraph)</strong>。
+      </div>
+
+      <div class="grid-split" style="gap:28px; align-items:flex-start;">
+        <div class="flex-col gap-14">
+          <div class="card flex-col gap-10">
+            <span class="t-caption-purple">超图数据模型</span>
+            <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.8;">
+              <li><strong class="t-ink-bold">顶点</strong>：实体&mdash;&mdash;Publication、Organization、Funding&hellip;</li>
+              <li><strong class="t-ink-bold">超边</strong>：一次模式匹配的结果&mdash;&mdash;对应"宽表里的一行"</li>
+              <li><strong class="t-ink-bold">可增长</strong>：新维度直接往超图里接，不用重建</li>
+            </ul>
+          </div>
+          <div class="callout callout-blue">
+            <strong class="t-ink-bold">同时保留经典 OLAP：</strong>
+            <span class="tag tag-blue" style="margin:2px 4px;">Drilldown</span>
+            <span class="tag tag-blue" style="margin:2px 4px;">Rollup</span>
+            <span class="tag tag-blue" style="margin:2px 4px;">Slice</span>
+            <span class="tag tag-blue" style="margin:2px 4px;">Dice</span>
+            照常可用&mdash;&mdash;超图随时可投影成关系表，学习成本为零。
+          </div>
+        </div>
+
+        <div class="flex-col gap-10">
+          <span class="t-caption-purple" style="text-align:center;">3 个新算子 (看它们做什么，而不是怎么做)</span>
+          <div class="card flex-col gap-8" style="border-left:3px solid var(--accent);">
+            <div class="flex-row gap-10">
+              <div class="pillar-icon bg-accent" style="width:30px; height:30px; font-size:13px;">S</div>
+              <span style="font-size:17px; font-weight:600;">Source &middot; 从大图中抽取</span>
+            </div>
+            <p class="t-small">按用户给的模式，在底层大图里找到所有匹配，打包成一个超图。</p>
+          </div>
+          <div class="card flex-col gap-8" style="border-left:3px solid var(--accent-warm);">
+            <div class="flex-row gap-10">
+              <div class="pillar-icon bg-warm" style="width:30px; height:30px; font-size:13px;">J</div>
+              <span style="font-size:17px; font-weight:600;">Join &middot; 在超图之间连接</span>
+            </div>
+            <p class="t-small">把两个超图按条件合并&mdash;&mdash;既接入新维度，又继承之前的结果。</p>
+          </div>
+          <div class="card flex-col gap-8" style="border-left:3px solid var(--accent-green);">
+            <div class="flex-row gap-10">
+              <div class="pillar-icon bg-green" style="width:30px; height:30px; font-size:13px;">V</div>
+              <span style="font-size:17px; font-weight:600;">View &middot; 投影回关系表</span>
+            </div>
+            <p class="t-small">把超图展平成一张表，送回给 BI 分析师熟悉的入口。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 13: SAMPLING BOTTLENECKS ========== -->
+  <section class="slide slide-bg-red">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-red">核心贡献 &mdash; 第一部分</span>
+        <h2 class="t-title" style="text-align:center;">让探索真正跑得起来：<br>两堵性能墙</h2>
+        <p class="t-body" style="max-width:760px; text-align:center;">探索式 BI 要反复调用 <strong class="t-ink-bold">Source</strong> 和 <strong class="t-ink-bold">Join</strong>，而这两个算子在图数据上都会立刻撞墙。</p>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-red);">
+          <span class="t-caption-red">第一堵墙 &mdash; Source 算子</span>
+          <h3 style="font-size:22px; font-weight:700;">子图匹配是 NP-complete 的</h3>
+          <div class="callout callout-red">
+            <strong class="t-ink-bold">实验现场：</strong>在一张只有 <strong class="t-red">9,892</strong> 个顶点的小图上寻找 4-path，精确枚举要跑<strong class="t-red">约 4 分钟</strong>。<br>
+            而在交互式分析里，我们连 4 秒都嫌慢。
+          </div>
+          <p class="t-tiny">更糟：即便匹配完成，把所有结果物化进超图也会<strong class="t-ink-bold">直接爆内存</strong>。</p>
+        </div>
+        <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-warm);">
+          <span class="t-caption-warm">第二堵墙 &mdash; Join 爆炸</span>
+          <h3 style="font-size:22px; font-weight:700;">超图 Join 规模急速放大</h3>
+          <div class="callout callout-warm">
+            <strong class="t-ink-bold">实验现场：</strong>在 OpenAIRE 上，<strong class="t-warm">一次简单的引用 Join</strong> 就产生<strong class="t-warm"> 14 亿行</strong>结果。<br>
+            而探索过程要反复 Join，级联爆炸无法承受。
+          </div>
+          <p class="t-tiny">若超图未排序，naive Join 复杂度飙到 <strong class="t-ink-bold">O(|E<sub>1</sub>|&nbsp;&middot;&nbsp;|E<sub>2</sub>|)</strong>，实测根本跑不动。</p>
+        </div>
+      </div>
+      <div class="blockquote blockquote-warm" style="text-align:center; max-width:880px; margin:0 auto;">
+        <strong class="t-ink-bold">关键洞察：</strong>BI 分析师关心的是<strong class="t-ink-bold"><em>聚合值</em></strong> (COUNT / SUM / 趋势)，不是每一条原始记录。<br>
+        <em>只要聚合能被精确估计，物化全量结果就没有必要。</em>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 14: SOURCE-SAMPLE ========== -->
+  <section class="slide slide-bg-blue">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10">
+        <span class="t-caption">算子一 &middot; 采样化</span>
+        <h2 class="t-title"><span class="t-accent">Source-Sample</span></h2>
+        <p class="t-subtitle" style="max-width:900px;">绕开 Source 的 NP-complete 枚举<br>&mdash;&mdash;不追求"所有子图匹配"，只抽一个<strong class="t-ink-bold">真正均匀的随机样本</strong>。</p>
+      </div>
+      <div class="grid-2" style="gap:20px;">
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
+          <span class="t-caption">特点 1 &middot; 跳过全量枚举</span>
+          <p class="t-body">不再寻找所有匹配，只抽 <em>r</em> 条。子图匹配的组合爆炸<strong class="t-ink-bold">根本不发生</strong>&mdash;&mdash;不管数据多大、图多密，都只付采样一份的代价。</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
+          <span class="t-caption">特点 2 &middot; 样本是均匀的</span>
+          <p class="t-body">每一条匹配结果被抽中的概率相同。这一点是<strong class="t-ink-bold">后续所有正确性保证的起点</strong>&mdash;&mdash;只有均匀样本，COUNT / SUM 才能保证无偏。</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
+          <span class="t-caption">特点 3 &middot; 原生支持属性图</span>
+          <p class="t-body">我们把 <em>FaSTest</em> 的 tree sampling 改造到属性图上，<strong class="t-ink-bold">带点/边属性过滤</strong>&mdash;&mdash;"俄罗斯机构""2022 年后"这类条件可以直接写进查询里。</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
+          <span class="t-caption">特点 4 &middot; 返回超图，不是计数</span>
+          <p class="t-body">Source-Sample 的输出是一整个<strong class="t-ink-bold">超图</strong>&mdash;&mdash;后续 Join / View / Drilldown / Slice 都能无缝接上，<strong class="t-ink-bold">作为探索的起点</strong>。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 15: JOIN-SAMPLE ========== -->
+  <section class="slide slide-bg-warm">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10">
+        <span class="t-caption-warm">算子二 &middot; 采样化</span>
+        <h2 class="t-title"><span class="t-warm">Join-Sample</span></h2>
+        <p class="t-subtitle" style="max-width:900px;">不物化完整 Join 的结果&mdash;&mdash;直接在两个超图之间拿到一份<strong class="t-ink-bold">等价于均匀采样</strong>的样本。</p>
+      </div>
+      <div class="grid-2" style="gap:20px;">
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
+          <span class="t-caption-warm">特点 1 &middot; 不物化爆炸结果</span>
+          <p class="t-body">OpenAIRE 上那 14 亿行的 Join 结果，<strong class="t-ink-bold">根本不会被构造出来</strong>。Join-Sample 通过加权采样直接锁定所需的那 <em>r</em> 条，跳过中间膨胀。</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
+          <span class="t-caption-warm">特点 2 &middot; 效果等价于均匀采样</span>
+          <p class="t-body">过程虽然是两阶段加权，但每条 Join 结果被选中的概率相同。<strong class="t-ink-bold">样本统计上等价于</strong>"直接对完整 Join 结果做均匀采样"。</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
+          <span class="t-caption-warm">特点 3 &middot; 与 Source-Sample 无缝串联</span>
+          <p class="t-body">Join-Sample 的输入可以是 Source-Sample 的输出，也可以是另一次 Join-Sample 的输出。<strong class="t-ink-bold">多次组合之后，样本仍然均匀</strong>&mdash;&mdash;这是整条探索链能复用的关键。</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
+          <span class="t-caption-warm">特点 4 &middot; 真正适应大图</span>
+          <p class="t-body">精确 Join 在 OpenAIRE 这种规模下经常 OOM / 超时；Join-Sample<strong class="t-ink-bold">在精确算法完全跑不动的查询上依然稳定出结果</strong>。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 16: END-TO-END UNBIASEDNESS ========== -->
+  <section class="slide slide-bg-green">
+    <div class="content flex-col gap-20">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-green">核心贡献 &mdash; 第三部分</span>
+        <h2 class="t-title" style="text-align:center;">端到端的无偏保证</h2>
+        <p class="t-body" style="max-width:780px; text-align:center;">单个算子的均匀性好证明，真正难的是：<strong class="t-ink-bold">任意组合</strong>之后，样本还均匀吗？</p>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card-lift flex-col gap-12">
+          <span class="t-caption-green">定理 (End-to-End)</span>
+          <div class="formula">
+            对任意由 <strong>Source-Sample</strong> 与 <strong>Join-Sample</strong><br>
+            构成的探索流程&mdash;&mdash;<br>
+            <strong class="t-green">输出超图中的所有超边</strong><br>
+            都是对真实结果的<strong class="t-green">均匀采样</strong>。
+          </div>
+          <p class="t-tiny">证明思路：以工作流结构做归纳。若最后一步是 Source-Sample，由引理直接保证；若是 Join-Sample，嵌套一层期望等式依然成立。</p>
+        </div>
+        <div class="card-lift flex-col gap-12">
+          <span class="t-caption-green">推论 &mdash; 无偏估计</span>
+          <div class="formula">
+            &forall; 通过 Source-Sample / Join-Sample<br>
+            得到的超图 G &mdash;&mdash;<br>
+            <strong class="t-green">COUNT(G) 的 HT 估计是无偏的</strong><br>
+            <strong class="t-green">SUM(G) 的 HT 估计是无偏的</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;(Horvitz-Thompson 估计器)
+          </div>
+          <p class="t-tiny">对 DISTINCT / QUANTILE / MAX / MIN，均匀样本同样是 GEE、t-digest 等近似算法的最佳输入，误差界有保证。</p>
+        </div>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card flex-col gap-10">
+          <span class="t-caption-green">多跳 Join 的误差稳定性</span>
+          <p class="t-body">关键问题：多次 Join 会不会让误差<strong class="t-ink-bold">累积放大</strong>？<br>实验 (1&ndash;4 次 Join，path / cycle 两种模式)：</p>
+          <ul style="padding-left:18px; font-size:14px; color:var(--gray-600); line-height:1.6;">
+            <li>COUNT 误差始终 &lt; 1%</li>
+            <li>MAX 误差稳定在 0.01% 附近</li>
+            <li>DISTINCT COUNT 在 2&ndash;10%&mdash;&mdash;<strong class="t-ink-bold">不随跳数增加</strong></li>
+          </ul>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-green">所以可以干什么？</span>
+          <p class="t-body">探索式 BI 的核心要求："每一步都在前一步的样本上继续走"，才真正<strong class="t-ink-bold">可证明地成立</strong>。<br>分析师随时看到的数字，都是对全量结果的<strong class="t-ink-bold">无偏估计</strong>。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 17: SAMPLING EXPERIMENTS ========== -->
+  <section class="slide slide-bg-purple">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-purple">实验验证</span>
+        <h2 class="t-title" style="text-align:center;">速度与精度，双双过关</h2>
+        <p class="t-body" style="max-width:720px; text-align:center;">LDBC SNB，SF1 / SF3 / SF10 三个规模，1M 默认样本。</p>
+      </div>
+      <div class="grid-4" style="gap:18px;">
+        <div class="card-lift flex-col gap-6 center">
+          <span class="metric-label">端到端最高加速</span>
+          <span class="metric-big t-accent">36.7&times;</span>
+          <span class="t-tiny">SF3 / Q2&nbsp;&middot;&nbsp; 40s vs. 1475s</span>
+        </div>
+        <div class="card-lift flex-col gap-6 center">
+          <span class="metric-label">COUNT 误差</span>
+          <span class="metric-big t-green">&lt; 1%</span>
+          <span class="t-tiny">1M 样本&nbsp;&middot;&nbsp; SF1 所有查询</span>
+        </div>
+        <div class="card-lift flex-col gap-6 center">
+          <span class="metric-label">MAX 误差</span>
+          <span class="metric-big t-green">~0.01%</span>
+          <span class="t-tiny">稳定、与样本大小弱相关</span>
+        </div>
+        <div class="card-lift flex-col gap-6 center">
+          <span class="metric-label">SF10 上成功率</span>
+          <span class="metric-big t-accent">10 / 10</span>
+          <span class="t-tiny">非采样基线：1 / 10 (其余 OOM / OOT)</span>
+        </div>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card flex-col gap-10">
+          <span class="t-caption-purple">健壮性比速度更重要</span>
+          <p class="t-body">当数据规模上到 <strong class="t-ink-bold">SF10</strong>：naive 实现 10 个查询中 <strong class="t-ink-bold">9 个直接失败</strong> (OOM 或 2 小时超时)；采样实现 <strong class="t-ink-bold">10 / 10 全部完成</strong>。</p>
+          <p class="t-body">规模越大，采样越不是"可选"，而是"必需"。</p>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-purple">样本大小的权衡</span>
+          <p class="t-body">10K &rarr; 100K 精度提升最明显；<strong class="t-ink-bold">100K &rarr; 1M</strong> 趋于拐点；<strong class="t-ink-bold">1M &rarr; 10M</strong> 精度仅小幅提升，耗时却<strong class="t-ink-bold">线性增长约 10&times;</strong>。</p>
+          <p class="t-body"><strong class="t-ink-bold">默认 1M</strong>：速度与精度的最佳平衡点。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 18: NEUGBI SYSTEM ========== -->
+  <section class="slide slide-bg-blue">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption">系统</span>
+        <h2 class="t-hero" style="text-align:center;"><span class="t-gradient">NeuGBI</span></h2>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">把"探索式 BI 范式 + 采样算子"包装成一个<strong class="t-ink-bold">自主运行的智能体系统</strong>。<br>不需要预先定义问题，也不需要专家持续在场。</p>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card-lift flex-col gap-14">
+          <span class="t-caption">经典 BI 流程</span>
+          <p class="t-body">专家定义问题 &rarr; 建模 &rarr; 得到一个答案。<br>新问题？<strong class="t-ink-bold">一切重来。</strong></p>
+          <div style="border-top:1px solid var(--border); padding-top:14px;">
+            <span class="t-caption-green">NeuGBI &middot; 探索式</span>
+            <p class="t-body" style="margin-top:6px;">用户抛出一个宽泛的问题 &rarr; 系统<strong class="t-ink-bold">自主探索</strong> &rarr; 每个发现引出下一个更深的问题 &rarr; 最终输出<strong class="t-ink-bold">连贯的报告</strong>。</p>
+          </div>
+        </div>
+        <div class="flex-col gap-12">
+          <div class="card flex-row gap-14" style="padding:18px;">
+            <div class="pillar-icon bg-accent">E</div>
+            <div class="flex-col gap-2">
+              <span style="font-size:17px; font-weight:600;">Exploratory &middot; 探索性</span>
+              <span class="t-small">无需预定义问题，分析沿着结果<strong class="t-ink-bold">自然生长</strong>。</span>
+            </div>
+          </div>
+          <div class="card flex-row gap-14" style="padding:18px;">
+            <div class="pillar-icon bg-warm">P</div>
+            <div class="flex-col gap-2">
+              <span style="font-size:17px; font-weight:600;">Progressive &middot; 渐进式</span>
+              <span class="t-small">每个发现自动触发下一层挖掘。</span>
+            </div>
+          </div>
+          <div class="card flex-row gap-14" style="padding:18px;">
+            <div class="pillar-icon bg-green">R</div>
+            <div class="flex-col gap-2">
+              <span style="font-size:17px; font-weight:600;">Reusable &middot; 可复用</span>
+              <span class="t-small">前一步的超图继续生长，不重算。</span>
+            </div>
+          </div>
+          <div class="card flex-row gap-14" style="padding:18px;">
+            <div class="pillar-icon bg-purple">A</div>
+            <div class="flex-col gap-2">
+              <span style="font-size:17px; font-weight:600;">Autonomous &middot; 自主</span>
+              <span class="t-small">智能体自己拆解、验证、综合，无需专家全程介入。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 19: NEUGBI SKILL SUITE ========== -->
+  <section class="slide slide-bg-green">
+    <div class="content flex-col gap-20">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-green">分析能力层</span>
+        <h2 class="t-title" style="text-align:center;">让 NeuGBI 跨平台可用</h2>
+        <p class="t-subtitle" style="max-width:880px; text-align:center;">我们为 NeuGBI 提供了一套<strong class="t-ink-bold">完整的 Skill Suite</strong>&mdash;&mdash;任何 Agent 平台加载这套技能，都能直接运行 NeuGBI 的探索式分析。</p>
+      </div>
+
+      <div class="grid-3" style="gap:16px;">
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">① 数据库 &amp; Schema 理解</span>
+          <p class="t-small">基于 schema 与样本数据，理解每一类顶点、每一种边的语义&mdash;&mdash;为后续查询打下准确基础。</p>
+        </div>
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">② 实体对齐</span>
+          <p class="t-small">把用户问题中的实体（"俄罗斯"、"2022 年"…）准确映射到数据库字段，避免误解题意。</p>
+        </div>
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">③ 问题拆解</span>
+          <p class="t-small">把一个宽泛的问题拆成若干子问题，降低单步复杂度，让分析能从多个角度同时展开。</p>
+        </div>
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">④ 查询生成</span>
+          <p class="t-small">针对每个子问题，生成合适的图查询，交给计算层 (Source / Join / View) 执行。</p>
+        </div>
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">⑤ 对照组设计</span>
+          <p class="t-small">为查询结果与结论自主设计对照实验&mdash;&mdash;验证发现、增强可信度。<em>"俄罗斯跌了，那其他国家呢？"</em></p>
+        </div>
+        <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">⑥ 探索式分析 Pipeline</span>
+          <p class="t-small">把前 5 项串成一条迭代探索链：每一轮的发现自动引出下一轮的问题和查询。</p>
+        </div>
+      </div>
+
+      <div class="blockquote blockquote-green" style="text-align:center; max-width:1000px; margin:0 auto; padding:14px 22px; font-size:18px;">
+        用户只需要抛出一个问题；<strong class="t-ink-bold">Skill Suite 自动完成"拆解 → 查询 → 验证 → 下一轮"的完整闭环</strong>，最终产出一份结构化的分析报告。
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 20: OPENCLAW × LARK DEMO ========== -->
+  <section class="slide slide-bg-green">
+    <div class="content flex-col gap-20">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-green">落地示例</span>
+        <h2 class="t-title" style="text-align:center;">OpenCLAW &times; 飞书</h2>
+        <p class="t-subtitle" style="max-width:880px; text-align:center;">这次 demo 里，我们用 <strong class="t-ink-bold">OpenCLAW</strong> 作为承载 Skill Suite 的 Agent 平台，并把它部署到<strong class="t-ink-bold">飞书</strong>&mdash;&mdash;用户每天都在用的聊天工具，零学习成本。</p>
+      </div>
+
+      <div class="flex-row gap-32" style="justify-content:center; align-items:flex-start; flex-wrap:wrap;">
+        <div class="flex-col center gap-10" style="max-width:260px;">
+          <div class="phone-mockup"><img src="assets/openclaw-schema.jpg" alt="Schema" /></div>
+          <div class="flex-col center gap-4">
+            <div class="flex-row gap-8">
+              <div class="step-num bg-accent" style="width:28px; height:28px; font-size:13px;">1</div>
+              <span style="font-size:16px; font-weight:600;">Schema 探索</span>
+            </div>
+            <p class="t-small" style="text-align:center;">用户说"给我看一下 schema"&mdash;&mdash;系统呈现数据结构与规模。</p>
+          </div>
+        </div>
+        <div class="flex-col center gap-10" style="max-width:260px;">
+          <div class="phone-mockup"><img src="assets/openclaw-analysis.jpg" alt="Analysis" /></div>
+          <div class="flex-col center gap-4">
+            <div class="flex-row gap-8">
+              <div class="step-num bg-warm" style="width:28px; height:28px; font-size:13px;">2</div>
+              <span style="font-size:16px; font-weight:600;">自主分析</span>
+            </div>
+            <p class="t-small" style="text-align:center;">主 agent 拆解问题、调度子 agent，逐层挖掘根因。</p>
+          </div>
+        </div>
+        <div class="flex-col center gap-10" style="max-width:260px;">
+          <div class="phone-mockup"><img src="assets/openclaw-report.jpg" alt="Report" /></div>
+          <div class="flex-col center gap-4">
+            <div class="flex-row gap-8">
+              <div class="step-num bg-green" style="width:28px; height:28px; font-size:13px;">3</div>
+              <span style="font-size:16px; font-weight:600;">最终报告</span>
+            </div>
+            <p class="t-small" style="text-align:center;">一份完整报告&mdash;&mdash;关键发现、因果分析，可直接分享。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="max-width:1000px; margin:0 auto; padding:16px 22px;">
+        <p class="t-body" style="text-align:center;">接入 <strong class="t-ink-bold">OpenAIRE</strong>：2,240 万顶点、9,440 万边。<br><strong class="t-ink-bold">整份俄乌学术分析就是通过这个 bot 自主生成的</strong>&mdash;&mdash;用户全程只用说一句话。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 21: DEMO VIDEO ========== -->
+  <section class="slide slide-bg-title">
+    <div class="content flex-col gap-20 center">
+      <div class="flex-col gap-6 center">
+        <span class="t-caption">演示</span>
+        <h2 class="t-title" style="text-align:center;">NeuGBI 实机演示</h2>
+      </div>
+      <div class="video-container" style="max-height:500px;">
+        <video controls preload="metadata" style="max-height:500px; width:100%; object-fit:contain;">
+          <source src="assets/neugbi-demo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="blockquote" style="text-align:center; max-width:820px; border-left:none; border-top:4px solid var(--accent); padding:18px 26px;">
+        BI 回答的是<strong class="t-ink-bold">"已知的"</strong>问题。<br>
+        NeuGBI 找到的是<strong class="t-ink-bold">"下一个"</strong>问题&mdash;&mdash;并让整个调查<strong class="t-ink-bold">保持连贯</strong>。
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 22: QR + THANK YOU ========== -->
+  <section class="slide slide-bg-title">
+    <div class="content flex-col gap-20 center">
+      <div class="flex-col gap-8 center">
+        <span class="t-caption-green">欢迎上手</span>
+        <h2 class="t-title" style="text-align:center;">准备好探索了吗？</h2>
+        <p class="t-subtitle" style="max-width:560px; text-align:center;">数据集、Demo 系统、生成的分析报告&mdash;&mdash;全部打包好了。</p>
+      </div>
+      <div style="background:#fff; border-radius:24px; padding:16px; box-shadow:var(--shadow); border:1px solid var(--border);">
+        <img src="assets/qr-neugbi-demo.png" alt="QR code" style="width:200px; height:200px; display:block; border-radius:6px;" />
+      </div>
+      <div class="flex-col gap-4 center">
+        <a href="https://github.com/ShunyangLi/NeuGBI-Demo" target="_blank" style="color:var(--accent); font-size:17px; font-weight:600; text-decoration:none;">github.com/ShunyangLi/NeuGBI-Demo</a>
+      </div>
+      <div class="flex-col gap-4 center" style="margin-top:6px;">
+        <p style="font-size:40px; font-weight:700; letter-spacing:-0.03em;"><span class="t-gradient">谢谢</span></p>
+        <p class="t-small" style="color:var(--gray-400);">欢迎提问与讨论</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="slide-counter" id="slideCounter">01 / 22</div>
+<div class="nav">
+  <div class="nav-dots" id="navDots"></div>
+  <button class="nav-btn" id="prevBtn">&#8592;</button>
+  <button class="nav-btn" id="nextBtn">&#8594;</button>
+</div>
+
+<script>
+  const deck = document.querySelector('.deck');
+  const DESIGN_W = 1440, DESIGN_H = 900;
+  function fitDeck() {
+    const scale = Math.min(window.innerWidth / DESIGN_W, window.innerHeight / DESIGN_H);
+    deck.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  }
+  fitDeck();
+  window.addEventListener('resize', fitDeck);
+
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let current = 0;
+
+  const dotsContainer = document.getElementById('navDots');
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = Array.from(document.querySelectorAll('.nav-dot'));
+  const progressBar = document.getElementById('progressBar');
+  const counter = document.getElementById('slideCounter');
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, total - 1));
+    slides.forEach((s, i) => s.classList.toggle('active', i === current));
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    progressBar.style.width = ((current + 1) / total * 100) + '%';
+    counter.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+
+    slides.forEach((s, i) => {
+      if (i !== current) {
+        s.querySelectorAll('video').forEach(v => v.pause());
+      }
     });
-  </script>
-<h2 id="slide-1--%E6%A0%87%E9%A2%98%E9%A1%B5-from-traditional-bi-to-neugbi">Slide 1 — 标题页 (From Traditional BI to NeuGBI)</h2>
-<p>大家好。今天我想和大家分享的话题是：<strong>&quot;从传统 BI 到 NeuGBI&quot;</strong>——商业智能，是如何从静态的仪表盘，一步步演变成可以迭代、由问题驱动的自主探索的。</p>
-<hr>
-<h2 id="slide-2--%E4%BB%80%E4%B9%88%E6%98%AF%E4%BC%A0%E7%BB%9F-bi">Slide 2 — 什么是传统 BI？</h2>
-<p>•BI（商业智能）是通过整合、分析和可视化企业数据，帮助决策者快速获取洞察、支持业务决策的一套技术、流程和工具</p>
-<p>•BI的核心功能：数据收集和处理（比如聚合数据）、可视化数据</p>
-<p>BI的工作流程：</p>
-<p>步骤1：业务分析师提出需求</p>
-<p>步骤2: 工程师和分析师沟通确认需求</p>
-<p>步骤3: 重复步骤1和步骤2直到确定方案</p>
-<p>步骤4: 工程师创建宽表数据</p>
-<p>步骤5: 业务分析师分析宽表数据</p>
-<p>数据越来越复杂，导致沟通成本急剧上升，数据大量重复的构建，分析需求越来越深入</p>
-<hr>
-<h2 id="slide-3--%E4%BC%A0%E7%BB%9F-bi-%E5%A6%82%E4%BD%95%E5%9B%9E%E7%AD%94%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98">Slide 3 — 传统 BI 如何回答一个问题</h2>
-<p>我们用一个具体的例子看一下。假设研究员问：<strong>&quot;俄罗斯最近几年的论文产出变化如何？&quot;</strong> 传统 BI 要经过三步：</p>
-<ol>
-<li><strong>沟通需求</strong>。分析师要跟领域专家、数据库管理员反复沟通：用哪些数据源？时间范围？什么算&quot;俄罗斯&quot;？——这一轮还没碰数据，就已经耗了大量时间。</li>
-<li><strong>构建宽表</strong>。把 Publication、Organization 以及相关的表按国家、按年份做 Join。这个过程是手动的，非常依赖对 schema 的深度理解。</li>
-<li><strong>分析与出图</strong>。最后才是聚合、切片、画趋势图。一个问题，终于回答了。</li>
-</ol>
-<p>然后呢？<strong>如果结果引出了新的问题——整条流水线得从第一步重来一次</strong>。</p>
-<hr>
-<h2 id="slide-4--%E6%A1%88%E4%BE%8B%E4%BF%84%E4%B9%8C%E5%86%B2%E7%AA%81%E5%AF%B9%E4%BF%84%E7%BD%97%E6%96%AF%E5%AD%A6%E6%9C%AF%E7%9A%84%E5%BD%B1%E5%93%8D">Slide 4 — 案例：俄乌冲突对俄罗斯学术的影响</h2>
-<p>把这个场景放大。我们来问一个更大的问题：<strong>&quot;俄乌冲突对俄罗斯科研的影响到底是什么？&quot;</strong></p>
-<p>用传统 BI 做这个分析，本质上是跑三轮：先统计<strong>产出</strong>、再看<strong>资助</strong>、再比较<strong>合作伙伴</strong>。每一轮都会产生新的问题，但每一轮都要从头把数据环境搭一遍。</p>
-<p>下面我先带大家看看，这个案例能挖出多少东西。</p>
-<hr>
-<h2 id="slide-5--%E5%8F%91%E7%8E%B0%E4%B8%80%E4%BF%84%E7%BD%97%E6%96%AF%E5%AD%A6%E6%9C%AF%E4%BA%A7%E5%87%BA%E5%B7%B2%E7%BB%8F%E5%B4%A9%E5%A1%8C">Slide 5 — 发现一：俄罗斯学术产出已经崩塌</h2>
-<p>第一个发现。俄罗斯机构 2021 年产出是 <strong>8,976 篇</strong>论文，到 2024 年只剩 <strong>4,686 篇</strong>——下降将近 <strong>48%</strong>。</p>
-<p>这是全球趋势吗？<strong>不是</strong>。同期美国和德国大概跌了 27.6%，而中国还在涨 14.8%。俄罗斯比全球基线<strong>多跌了 20 个百分点</strong>，这是战争专属的冲击。</p>
-<p>而且下降是在<strong>加速</strong>的：2022 年 -6%、2023 年 -4.8%，但 2024 年直接跳到 <strong>-39.4%</strong>——是一个累积、复利式的下跌。</p>
-<hr>
-<h2 id="slide-6--%E5%8F%91%E7%8E%B0%E4%BA%8C%E5%9B%BD%E9%99%85%E5%90%88%E4%BD%9C%E5%87%A0%E4%B9%8E%E5%BD%92%E9%9B%B6">Slide 6 — 发现二：国际合作几乎归零</h2>
-<p>第二个发现，比第一个更严重。</p>
-<ul>
-<li>美俄合作论文，从 3,614 篇降到 271 篇——<strong>-92.5%</strong>；</li>
-<li>德俄合作 —— <strong>-93%</strong>；</li>
-<li>中俄合作 —— <strong>-80%</strong>；</li>
-<li>国际合作在俄罗斯总产出中的占比，从 10% 压到 5% 以下。</li>
-</ul>
-<p>这不是&quot;下降&quot;，是&quot;<strong>几乎消失</strong>&quot;。曾经撑起俄罗斯科研的国际合作网络，和几乎所有主要伙伴都断开了。</p>
-<hr>
-<h2 id="slide-7--%E5%8F%91%E7%8E%B0%E4%B8%89%E5%9C%9F%E8%80%B3%E5%85%B6%E7%9A%84%E6%84%8F%E5%A4%96">Slide 7 — 发现三：土耳其的意外</h2>
-<p>第三个发现是整个分析里最反常识的一点。</p>
-<p>土耳其——<strong>没有参与对俄制裁</strong>。按直觉，土俄合作应该相对稳定才对。但事实是：土俄合作论文跌了 <strong>-98.4%</strong>，比执行制裁的德国（-93%）还要严重。</p>
-<p>这说明什么？<strong>仅靠制裁，无法解释俄罗斯的科研崩塌</strong>。真正的根因，是<strong>学术平台的&quot;去俄罗斯化&quot;</strong>——像 OpenAIRE、Crossref 这样的国际数据库、出版商，系统性地降低了俄罗斯论文的可见性，而这影响的是<strong>所有合作国家</strong>，不只制裁方。</p>
-<hr>
-<h2 id="slide-8--%E6%A0%B9%E5%9B%A0%E5%AE%8C%E6%95%B4%E7%9A%84%E5%9B%A0%E6%9E%9C%E9%93%BE%E6%9D%A1">Slide 8 — 根因：完整的因果链条</h2>
-<p>把整条链串起来：<strong>俄乌战争 → 西方制裁 + 学术平台隔离 → 国际合作断裂 → 产出崩塌</strong>。</p>
-<p>而这种<strong>多层次、假设驱动</strong>的调查过程，恰好是传统 BI 最难支持的。</p>
-<hr>
-<h2 id="slide-9--%E4%BC%A0%E7%BB%9F-bi-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%A4%9F%E7%94%A8">Slide 9 — 传统 BI 为什么不够用？</h2>
-<p>为什么不行？我们总结了四个问题：</p>
-<ol>
-<li><strong>要求事先知道完整的分析路径</strong>——漏一个关键因素，整个流程都得重来；</li>
-<li><strong>schema 是写死的</strong>——问题会不断演化，但数据模型跟不上；</li>
-<li><strong>轮次之间没有复用</strong>——刚才的案例里，Publication–Organization 的 Join 被重复计算了 <strong>3 次</strong>；</li>
-<li><strong>重复计算的成本不断累积</strong>——分析师的时间花在了重搭环境，而不是产出下一个洞见。</li>
-</ol>
-<hr>
-<h2 id="slide-10--%E5%A6%82%E6%9E%9C-bi-%E8%83%BD%E8%B7%9F%E7%9D%80%E4%BD%A0%E7%9A%84%E6%80%9D%E8%80%83%E4%B8%80%E8%B5%B7%E6%BC%94%E5%8C%96%E5%91%A2">Slide 10 — 如果 BI 能跟着你的思考一起演化呢？</h2>
-<p>于是我们提出一个问题：<strong>如果 BI 能跟着你的思考一起演化，会怎样？</strong></p>
-<p>这就是我们说的&quot;<strong>探索式 BI</strong>&quot;——把&quot;一次性出结果&quot;改成&quot;<strong>迭代式探索</strong>&quot;。三个关键词：</p>
-<ul>
-<li><strong>Observe</strong>（观察）——从一个可见的信号出发；</li>
-<li><strong>Deepen</strong>（深入）——顺着证据往下走，而不是推倒重来；</li>
-<li><strong>Connect</strong>（关联）——把之前学到的东西继承下来。</li>
-</ul>
-<p>分析因此变成<strong>累加式</strong>，而不是<strong>重复式</strong>的。</p>
-<hr>
-<h2 id="slide-11--%E6%A0%B8%E5%BF%83%E8%B4%A1%E7%8C%AE%E9%87%87%E6%A0%B7%E7%AE%97%E5%AD%90%E8%AE%A9%E6%8E%A2%E7%B4%A2%E5%BC%8F-bi-%E7%9C%9F%E6%AD%A3%E8%90%BD%E5%9C%B0">Slide 11 — 核心贡献：采样算子让探索式 BI 真正落地</h2>
-<p>但要让探索式 BI 真正跑起来，我们要翻过两堵<strong>性能墙</strong>：</p>
-<ul>
-<li><strong>第一堵墙：Source 算子</strong>。在我们的图数据模型下，Source 对应的是子图匹配，<strong>而子图匹配是 NP-complete 的</strong>。实验里，我们在一张只有 <strong>9,892 个顶点</strong>的小图上找一个 4-path，就要跑大约 <strong>4 分钟</strong>——这对交互式 BI 是致命的。</li>
-<li><strong>第二堵墙：Join 爆炸</strong>。在 OpenAIRE 上，一次简单的引用 Join 就会产生 <strong>14 亿行</strong>结果。而探索过程要反复 Join，完全扛不住。</li>
-</ul>
-<p>我们的<strong>关键洞察</strong>是：BI 分析师关心的是<strong>聚合值</strong>——COUNT、SUM、趋势——而不是每条原始记录。<strong>只要聚合可以被准确估计，就根本不需要物化所有结果</strong>。</p>
-<p>基于这个洞察，我们做了三件事：</p>
-<ul>
-<li><strong>Source-Sample</strong>：改造 FaSTest 的 tree-sampling——子图匹配返回一个<strong>均匀样本</strong>，而不是穷举所有匹配；</li>
-<li><strong>Join-Sample</strong>：用 Chaudhuri 的 weighted group-sample——先按权重采样一侧，再为每条被采样的边匹配一个连接结果，等价于对整个 Join 结果做均匀采样；</li>
-<li><strong>端到端的无偏保证</strong>：我们在论文里证明了，无论这两个算子如何嵌套组合，输出始终是<strong>均匀样本</strong>。所以 COUNT 和 SUM 的估计，在任意长的探索链上，都是<strong>无偏的</strong>。</li>
-</ul>
-<p>实验效果：端到端最高 <strong>36.7 倍</strong>加速，1M 样本下误差 <strong>小于 1%</strong>。</p>
-<hr>
-<h2 id="slide-12--neugbi%E6%8E%A2%E7%B4%A2%E5%BC%8F-bi-%E7%9A%84%E8%87%AA%E4%B8%BB%E5%8C%96%E7%B3%BB%E7%BB%9F">Slide 12 — NeuGBI：探索式 BI 的自主化系统</h2>
-<p>有了探索式 BI 的范式，加上采样算子的性能保障，我们进一步构建了 <strong>NeuGBI</strong> 系统。</p>
-<p>对比一下：</p>
-<ul>
-<li><strong>传统 BI</strong>：专家定义问题 → 建模 → 得到一个答案。新问题？——全部重来。</li>
-<li><strong>NeuGBI</strong>：用户抛出一个宽泛的问题 → 系统<strong>自主探索</strong> → 每个发现引出下一个更深的问题 → 最终生成一份连贯的报告。</li>
-</ul>
-<p>它的四个关键词：</p>
-<ul>
-<li><strong>E</strong>xploratory（探索性，不需要预先定义问题）</li>
-<li><strong>P</strong>rogressive（渐进式，每一步都更深一层）</li>
-<li><strong>R</strong>eusable（可复用，前面的结果不会丢）</li>
-<li><strong>A</strong>utonomous（自主，无需专家持续介入）</li>
-</ul>
-<hr>
-<h2 id="slide-13--openclaw%E8%AE%A9%E8%83%BD%E5%8A%9B%E7%9C%9F%E6%AD%A3%E5%8F%AF%E7%94%A8">Slide 13 — OpenCLAW：让能力真正可用</h2>
-<p>能力再强，用不起来也是零。所以我们把 NeuGBI 集成进了 <strong>OpenCLAW</strong> 平台，并部署到<strong>飞书（Lark）</strong> 上。</p>
-<p>三个关键点：</p>
-<ol>
-<li><strong>自然语言输入</strong>——不用写 SQL，不用懂 schema；</li>
-<li><strong>熟悉的聊天界面</strong>——就是你每天都在用的飞书——零学习成本；</li>
-<li><strong>结构化的报告输出</strong>——表格、关键发现、因果分析，开箱即用。</li>
-</ol>
-<p>规模上，我们接入了 <strong>OpenAIRE</strong> 数据集——<strong>2,240 万</strong>个顶点，<strong>9,440 万</strong>条边。<strong>刚才那整份俄乌分析，就是通过飞书上一个 bot 自主生成出来的</strong>。</p>
-<hr>
-<h2 id="slide-14--neugbi-%E5%9C%A8%E9%A3%9E%E4%B9%A6%E4%B8%8A%E7%9A%84%E5%AE%9E%E9%99%85%E8%BF%90%E8%A1%8C">Slide 14 — NeuGBI 在飞书上的实际运行</h2>
-<p>这是在飞书上运行的三个阶段：</p>
-<ol>
-<li><strong>Schema 探索</strong>——用户说&quot;给我看一下 schema&quot;，系统展示数据结构和规模；</li>
-<li><strong>自主分析</strong>——主智能体拆解问题、派出子智能体做根因分析、搭建报告结构；</li>
-<li><strong>最终报告</strong>——一份完整的报告，包含关键发现、执行摘要、因果分析。</li>
-</ol>
-<p>整个过程中，用户需要做的，就是<strong>提出最初的那个问题</strong>。</p>
-<hr>
-<h2 id="slide-15--demo-%E8%A7%86%E9%A2%91">Slide 15 — Demo 视频</h2>
-<p>下面我们直接来看一下 NeuGBI 的完整演示。</p>
-<p>（播放视频）</p>
-<blockquote>
-<p>一句话总结：
-<strong>传统 BI 回答的是&quot;已知的&quot;问题；NeuGBI 找到的是&quot;下一个&quot;问题——并且让整个调查保持连贯。</strong></p>
-</blockquote>
-<hr>
-<h2 id="slide-16--%E8%87%AA%E5%B7%B1%E4%B8%8A%E6%89%8B%E8%AF%95%E8%AF%95">Slide 16 — 自己上手试试</h2>
-<p>如果大家感兴趣，欢迎扫这个二维码，或者访问 GitHub 链接——我们把整个环境都打包好了：<strong>数据集、Demo 系统、以及生成的分析报告</strong>，都能直接跑起来。</p>
-<p>谢谢大家，欢迎提问。</p>
-<hr>
-<h2 id="%E8%AE%B2%E7%A8%BF%E7%BB%93%E6%9E%84%E9%80%9F%E6%9F%A5%E8%A1%A8">讲稿结构速查表</h2>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Slide 主题</th>
-<th>节奏建议</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>标题</td>
-<td>30 秒，不要拖</td>
-</tr>
-<tr>
-<td>2</td>
-<td>什么是传统 BI</td>
-<td>45 秒，引入三步流程</td>
-</tr>
-<tr>
-<td>3</td>
-<td>单个问题的例子</td>
-<td>60 秒，突出&quot;又要重来&quot;</td>
-</tr>
-<tr>
-<td>4</td>
-<td>俄乌案例引入</td>
-<td>30 秒，承上启下</td>
-</tr>
-<tr>
-<td>5</td>
-<td>发现一：产出崩塌</td>
-<td>60 秒，核心数字慢读</td>
-</tr>
-<tr>
-<td>6</td>
-<td>发现二：合作归零</td>
-<td>60 秒</td>
-</tr>
-<tr>
-<td>7</td>
-<td>发现三：土耳其意外</td>
-<td>75 秒，这是全文高光</td>
-</tr>
-<tr>
-<td>8</td>
-<td>因果链</td>
-<td>45 秒</td>
-</tr>
-<tr>
-<td>9</td>
-<td>传统 BI 的四大局限</td>
-<td>45 秒，节奏可以快</td>
-</tr>
-<tr>
-<td>10</td>
-<td>探索式 BI 的转向</td>
-<td>45 秒</td>
-</tr>
-<tr>
-<td>11</td>
-<td>采样（核心贡献）</td>
-<td>90 秒，技术细节最多的一页</td>
-</tr>
-<tr>
-<td>12</td>
-<td>NeuGBI 系统</td>
-<td>60 秒</td>
-</tr>
-<tr>
-<td>13</td>
-<td>OpenCLAW 部署</td>
-<td>45 秒</td>
-</tr>
-<tr>
-<td>14</td>
-<td>飞书三阶段</td>
-<td>45 秒</td>
-</tr>
-<tr>
-<td>15</td>
-<td>Demo</td>
-<td>视频长度</td>
-</tr>
-<tr>
-<td>16</td>
-<td>结语 / QR</td>
-<td>20 秒</td>
-</tr>
-</tbody>
-</table>
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+      e.preventDefault(); goTo(current + 1);
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault(); goTo(current - 1);
+    }
+    if (e.key === 'Home') goTo(0);
+    if (e.key === 'End') goTo(total - 1);
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
+  });
+
+  goTo(0);
+</script>
 
 </body>
 </html>

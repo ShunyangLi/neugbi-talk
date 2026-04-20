@@ -3,33 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>From Traditional BI to NeuGBI</title>
+  <title>From BI to NeuGBI</title>
   <style>
-    /* ===== RESET ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --font: "SF Pro Display", "Helvetica Neue", -apple-system, sans-serif;
       --font-body: "SF Pro Text", "Helvetica Neue", -apple-system, sans-serif;
-      --dark: #0a0a0a;
-      --light: #fbfbfb;
-      --gray-100: #efefef;
-      --gray-400: #999;
-      --gray-500: #777;
-      --gray-600: #555;
+      --ink: #1a1a1a;
+      --ink-soft: #2a2a2a;
+      --gray-900: #111;
       --gray-700: #333;
-      --gray-800: #1a1a1a;
+      --gray-600: #555;
+      --gray-500: #777;
+      --gray-400: #999;
+      --gray-300: #c7c7cc;
+      --gray-200: #e5e5ea;
+      --gray-100: #f2f2f4;
+      --gray-50: #fafafa;
       --accent: #0071e3;
+      --accent-soft: #e5f0ff;
       --accent-warm: #ff6723;
-      --accent-green: #30d158;
-      --accent-red: #ff453a;
-      --accent-yellow: #ffd60a;
-      --glass: rgba(255,255,255,0.08);
-      --glass-border: rgba(255,255,255,0.12);
-      --glass-light: rgba(255,255,255,0.72);
-      --glass-light-border: rgba(0,0,0,0.06);
-      --shadow: 0 20px 60px rgba(0,0,0,0.08);
-      --radius: 24px;
+      --accent-warm-soft: #ffece3;
+      --accent-green: #2ea84a;
+      --accent-green-soft: #e5f7e9;
+      --accent-red: #d9342a;
+      --accent-red-soft: #fde8e6;
+      --accent-yellow: #e6b400;
+      --accent-yellow-soft: #fff8db;
+      --accent-purple: #7a5af8;
+      --accent-purple-soft: #ede9ff;
+      --panel: #ffffff;
+      --panel-soft: #fafafb;
+      --border: rgba(0,0,0,0.08);
+      --border-soft: rgba(0,0,0,0.05);
+      --shadow: 0 16px 48px rgba(0,0,0,0.06);
+      --shadow-sm: 0 6px 18px rgba(0,0,0,0.04);
+      --radius: 22px;
     }
 
     html, body {
@@ -37,13 +47,10 @@
       overflow: hidden;
       font-family: var(--font);
       -webkit-font-smoothing: antialiased;
-      background: #000;
+      background: #eaeaec;
+      color: var(--ink);
     }
 
-    /* ===== SLIDE ENGINE =====
-       Deck is drawn at a fixed design size (1440x900, 16:10).
-       JS scales the whole deck to fit the viewport uniformly,
-       so the layout is identical on any monitor (letterboxed if needed). */
     .deck {
       width: 1440px; height: 900px;
       position: absolute;
@@ -56,254 +63,278 @@
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
       opacity: 0; transform: scale(0.97);
-      transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1);
+      transition: opacity 0.55s cubic-bezier(0.4,0,0.2,1), transform 0.55s cubic-bezier(0.4,0,0.2,1);
       pointer-events: none;
       overflow: hidden;
-      padding: 40px;
+      padding: 48px;
+      background: linear-gradient(180deg, #ffffff 0%, #f7f7f9 100%);
+      color: var(--ink);
     }
     .slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
 
-    /* ===== THEMES ===== */
-    .slide--dark {
-      background: linear-gradient(160deg, #111 0%, #0a0a0a 50%, #0e0e12 100%);
-      color: #fff;
-    }
-    .slide--light {
-      background: linear-gradient(180deg, #fff 0%, #f8f8fa 100%);
-      color: var(--gray-800);
-    }
+    .slide-bg-blue    { background: radial-gradient(ellipse at 20% 20%, #e8f1ff 0%, transparent 55%), linear-gradient(180deg, #ffffff 0%, #f7f7f9 100%); }
+    .slide-bg-warm    { background: radial-gradient(ellipse at 80% 80%, #fff0e8 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f7f7f9 100%); }
+    .slide-bg-red     { background: radial-gradient(ellipse at 20% 80%, #fde8e6 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f8f8fa 100%); }
+    .slide-bg-green   { background: radial-gradient(ellipse at 80% 20%, #e6f6ea 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f7f8f7 100%); }
+    .slide-bg-yellow  { background: radial-gradient(ellipse at 50% 30%, #fff6d6 0%, transparent 55%), linear-gradient(180deg, #ffffff 0%, #f8f8f5 100%); }
+    .slide-bg-purple  { background: radial-gradient(ellipse at 70% 30%, #eee8ff 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f7f7fa 100%); }
+    .slide-bg-title   { background: radial-gradient(ellipse at 30% 20%, #dce8ff 0%, transparent 55%), radial-gradient(ellipse at 70% 80%, #ede9ff 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f4f5fa 100%); }
 
-    /* ===== TYPOGRAPHY ===== */
-    .t-hero { font-size: 88px; font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; }
-    .t-title { font-size: 60px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.0; }
-    .t-heading { font-size: 42px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
-    .t-subtitle { font-size: 26px; font-weight: 400; line-height: 1.4; letter-spacing: -0.01em; }
-    .t-body { font-size: 18px; font-weight: 400; line-height: 1.55; font-family: var(--font-body); }
-    .t-small { font-size: 14px; line-height: 1.5; font-family: var(--font-body); }
-    .t-caption { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
-    .t-muted { opacity: 0.5; }
+    .t-hero { font-size: 88px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
+    .t-title { font-size: 54px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+    .t-heading { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+    .t-subtitle { font-size: 22px; font-weight: 400; line-height: 1.45; color: var(--gray-600); letter-spacing: -0.005em; }
+    .t-body { font-size: 17px; font-weight: 400; line-height: 1.55; color: var(--gray-600); font-family: var(--font-body); }
+    .t-small { font-size: 14px; line-height: 1.55; color: var(--gray-600); font-family: var(--font-body); }
+    .t-tiny { font-size: 12px; line-height: 1.4; color: var(--gray-500); font-family: var(--font-body); }
+    .t-caption { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+    .t-caption-warm { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-warm); }
+    .t-caption-red { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-red); }
+    .t-caption-green { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-green); }
+    .t-caption-yellow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: #b38800; }
+    .t-caption-purple { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-purple); }
+
+    .t-gradient {
+      background: linear-gradient(120deg, #0071e3 0%, #7a5af8 55%, #ff6723 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
     .t-accent { color: var(--accent); }
     .t-warm { color: var(--accent-warm); }
     .t-green { color: var(--accent-green); }
     .t-red { color: var(--accent-red); }
-    .t-yellow { color: var(--accent-yellow); }
+    .t-yellow { color: #b38800; }
+    .t-ink { color: var(--ink); }
+    .t-ink-bold { color: var(--ink); font-weight: 600; }
 
-    .t-gradient {
-      background: linear-gradient(135deg, #6ec6ff, #0071e3, #a78bfa);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-
-    /* ===== LAYOUT ===== */
     .content {
-      width: min(1200px, 100%);
+      width: min(1260px, 100%);
       max-height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
       position: relative; z-index: 1;
       scrollbar-width: none;
+      word-break: normal;
+      overflow-wrap: break-word;
     }
     .content::-webkit-scrollbar { display: none; }
+    .nowrap { white-space: nowrap; }
+
     .flex-col { display: flex; flex-direction: column; }
     .flex-row { display: flex; align-items: center; }
     .flex-wrap { flex-wrap: wrap; }
     .center { text-align: center; align-items: center; }
-    .gap-4{gap:4px} .gap-6{gap:6px} .gap-8{gap:8px} .gap-10{gap:10px} .gap-12{gap:12px} .gap-16{gap:16px}
-    .gap-20{gap:20px} .gap-24{gap:24px} .gap-28{gap:28px} .gap-32{gap:32px} .gap-40{gap:40px} .gap-48{gap:48px}
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
 
-    /* ===== GRIDS ===== */
+    .gap-4{gap:4px} .gap-6{gap:6px} .gap-8{gap:8px} .gap-10{gap:10px} .gap-12{gap:12px} .gap-14{gap:14px}
+    .gap-16{gap:16px} .gap-20{gap:20px} .gap-24{gap:24px} .gap-28{gap:28px} .gap-32{gap:32px} .gap-40{gap:40px}
+
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
     .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-    .grid-split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center; }
-    .grid-split-r { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 32px; align-items: center; }
+    .grid-split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: center; }
+    .grid-split-r { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 36px; align-items: center; }
 
-    /* ===== CARDS ===== */
-    .card-dark {
-      background: var(--glass); border: 1px solid var(--glass-border);
-      border-radius: var(--radius); padding: 28px; backdrop-filter: blur(20px);
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
     }
-    .card-light {
-      background: var(--glass-light); border: 1px solid var(--glass-light-border);
-      border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); backdrop-filter: blur(20px);
+    .card-soft {
+      background: var(--panel-soft);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .card-lift {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
     }
 
-    /* ===== IMAGES ===== */
     .img-frame {
-      border-radius: 16px; overflow: hidden; background: #fff;
-      border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      border-radius: 18px; overflow: hidden; background: #fff;
+      border: 1px solid var(--border); box-shadow: var(--shadow-sm);
     }
     .img-frame img { width: 100%; display: block; }
 
-    .img-frame-dark {
-      border-radius: 16px; overflow: hidden;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-    }
-    .img-frame-dark img { width: 100%; display: block; }
+    .metric-big { font-size: 68px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+    .metric-mid { font-size: 42px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .metric-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--gray-500); }
 
-    /* ===== METRICS ===== */
-    .metric-big { font-size: 76px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
-    .metric-label { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; opacity: 0.45; }
-
-    /* ===== STEP NUM ===== */
     .step-num {
-      width: 32px; height: 32px; border-radius: 50%; background: var(--accent);
-      color: #fff; display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 600; flex-shrink: 0;
-    }
-
-    /* ===== STEP CARDS ===== */
-    .step-card {
-      background: var(--glass-light); border: 1px solid var(--glass-light-border);
-      border-radius: 20px; padding: 16px;
-      display: flex; flex-direction: column; gap: 12px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-    }
-    .step-card img {
-      width: 100%; height: 120px; object-fit: contain;
-      border-radius: 14px; background: #fff;
-    }
-
-    /* ===== PILLAR CARDS ===== */
-    .pillar {
-      background: var(--glass); border: 1px solid var(--glass-border);
-      border-radius: 20px; padding: 24px; backdrop-filter: blur(16px);
-      display: flex; flex-direction: column; gap: 12px;
-    }
-    .pillar-icon {
-      width: 48px; height: 48px; border-radius: 14px;
+      width: 32px; height: 32px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 22px; font-weight: 700; color: #fff;
+      font-size: 14px; font-weight: 700; flex-shrink: 0;
+      color: #fff;
+    }
+    .bg-accent { background: var(--accent); }
+    .bg-warm   { background: var(--accent-warm); }
+    .bg-green  { background: var(--accent-green); }
+    .bg-red    { background: var(--accent-red); }
+    .bg-yellow { background: #e6b400; }
+    .bg-purple { background: var(--accent-purple); }
+
+    .pillar-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; color: #fff;
+      flex-shrink: 0;
     }
 
-    /* ===== PROBLEM CARDS ===== */
-    .problem-card {
-      background: var(--glass); border: 1px solid var(--glass-border);
-      border-radius: 20px; padding: 28px;
-      display: flex; flex-direction: column; gap: 12px; backdrop-filter: blur(16px);
-    }
-    .problem-num { font-size: 48px; font-weight: 700; opacity: 0.12; line-height: 1; }
-
-    /* ===== BLOCKQUOTE ===== */
     .blockquote {
-      padding: 24px 28px; border-radius: 20px;
-      font-size: 22px; line-height: 1.4;
-      letter-spacing: -0.015em; font-weight: 500;
-    }
-    .blockquote--dark {
-      background: rgba(255,255,255,0.04);
-      border-left: 3px solid var(--accent);
-      color: rgba(255,255,255,0.85);
-    }
-    .blockquote--light {
-      background: rgba(0,113,227,0.04);
-      border-left: 3px solid var(--accent);
+      padding: 22px 26px; border-radius: 18px;
+      font-size: 20px; line-height: 1.45;
+      letter-spacing: -0.01em; font-weight: 500;
       color: var(--gray-700);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      box-shadow: var(--shadow-sm);
     }
+    .blockquote-warm { border-left-color: var(--accent-warm); }
+    .blockquote-green { border-left-color: var(--accent-green); }
+    .blockquote-yellow { border-left-color: #e6b400; }
 
-    /* ===== TAGS ===== */
     .tag {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 999px; font-size: 13px;
-      font-weight: 500; letter-spacing: 0.04em;
+      padding: 5px 12px; border-radius: 999px; font-size: 12px;
+      font-weight: 600; letter-spacing: 0.04em;
+      background: var(--gray-100);
+      border: 1px solid var(--border-soft);
+      color: var(--gray-700);
     }
-    .tag--dark { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); }
-    .tag--light { background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08); color: var(--gray-600); }
+    .tag-blue   { background: var(--accent-soft); color: var(--accent); border-color: rgba(0,113,227,0.15); }
+    .tag-warm   { background: var(--accent-warm-soft); color: var(--accent-warm); border-color: rgba(255,103,35,0.2); }
+    .tag-green  { background: var(--accent-green-soft); color: var(--accent-green); border-color: rgba(46,168,74,0.2); }
+    .tag-red    { background: var(--accent-red-soft); color: var(--accent-red); border-color: rgba(217,52,42,0.2); }
+    .tag-yellow { background: var(--accent-yellow-soft); color: #b38800; border-color: rgba(230,180,0,0.25); }
 
-    /* ===== DIVIDER ===== */
-    .divider { width: 60px; height: 4px; border-radius: 2px; background: var(--accent); }
+    .divider { width: 56px; height: 4px; border-radius: 2px; background: var(--accent); }
 
-    /* ===== PHONE MOCKUP ===== */
+    .chain {
+      display: flex; align-items: center; gap: 0;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .chain-node {
+      padding: 14px 20px; border-radius: 16px;
+      font-size: 14px; font-weight: 600; text-align: center;
+      max-width: 220px;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .chain-arrow {
+      font-size: 24px; color: var(--gray-400); padding: 0 10px;
+      flex-shrink: 0;
+    }
+
     .phone-mockup {
       background: #1a1a1a;
       border-radius: 28px;
-      padding: 12px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.1);
-      max-width: 260px;
+      padding: 10px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.08);
+      max-width: 240px;
       width: 100%;
     }
     .phone-mockup img {
       width: 100%;
-      height: 420px;
+      height: 380px;
       object-fit: cover;
       object-position: top center;
       border-radius: 18px;
       display: block;
     }
 
-    /* ===== VIDEO ===== */
     .video-container {
       border-radius: 20px;
       overflow: hidden;
       background: #000;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
       max-width: 760px;
       width: 100%;
       margin: 0 auto;
     }
-    .video-container video {
-      width: 100%;
-      display: block;
+    .video-container video { width: 100%; display: block; }
+
+    .code-box {
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-family: "SF Mono", "Menlo", monospace;
+      font-size: 13px;
+      color: var(--gray-700);
+      line-height: 1.55;
     }
 
-    /* ===== CAUSAL CHAIN ===== */
-    .chain {
-      display: flex; align-items: center; gap: 0;
-      flex-wrap: wrap; justify-content: center;
-    }
-    .chain-node {
-      padding: 16px 24px; border-radius: 16px;
-      font-size: 16px; font-weight: 600; text-align: center;
-      max-width: 200px;
-    }
-    .chain-arrow {
-      font-size: 28px; color: var(--gray-400); padding: 0 12px;
-      flex-shrink: 0;
+    .formula {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-family: "SF Mono", "Menlo", monospace;
+      font-size: 14.5px;
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+      line-height: 1.65;
     }
 
-    /* ===== PROGRESS ===== */
     .progress-bar {
       position: fixed; top: 0; left: 0; height: 3px;
       background: var(--accent);
-      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
       z-index: 100;
     }
 
-    /* ===== NAV ===== */
     .nav {
-      position: fixed; bottom: 28px; right: 36px; z-index: 50;
+      position: fixed; bottom: 24px; right: 32px; z-index: 50;
       display: flex; align-items: center; gap: 10px;
     }
     .nav-dots {
-      display: flex; gap: 6px; padding: 8px 14px;
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1);
+      display: flex; gap: 5px; padding: 8px 14px;
+      background: rgba(255,255,255,0.85); border: 1px solid var(--border);
       border-radius: 999px; backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
     }
     .nav-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: rgba(255,255,255,0.25);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gray-300);
       transition: all 0.3s ease; cursor: pointer;
     }
-    .nav-dot.active { background: #fff; transform: scale(1.5); }
+    .nav-dot.active { background: var(--ink); transform: scale(1.5); }
 
     .nav-btn {
-      width: 36px; height: 36px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.08);
-      color: #fff; font-size: 16px; cursor: pointer;
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--ink); font-size: 15px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      backdrop-filter: blur(10px); transition: background 0.2s;
+      box-shadow: var(--shadow-sm);
+      transition: background 0.2s;
     }
-    .nav-btn:hover { background: rgba(255,255,255,0.16); }
+    .nav-btn:hover { background: var(--gray-100); }
 
     .slide-counter {
-      position: fixed; bottom: 32px; left: 36px; z-index: 50;
-      font-size: 12px; letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.3); font-weight: 500;
+      position: fixed; bottom: 28px; left: 32px; z-index: 50;
+      font-size: 11px; letter-spacing: 0.14em;
+      color: var(--gray-400); font-weight: 600;
     }
 
+    .callout {
+      padding: 14px 16px; border-radius: 14px;
+      font-size: 14px; line-height: 1.55; color: var(--gray-700);
+    }
+    .callout-blue   { background: var(--accent-soft); border: 1px solid rgba(0,113,227,0.15); }
+    .callout-warm   { background: var(--accent-warm-soft); border: 1px solid rgba(255,103,35,0.18); }
+    .callout-green  { background: var(--accent-green-soft); border: 1px solid rgba(46,168,74,0.18); }
+    .callout-red    { background: var(--accent-red-soft); border: 1px solid rgba(217,52,42,0.18); }
+    .callout-yellow { background: var(--accent-yellow-soft); border: 1px solid rgba(230,180,0,0.22); }
   </style>
 </head>
 <body>
@@ -313,505 +344,723 @@
 <main class="deck">
 
   <!-- ========== SLIDE 1: TITLE ========== -->
-  <section class="slide slide--dark active" style="background: radial-gradient(ellipse at 30% 20%, rgba(0,113,227,0.12), transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(167,139,250,0.08), transparent 40%), linear-gradient(160deg, #111, #0a0a0a, #0e0e12);">
+  <section class="slide slide-bg-title active">
     <div class="content flex-col center gap-32">
-      <div class="flex-row gap-12" style="justify-content: center; flex-wrap: wrap;">
-        <!-- <span class="tag tag--dark">Two Papers</span>
-        <span class="tag tag--dark">One Report</span> -->
+      <div class="flex-row gap-10" style="justify-content: center; flex-wrap: wrap;">
+        <span class="tag tag-blue">VLDB Journal</span>
+        <span class="tag tag-warm">PVLDB Demo</span>
+        <span class="tag tag-green">OpenAIRE Case</span>
       </div>
       <div class="flex-col center gap-16">
-        <h1 class="t-hero" style="text-align:center;">From Traditional BI<br><span class="t-gradient">to NeuGBI</span></h1>
-        <p class="t-subtitle" style="max-width:680px; text-align:center; color:rgba(255,255,255,0.5);">How business intelligence evolves from static dashboards to iterative, question-driven exploration.</p>
+        <h1 class="t-hero" style="text-align:center;">From BI<br><span class="t-gradient">to NeuGBI</span></h1>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">How business intelligence evolves from static dashboards to iterative, question-driven autonomous exploration.</p>
       </div>
       <div class="divider" style="margin:0 auto;"></div>
-      <div class="grid-3" style="max-width:720px; margin:0 auto;">
-        <!-- <div class="flex-col center gap-6">
-          <span style="font-size:28px; font-weight:700;">Paper I</span>
-          <span style="font-size:14px; color:rgba(255,255,255,0.4);">Exploratory BI Framework</span>
-        </div>
-        <div class="flex-col center gap-6">
-          <span style="font-size:28px; font-weight:700;">Paper II</span>
-          <span style="font-size:14px; color:rgba(255,255,255,0.4);">NeuGBI System</span>
-        </div>
-        <div class="flex-col center gap-6">
-          <span style="font-size:28px; font-weight:700;">Report</span>
-          <span style="font-size:14px; color:rgba(255,255,255,0.4);">Russia-Ukraine Case</span>
-        </div> -->
-      </div>
+      <p class="t-tiny" style="letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:var(--gray-400);">Exploratory BI Framework &nbsp;&middot;&nbsp; Sampling Operators &nbsp;&middot;&nbsp; NeuGBI System &nbsp;&middot;&nbsp; Russia-Ukraine Case</p>
     </div>
   </section>
 
   <!-- ========== SLIDE 2: WHAT IS TRADITIONAL BI ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 25% 30%, rgba(0,113,227,0.08), transparent 50%), linear-gradient(160deg, #111, #0a0a0a, #0e0e12);">
+  <section class="slide slide-bg-blue">
     <div class="content grid-split">
-      <div class="flex-col gap-32">
-        <div class="flex-col gap-16">
-          <span class="t-caption t-accent">Background</span>
-          <h2 class="t-title">What is Traditional<br>Business Intelligence?</h2>
-          <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:500px;">BI helps organizations turn raw data into actionable insights. It works beautifully &mdash; when you already know exactly what question to ask.</p>
+      <div class="flex-col gap-28">
+        <div class="flex-col gap-12">
+          <span class="t-caption">Background</span>
+          <h2 class="t-title">What is<br>Business Intelligence (BI)?</h2>
+          <p class="t-body" style="max-width:520px;">BI turns raw data into actionable insight. <strong class="t-ink-bold">&mdash; provided you already know exactly what to ask.</strong></p>
         </div>
         <div class="grid-3" style="gap:16px;">
-          <div class="flex-col gap-8">
-            <div class="step-num">1</div>
-            <span style="font-size:20px; font-weight:600;">Frame</span>
-            <span class="t-small" style="color:rgba(255,255,255,0.5);">Define the question.</span>
+          <div class="card" style="padding:18px;">
+            <div class="flex-col gap-10">
+              <div class="step-num bg-accent">1</div>
+              <span style="font-size:18px; font-weight:600;">Frame</span>
+              <span class="t-small">The business side defines a specific question.</span>
+            </div>
           </div>
-          <div class="flex-col gap-8">
-            <div class="step-num" style="background:var(--accent-warm);">2</div>
-            <span style="font-size:20px; font-weight:600;">Shape</span>
-            <span class="t-small" style="color:rgba(255,255,255,0.5);">Organize data into a model.</span>
+          <div class="card" style="padding:18px;">
+            <div class="flex-col gap-10">
+              <div class="step-num bg-warm">2</div>
+              <span style="font-size:18px; font-weight:600;">Shape</span>
+              <span class="t-small">Engineers build a wide table / data model to match.</span>
+            </div>
           </div>
-          <div class="flex-col gap-8">
-            <div class="step-num" style="background:var(--accent-green);">3</div>
-            <span style="font-size:20px; font-weight:600;">Read</span>
-            <span class="t-small" style="color:rgba(255,255,255,0.5);">Interpret results and decide.</span>
+          <div class="card" style="padding:18px;">
+            <div class="flex-col gap-10">
+              <div class="step-num bg-green">3</div>
+              <span style="font-size:18px; font-weight:600;">Read</span>
+              <span class="t-small">The business side reads charts and decides.</span>
+            </div>
           </div>
         </div>
-        <div class="blockquote blockquote--dark">Traditional BI is like assembling a puzzle when you already know the picture on the box.</div>
+        <div class="blockquote">BI is like assembling a puzzle when <strong class="t-ink-bold">you already know the picture on the box</strong>.</div>
       </div>
       <div class="img-frame">
-        <img src="assets/bi-workflow-step-1.png" alt="Traditional BI workflow" style="padding:20px;" />
+        <img src="assets/bi-workflow-step-1.png" alt="BI workflow" style="padding:20px;" />
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 3: TRADITIONAL BI EXAMPLE ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 70% 30%, rgba(0,113,227,0.08), transparent 50%), linear-gradient(160deg, #0e0e12, #0a0a0a);">
+  <!-- ========== SLIDE 3: TRADITIONAL BI FLOW ========== -->
+  <section class="slide slide-bg-blue">
     <div class="content flex-col gap-24">
-      <div class="flex-col gap-12 center">
-        <span class="t-caption t-accent">A Concrete Example</span>
-        <h2 class="t-title" style="text-align:center;">How Traditional BI Answers<br>a Single Question</h2>
-        <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:700px; text-align:center;">Suppose a researcher asks: <em style="color:rgba(255,255,255,0.85);">"How has Russian publication output changed in recent years?"</em><br>Here is how traditional BI would handle it.</p>
+      <div class="flex-col gap-10 center">
+        <span class="t-caption">A Concrete Question</span>
+        <h2 class="t-title" style="text-align:center;">How Does BI<br>Answer a Single Question?</h2>
+        <p class="t-body" style="max-width:720px; text-align:center;">A researcher asks: <em class="t-ink-bold">"How has Russian publication output changed recently?"</em><br>A typical BI workflow must walk through three steps before giving the first answer.</p>
       </div>
       <div class="grid-3" style="gap:20px;">
-        <div class="card-dark flex-col gap-16" style="padding:24px;">
+        <div class="card flex-col gap-14" style="padding:22px;">
           <div class="flex-row gap-10">
-            <div class="step-num">1</div>
+            <div class="step-num bg-accent">1</div>
             <span style="font-size:17px; font-weight:600;">Communicate Requirements</span>
           </div>
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">The analyst meets with domain experts to clarify the question: Which data sources? What time range? What counts as "Russian"?</p>
-          <div style="padding:14px; border-radius:14px; background:rgba(0,113,227,0.08); border:1px solid rgba(0,113,227,0.18);">
-            <p class="t-small" style="color:rgba(255,255,255,0.6);">Analyst &harr; Domain Expert &harr; Database Admin &mdash; multiple rounds of discussion before any data is touched.</p>
-          </div>
+          <p class="t-small">The analyst meets with domain experts and DBAs to agree on <strong class="t-ink-bold">sources, time range, "what counts as Russia"</strong>.</p>
+          <div class="callout callout-blue">No data has been touched yet &mdash; time is already gone.</div>
         </div>
-        <div class="card-dark flex-col gap-16" style="padding:24px;">
+        <div class="card flex-col gap-14" style="padding:22px;">
           <div class="flex-row gap-10">
-            <div class="step-num" style="background:var(--accent-warm);">2</div>
+            <div class="step-num bg-warm">2</div>
             <span style="font-size:17px; font-weight:600;">Build the Wide Table</span>
           </div>
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">The BI analyst constructs a wide table by joining <strong>Publication</strong>, <strong>Organization</strong>, and other related tables, filtered by country and year.</p>
-          <div style="padding:14px; border-radius:14px; background:rgba(255,103,35,0.08); border:1px solid rgba(255,103,35,0.18);">
-            <p class="t-small" style="color:rgba(255,255,255,0.6);"><strong>Publication &#x2a1d; Organization</strong><br>This step is manual, time-consuming, and requires deep schema knowledge.</p>
-          </div>
+          <p class="t-small">Manually join <strong class="t-ink-bold">Publication &times; Organization</strong> by country and year &mdash; heavy dependency on schema knowledge.</p>
+          <div class="callout callout-warm">This step takes the longest and gets reworked the most.</div>
         </div>
-        <div class="card-dark flex-col gap-16" style="padding:24px;">
+        <div class="card flex-col gap-14" style="padding:22px;">
           <div class="flex-row gap-10">
-            <div class="step-num" style="background:var(--accent-green);">3</div>
-            <span style="font-size:17px; font-weight:600;">Analyze &amp; Report</span>
+            <div class="step-num bg-green">3</div>
+            <span style="font-size:17px; font-weight:600;">Analyze &amp; Visualize</span>
           </div>
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">Finally, the analyst aggregates, slices by year, and produces a trend chart. One question answered.</p>
-          <div style="padding:14px; border-radius:14px; background:rgba(48,209,88,0.08); border:1px solid rgba(48,209,88,0.18);">
-            <p class="t-small" style="color:rgba(255,255,255,0.6);"><strong>But what if the result raises a new question?</strong> The entire pipeline restarts from Step 1.</p>
-          </div>
+          <p class="t-small">Finally aggregate, slice, draw a trend chart. One question answered.</p>
+          <div class="callout callout-green"><strong class="t-ink-bold">But if the result raises a new question &mdash; the whole pipeline restarts from Step 1.</strong></div>
         </div>
       </div>
-      <div class="blockquote blockquote--dark" style="text-align:center; max-width:820px; margin:0 auto;">Traditional BI can answer <strong>one known question well</strong>. But real investigation is rarely just one question &mdash; each answer leads to the next.</div>
+      <div class="blockquote" style="text-align:center; max-width:900px; margin:0 auto;">BI can answer <strong class="t-ink-bold">one known question</strong> well. But real investigation is <strong class="t-ink-bold">rarely just one question</strong> &mdash; each answer leads to the next.</div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 4: CASE INTRO ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 30% 80%, rgba(255,103,35,0.07), transparent 45%), linear-gradient(160deg, #111, #0a0a0a);">
-    <div class="content flex-col gap-28">
-      <div class="flex-col gap-12 center">
-        <span class="t-caption t-warm">Case Study</span>
-        <h2 class="t-title" style="text-align:center;">BI in Action: Russia-Ukraine<br>& Russian Academia</h2>
-        <p class="t-subtitle" style="color:rgba(255,255,255,0.5); max-width:750px; text-align:center; font-style:italic;">"What is the impact of the Russia-Ukraine conflict on Russian scientific research?"</p>
+  <!-- ========== SLIDE 4: CASE INTRO + OPENAIRE DATASET ========== -->
+  <section class="slide slide-bg-warm">
+    <div class="content flex-col gap-18">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-warm">Case Study</span>
+        <h2 class="t-title" style="text-align:center;">The Russia-Ukraine Impact<br>on Russian Academia</h2>
+      </div>
+      <div class="blockquote blockquote-warm" style="max-width:780px; margin:0 auto; font-style:italic; font-size:22px;">"What is the impact of the Russia-Ukraine conflict on Russian academic research?"</div>
+
+      <!-- OpenAIRE dataset card -->
+      <div class="card-lift" style="max-width:1160px; margin:0 auto;">
+        <div class="grid-split" style="gap:28px; align-items:center;">
+          <div class="flex-col gap-12">
+            <span class="t-caption-warm">Dataset &middot; OpenAIRE</span>
+            <p class="t-body">Europe's largest open scholarly knowledge graph: <strong class="t-ink-bold">publications, authors, organizations, projects, funders, datasources</strong> &mdash; connected through <strong class="t-ink-bold">12 relation types</strong> into a 22.4M-vertex research graph.</p>
+            <div class="flex-row gap-24" style="flex-wrap:wrap;">
+              <div class="flex-col gap-2">
+                <span class="metric-label">Vertices</span>
+                <span class="metric-mid t-warm">22.4M</span>
+              </div>
+              <div class="flex-col gap-2">
+                <span class="metric-label">Edges</span>
+                <span class="metric-mid t-warm">94.4M</span>
+              </div>
+              <div class="flex-col gap-2">
+                <span class="metric-label">Relation types</span>
+                <span class="metric-mid t-warm">12</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-col gap-8">
+            <span class="t-caption-warm" style="color:var(--gray-500);">Main entities</span>
+            <div class="flex-col gap-6">
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.18); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Publication</span>
+                <span class="t-small"><strong class="t-ink-bold">17.9M</strong></span>
+              </div>
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.12); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Project</span>
+                <span class="t-small"><strong class="t-ink-bold">3.5M</strong></span>
+              </div>
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.12); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Organization</span>
+                <span class="t-small"><strong class="t-ink-bold">454K</strong></span>
+              </div>
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.12); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Author</span>
+                <span class="t-small"><strong class="t-ink-bold">401K</strong></span>
+              </div>
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.12); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Funding &middot; Datasource &middot; &hellip;</span>
+                <span class="t-small"><strong class="t-ink-bold">185 &middot; 142K</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-step preview -->
+      <div class="flex-col gap-10 center">
+        <p class="t-body" style="max-width:820px; text-align:center;">We'll walk through this question step by step &mdash; <strong class="t-ink-bold">three questions, three wide tables</strong>:</p>
+        <div class="grid-3" style="gap:14px; max-width:1100px;">
+          <div class="card-soft flex-col gap-4" style="padding:14px;">
+            <span class="t-caption-warm">Step 1</span>
+            <span style="font-size:15px; font-weight:600;">Is the output actually falling?</span>
+          </div>
+          <div class="card-soft flex-col gap-4" style="padding:14px;">
+            <span class="t-caption-warm">Step 2</span>
+            <span style="font-size:15px; font-weight:600;">Did funding change in parallel?</span>
+          </div>
+          <div class="card-soft flex-col gap-4" style="padding:14px;">
+            <span class="t-caption-warm">Step 3</span>
+            <span style="font-size:15px; font-weight:600;">Did EC redirect to Ukraine?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 5: CASE STEP 1 — BI DOES THE FIRST QUERY ========== -->
+  <section class="slide slide-bg-red">
+    <div class="content grid-split">
+      <div class="flex-col gap-20">
+        <div class="flex-col gap-10">
+          <div class="flex-row gap-12">
+            <div class="step-num bg-red" style="width:40px; height:40px; font-size:16px;">1</div>
+            <span class="t-caption-red">Step 1 &middot; Observe the Phenomenon</span>
+          </div>
+          <h2 class="t-title">First ask: is the<br>output actually falling?</h2>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-red">What BI has to do</span>
+          <p class="t-body">The analyst first walks to the DBA: <strong class="t-ink-bold">"How do Publication and Organization join? Which field defines <em>Russia</em>?"</strong> After rounds of back-and-forth, a wide table is <strong class="t-ink-bold">manually constructed</strong>, then aggregated by year.</p>
+        </div>
+        <div class="img-frame"><img src="assets/bi-workflow-step-1.png" alt="Step 1 wide table" style="padding:12px;" /></div>
+      </div>
+      <div class="flex-col gap-16">
+        <div class="img-frame"><img src="assets/russia_pubs_trend.png" alt="Russian publication trend" /></div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-red">Result</span>
+          <div class="flex-row gap-14" style="flex-wrap:wrap;">
+            <div class="flex-col gap-2">
+              <span class="metric-label">2021 (Pre-War)</span>
+              <span class="metric-mid">8,976</span>
+            </div>
+            <div style="font-size:22px; color:var(--gray-300); align-self:center;">&rarr;</div>
+            <div class="flex-col gap-2">
+              <span class="metric-label">2024 (Post-War)</span>
+              <span class="metric-mid t-red">4,686</span>
+            </div>
+            <div class="flex-col gap-2" style="margin-left:auto;">
+              <span class="metric-label">Change</span>
+              <span class="metric-mid t-red">&minus;47.8%</span>
+            </div>
+          </div>
+          <p class="t-small">The moment the result lands, the next question appears: <strong class="t-ink-bold">why is it falling?</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 6: CASE STEP 2 — BI REBUILDS FOR FUNDING ========== -->
+  <section class="slide slide-bg-warm">
+    <div class="content grid-split-r">
+      <div class="flex-col gap-16">
+        <div class="img-frame"><img src="assets/bi-workflow-step-2.png" alt="Step 2 rebuilt wide table" style="padding:12px;" /></div>
+        <div class="callout callout-warm">
+          <strong class="t-ink-bold">The whole process starts over.</strong><br>
+          Fresh requirements meeting, fresh wide table, fresh full join.<br>
+          <strong class="t-warm">Nothing from Step 1 can really be carried forward.</strong>
+        </div>
+      </div>
+      <div class="flex-col gap-20">
+        <div class="flex-col gap-10">
+          <div class="flex-row gap-12">
+            <div class="step-num bg-warm" style="width:40px; height:40px; font-size:16px;">2</div>
+            <span class="t-caption-warm">Step 2 &middot; Hypothesize a Cause</span>
+          </div>
+          <h2 class="t-title">Next ask: did<br>funding change too?</h2>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-warm">What BI has to do</span>
+          <p class="t-body">To look at funding, BI needs a <strong class="t-ink-bold">brand-new wide table: Publication &times; Organization &times; Funding</strong>. The schema is static &mdash; you can't graft Funding onto Step&nbsp;1's result. So the analyst loops through the whole "communicate &rarr; build &rarr; query" cycle again.</p>
+        </div>
+        <div class="callout callout-warm">
+          <strong class="t-ink-bold">Result:</strong> Russian institutions had several funding sources in 2020&ndash;2021; <strong class="t-warm">all of them cut off from 2022</strong>. Funding collapse and output decline arrive together.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 7: CASE STEP 3 — BI REBUILDS AGAIN ========== -->
+  <section class="slide slide-bg-green">
+    <div class="content grid-split">
+      <div class="flex-col gap-20">
+        <div class="flex-col gap-10">
+          <div class="flex-row gap-12">
+            <div class="step-num bg-green" style="width:40px; height:40px; font-size:16px;">3</div>
+            <span class="t-caption-green">Step 3 &middot; Validate the Hypothesis</span>
+          </div>
+          <h2 class="t-title">Then ask: did EC redirect<br>to Ukraine?</h2>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-green">What BI has to do</span>
+          <p class="t-body">Comparing Russia's funding to Ukraine's needs yet <strong class="t-ink-bold">another Organization table</strong> &mdash; the wide table is now a four-way join. Another DBA conversation, another rebuild, another full recompute.</p>
+        </div>
+        <div class="callout callout-green">
+          <strong class="t-ink-bold">Result:</strong> the European Commission fits the pattern &mdash; funded both pre-war, <strong class="t-green">cut Russia in 2022, continued Ukraine</strong>. Confirmed against the EC's official site.
+        </div>
+        <div class="callout callout-red" style="background:#fff; border-color:rgba(217,52,42,0.25);">
+          <strong class="t-red">Three rounds, three wide tables.</strong> The Publication &times; Organization join has been computed 3 separate times &mdash; every round pays the same build cost, with zero reuse.
+        </div>
+      </div>
+      <div class="flex-col gap-14">
+        <div class="img-frame"><img src="assets/bi-workflow-step-3.png" alt="Step 3 wide table" style="padding:12px;" /></div>
+        <div class="img-frame"><img src="assets/country_comparison.png" alt="Country comparison" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 8: DEEPER FINDINGS ========== -->
+  <section class="slide slide-bg-yellow">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-yellow">Going Deeper</span>
+        <h2 class="t-title" style="text-align:center;">Beyond the first three rounds,<br>what else shows up?</h2>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">If you're willing to run more BI rounds &mdash; and pay for more wide tables &mdash; the data hides even stranger signals.</p>
       </div>
       <div class="grid-3" style="gap:20px;">
-        <div class="step-card" style="background:var(--glass); border-color:var(--glass-border); box-shadow:0 8px 30px rgba(0,0,0,0.25);">
-          <div class="flex-row gap-10">
-            <div class="step-num">1</div>
-            <span class="t-caption" style="color:rgba(255,255,255,0.5);">Measure Output</span>
+        <div class="card-lift flex-col gap-10">
+          <span class="t-caption-red">Finding &middot; Output</span>
+          <div class="flex-row gap-10" style="align-items:flex-end;">
+            <span class="metric-big t-red">&minus;47.8%</span>
           </div>
-          <img src="assets/bi-workflow-step-1.png" alt="Step 1" />
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">Count Russian publications over time. Found a steep decline starting 2022.</p>
+          <p class="t-small">Russian academic output nearly halved from 2021 to 2024. Global baseline: only &minus;27.6%.</p>
         </div>
-        <div class="step-card" style="background:var(--glass); border-color:var(--glass-border); box-shadow:0 8px 30px rgba(0,0,0,0.25);">
-          <div class="flex-row gap-10">
-            <div class="step-num" style="background:var(--accent-warm);">2</div>
-            <span class="t-caption" style="color:rgba(255,255,255,0.5);">Explore Funding</span>
+        <div class="card-lift flex-col gap-10">
+          <span class="t-caption-warm">Finding &middot; Collaboration</span>
+          <div class="flex-row gap-10" style="align-items:flex-end;">
+            <span class="metric-big t-warm">&minus;92%+</span>
           </div>
-          <img src="assets/bi-workflow-step-2.png" alt="Step 2" />
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">Add funding data. The European Commission stopped funding Russian projects after 2022.</p>
+          <p class="t-small">US-Russia &minus;92.5%, Germany-Russia &minus;93.0%, China-Russia &minus;80.4% &mdash; nearly every partner severed.</p>
         </div>
-        <div class="step-card" style="background:var(--glass); border-color:var(--glass-border); box-shadow:0 8px 30px rgba(0,0,0,0.25);">
-          <div class="flex-row gap-10">
-            <div class="step-num" style="background:var(--accent-green);">3</div>
-            <span class="t-caption" style="color:rgba(255,255,255,0.5);">Compare Partners</span>
+        <div class="card-lift flex-col gap-10" style="border-color:rgba(230,180,0,0.35);">
+          <span class="t-caption-yellow">Counter-intuitive &middot; Turkey</span>
+          <div class="flex-row gap-10" style="align-items:flex-end;">
+            <span class="metric-big t-yellow">&minus;98.4%</span>
           </div>
-          <img src="assets/bi-workflow-step-3.png" alt="Step 3" />
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">Add a second organization layer. Compared EC support for Russia vs. Ukraine.</p>
+          <p class="t-small">Turkey <strong class="t-ink-bold">imposed no sanctions</strong> &mdash; yet Turkey-Russia collaboration fell <strong class="t-ink-bold">more</strong> than any sanctioning country.</p>
         </div>
       </div>
-      <div class="blockquote blockquote--dark" style="text-align:center; max-width:800px; margin:0 auto;"><strong>Each round produced a new question.</strong> But each round also required rebuilding the data setup from scratch.</div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 4: FINDING 1 — PUBLICATION DECLINE ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 20% 30%, rgba(255,69,58,0.08), transparent 50%), linear-gradient(160deg, #111, #0a0a0a);">
-    <div class="content flex-col gap-32">
-      <div class="flex-col gap-12 center">
-        <span class="t-caption t-red">Finding 1</span>
-        <h2 class="t-title" style="text-align:center;">Russian Academic Output<br>Has Collapsed</h2>
-      </div>
-      <div class="grid-2" style="gap:24px; align-items:start;">
-        <div class="flex-col gap-16">
-          <div class="card-dark flex-col gap-12" style="padding:22px;">
-            <div class="flex-row gap-20" style="flex-wrap:wrap;">
-              <div class="flex-col gap-4">
-                <span class="metric-label">2021 (Pre-War)</span>
-                <span style="font-size:32px; font-weight:700;">8,976</span>
-                <span class="t-small" style="color:rgba(255,255,255,0.4);">papers</span>
-              </div>
-              <div style="font-size:28px; color:rgba(255,255,255,0.2); align-self:center;">&rarr;</div>
-              <div class="flex-col gap-4">
-                <span class="metric-label">2024 (Post-War)</span>
-                <span style="font-size:32px; font-weight:700; color:var(--accent-red);">4,686</span>
-                <span class="t-small" style="color:rgba(255,255,255,0.4);">papers</span>
-              </div>
-              <div class="flex-col gap-4" style="margin-left:auto;">
-                <span class="metric-label">Change</span>
-                <span class="metric-big t-red" style="font-size:52px;">-47.8%</span>
-              </div>
-            </div>
-          </div>
-          <div class="card-dark" style="padding:18px;">
-            <p class="t-small" style="color:rgba(255,255,255,0.6);">
-              <strong style="color:#fff;">Is this a global trend?</strong> No. US and Germany declined ~27.6%, while China <em>grew</em> +14.8%. Russia's extra ~20pp decline is war-specific.
-            </p>
-          </div>
-          <div class="card-dark" style="padding:18px;">
-            <p class="t-small" style="color:rgba(255,255,255,0.6);">
-              <strong style="color:#fff;">The decline is accelerating.</strong> YoY: -6.0% (2022), -4.8% (2023), then <span class="t-red">-39.4%</span> in 2024 &mdash; cumulative, compounding effects.
-            </p>
-          </div>
-        </div>
-        <div class="flex-col gap-16">
-          <div class="img-frame-dark"><img src="assets/russia_pubs_trend.png" alt="Russian publication trend" /></div>
-          <div class="img-frame-dark"><img src="assets/country_comparison.png" alt="Country comparison" /></div>
-        </div>
+      <div class="grid-2" style="gap:18px;">
+        <div class="img-frame"><img src="assets/intl_collab_bars.png" alt="International collaboration" /></div>
+        <div class="img-frame"><img src="assets/key_finding_turkey.png" alt="Turkey surprise" /></div>
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 5: FINDING 2 — COLLABORATION ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 80% 20%, rgba(255,103,35,0.08), transparent 50%), linear-gradient(160deg, #0e0e12, #0a0a0a);">
-    <div class="content flex-col gap-32">
-      <div class="flex-col gap-12 center">
-        <span class="t-caption t-warm">Finding 2</span>
-        <h2 class="t-title" style="text-align:center;">International Collaboration<br>Nearly Collapsed</h2>
-      </div>
-      <div class="grid-2" style="gap:24px; align-items:start;">
-        <div class="flex-col gap-20">
-          <div class="img-frame-dark"><img src="assets/intl_collab_trend.png" alt="International collaboration trends" /></div>
-          <div class="img-frame-dark"><img src="assets/intl_collab_bars.png" alt="Russia collaboration bar chart" /></div>
-        </div>
-        <div class="flex-col gap-20">
-          <div class="grid-2" style="gap:14px;">
-            <div class="card-dark flex-col center gap-8">
-              <span class="metric-label">US-Russia</span>
-              <span class="metric-big t-red">-92.5%</span>
-              <span class="t-small" style="color:rgba(255,255,255,0.35);">3,614 &rarr; 271 papers</span>
-            </div>
-            <div class="card-dark flex-col center gap-8">
-              <span class="metric-label">Germany-Russia</span>
-              <span class="metric-big t-warm">-93.0%</span>
-              <span class="t-small" style="color:rgba(255,255,255,0.35);">656 &rarr; 46 papers</span>
-            </div>
-            <div class="card-dark flex-col center gap-8">
-              <span class="metric-label">China-Russia</span>
-              <span class="metric-big t-yellow">-80.4%</span>
-              <span class="t-small" style="color:rgba(255,255,255,0.35);">570 &rarr; 112 papers</span>
-            </div>
-            <div class="card-dark flex-col center gap-8">
-              <span class="metric-label">Collab Share of Output</span>
-              <span style="font-size:28px; font-weight:700; color:rgba(255,255,255,0.8);">10% &rarr; &lt;5%</span>
-              <span class="t-small" style="color:rgba(255,255,255,0.35);">of Russia's total output</span>
-            </div>
-          </div>
-          <div class="card-dark">
-            <p class="t-body" style="color:rgba(255,255,255,0.6);">
-              <strong style="color:#fff;">Collaboration didn't just decline &mdash; it nearly vanished.</strong> International co-authorship, once a lifeline for Russian science, has been severed with virtually all major partners.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 6: FINDING 3 — TURKEY SURPRISE ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 50% 40%, rgba(255,214,10,0.06), transparent 45%), linear-gradient(160deg, #111, #0a0a0a);">
+  <!-- ========== SLIDE 9: CAUSAL CHAIN ========== -->
+  <section class="slide slide-bg-purple">
     <div class="content flex-col gap-28">
-      <div class="flex-col gap-12 center">
-        <span class="t-caption t-yellow">Finding 3 &mdash; Key Insight</span>
-        <h2 class="t-title" style="text-align:center;">The Turkey Surprise</h2>
-        <p class="t-subtitle" style="color:rgba(255,255,255,0.45); max-width:700px; text-align:center;">A non-Western country with <strong style="color:rgba(255,255,255,0.8);">no sanctions</strong> against Russia dropped <strong style="color:var(--accent-yellow);">more</strong> than the sanctioning countries.</p>
-      </div>
-      <div class="grid-split" style="gap:28px;">
-        <div class="img-frame-dark" style="box-shadow: 0 20px 60px rgba(255,214,10,0.08);">
-          <img src="assets/key_finding_turkey.png" alt="Turkey key finding" />
-        </div>
-        <div class="flex-col gap-20">
-          <div class="grid-2" style="gap:14px;">
-            <div class="card-dark flex-col center gap-6">
-              <span class="metric-label" style="font-size:12px;">Turkey (No Sanctions)</span>
-              <span class="metric-big t-yellow" style="font-size:48px;">-98.4%</span>
-            </div>
-            <div class="card-dark flex-col center gap-6">
-              <span class="metric-label" style="font-size:12px;">Germany (Sanctions)</span>
-              <span style="font-size:48px; font-weight:700; color:rgba(255,255,255,0.6);">-93.0%</span>
-            </div>
-          </div>
-          <div class="img-frame-dark"><img src="assets/collab_change_rates.png" alt="Collaboration change rates by country" /></div>
-          <div class="card-dark" style="border-color: rgba(255,214,10,0.2);">
-            <p class="t-body" style="color:rgba(255,255,255,0.6);">
-              <strong style="color:var(--accent-yellow);">This proves sanctions alone cannot explain the collapse.</strong> The fundamental driver is <em>academic platform isolation</em> &mdash; international databases reduced visibility of Russian papers, affecting collaboration with ALL countries.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 7: ROOT CAUSE ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 50% 30%, rgba(0,113,227,0.06), transparent 50%), linear-gradient(160deg, #111, #0a0a0a);">
-    <div class="content flex-col gap-40">
-      <div class="flex-col gap-16 center">
-        <span class="t-caption t-accent">Root Cause Analysis</span>
-        <h2 class="t-title" style="text-align:center;">The Causal Chain</h2>
-        <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:620px; text-align:center;">The investigation revealed a multi-layered mechanism, not a simple cause-and-effect.</p>
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-purple">Root Cause Analysis</span>
+        <h2 class="t-title" style="text-align:center;">The Full Causal Chain</h2>
+        <p class="t-body" style="max-width:680px; text-align:center;">The real value of exploration: starting from one phenomenon, digging layer by layer, until a <strong class="t-ink-bold">causal path nobody predicted upfront</strong> emerges.</p>
       </div>
       <div class="chain">
-        <div class="chain-node card-dark" style="background:rgba(255,69,58,0.12); border-color:rgba(255,69,58,0.25);">
-          <span style="font-size:24px;">&#9888;</span><br>
+        <div class="chain-node" style="background:var(--accent-red-soft); border-color:rgba(217,52,42,0.25);">
           <strong>Russia-Ukraine War</strong>
         </div>
         <div class="chain-arrow">&rarr;</div>
-        <div class="chain-node card-dark" style="background:rgba(255,103,35,0.12); border-color:rgba(255,103,35,0.25);">
-          <span style="font-size:24px;">&#9949;</span><br>
-          <strong>Western Sanctions</strong><br>
-          <span style="font-size:13px; color:rgba(255,255,255,0.55);">+ Academic platform isolation</span>
+        <div class="chain-node" style="background:var(--accent-warm-soft); border-color:rgba(255,103,35,0.25);">
+          <strong>Sanctions +<br>Platform Isolation</strong>
         </div>
         <div class="chain-arrow">&rarr;</div>
-        <div class="chain-node card-dark" style="background:rgba(0,113,227,0.14); border-color:rgba(0,113,227,0.3);">
-          <span style="font-size:24px;">&#128279;</span><br>
-          <strong>Collaboration Severed</strong><br>
-          <span style="font-size:13px; color:rgba(255,255,255,0.55);">With ALL countries</span>
+        <div class="chain-node" style="background:var(--accent-soft); border-color:rgba(0,113,227,0.25);">
+          <strong>Global Collaboration<br>Nearly Severed</strong>
         </div>
         <div class="chain-arrow">&rarr;</div>
-        <div class="chain-node card-dark" style="background:rgba(167,139,250,0.14); border-color:rgba(167,139,250,0.3);">
-          <span style="font-size:24px;">&#128200;</span><br>
-          <strong>Output Collapsed</strong><br>
-          <span style="font-size:13px; color:rgba(255,255,255,0.55);">-47.8% by 2024</span>
+        <div class="chain-node" style="background:var(--accent-purple-soft); border-color:rgba(122,90,248,0.25);">
+          <strong>Output Collapsed<br>&minus;47.8%</strong>
         </div>
-      </div>
-      <div class="grid-2" style="max-width:900px; margin:0 auto; gap:20px;">
-        <div class="card-dark">
-          <p class="t-body" style="color:rgba(255,255,255,0.6);"><strong style="color:#fff;">High dependence = high vulnerability.</strong> Turkey, with the highest pre-war reliance on Russian collaboration (8.74% of output), suffered the worst decline (-87.9% in collaboration ratio).</p>
-        </div>
-        <div class="card-dark">
-          <p class="t-body" style="color:rgba(255,255,255,0.6);"><strong style="color:#fff;">Platform isolation is the fundamental cause.</strong> International databases (OpenAIRE, Crossref, publishers) systematically reduced Russian paper visibility &mdash; this is sanction-agnostic and affects all partners equally.</p>
-        </div>
-      </div>
-      <div class="blockquote blockquote--dark" style="max-width:800px; margin:0 auto; text-align:center;">This kind of multi-layered, hypothesis-driven investigation is exactly what traditional BI struggles to support.</div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 8: PROBLEMS ========== -->
-  <section class="slide slide--dark" style="background: linear-gradient(160deg, #0e0e12, #0a0a0a, #111);">
-    <div class="content flex-col gap-40">
-      <div class="flex-col gap-16 center">
-        <span class="t-caption t-warm">The Challenge</span>
-        <h2 class="t-title" style="text-align:center;">Where Traditional BI<br>Breaks Down</h2>
-        <p class="t-subtitle" style="color:rgba(255,255,255,0.4); max-width:600px; text-align:center;">The workflow is too rigid for questions that keep evolving.</p>
       </div>
       <div class="grid-2" style="gap:20px;">
-        <div class="problem-card">
-          <div class="problem-num">01</div>
-          <h3 style="font-size:22px; font-weight:600; letter-spacing:-0.02em;">Requires knowing the answer path in advance</h3>
-          <p class="t-body" style="color:rgba(255,255,255,0.45);">If the analyst misses one important factor early on, the entire process must be rebuilt from scratch.</p>
+        <div class="card">
+          <p class="t-body"><strong class="t-ink-bold">Turkey's mystery, solved &mdash; platform isolation is the deeper driver.</strong> International databases (OpenAIRE, Crossref, publishers) systematically reduced Russian paper visibility. This is <strong class="t-ink-bold">sanction-agnostic</strong>, so it hits every country.</p>
         </div>
-        <div class="problem-card">
-          <div class="problem-num">02</div>
-          <h3 style="font-size:22px; font-weight:600; letter-spacing:-0.02em;">The schema is fixed and rigid</h3>
-          <p class="t-body" style="color:rgba(255,255,255,0.45);">Exploratory questions change shape as the investigation moves forward, but the data model cannot follow.</p>
+        <div class="card">
+          <p class="t-body"><strong class="t-ink-bold">Deeper dependence = deeper damage.</strong> Turkey had the highest pre-war reliance on Russian collaboration (8.74%), and fell hardest (collaboration ratio &minus;87.9%).</p>
         </div>
-        <div class="problem-card">
-          <div class="problem-num">03</div>
-          <h3 style="font-size:22px; font-weight:600; letter-spacing:-0.02em;">No reusability between rounds</h3>
-          <p class="t-body" style="color:rgba(255,255,255,0.45);">The Publication&ndash;Organization join was computed <strong style="color:#fff;">3 separate times</strong> in the Russia-Ukraine analysis. Each new question restarts the same groundwork.</p>
+      </div>
+      <div class="blockquote" style="text-align:center; max-width:860px; margin:0 auto;">This kind of <strong class="t-ink-bold">multi-layered, hypothesis-driven</strong> investigation is exactly what traditional BI struggles to support.</div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 10: WHY TRADITIONAL BI FAILS ========== -->
+  <section class="slide slide-bg-red">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-red">Where This Workflow Breaks</span>
+        <h2 class="t-title" style="text-align:center;">Why the Classic Workflow<br>Can't Carry Exploration</h2>
+      </div>
+      <div class="grid-2" style="gap:20px;">
+        <div class="card flex-col gap-10" style="padding:26px;">
+          <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">01</span>
+          <h3 style="font-size:22px; font-weight:700;">Heavy dependence on expert knowledge</h3>
+          <p class="t-body">Analysts must identify all relevant tables <em>upfront</em> and coordinate with the DBA to build them. <strong class="t-ink-bold">Miss or misjudge &mdash; the conclusion skews.</strong></p>
         </div>
-        <div class="problem-card">
-          <div class="problem-num">04</div>
-          <h3 style="font-size:22px; font-weight:600; letter-spacing:-0.02em;">Repeated computation costs add up</h3>
-          <p class="t-body" style="color:rgba(255,255,255,0.45);">The workflow keeps paying the cost of data preparation instead of spending time on the next insight.</p>
+        <div class="card flex-col gap-10" style="padding:26px;">
+          <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">02</span>
+          <h3 style="font-size:22px; font-weight:700;">Wide-table computation is expensive</h3>
+          <p class="t-body">Materializing multi-table joins on large data is slow and memory-heavy. Step&nbsp;3's four-way join blows up on OpenAIRE: <strong class="t-ink-bold">193M publications, 51M Pub&ndash;Org edges</strong>.</p>
+        </div>
+        <div class="card flex-col gap-10" style="padding:26px;">
+          <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">03</span>
+          <h3 style="font-size:22px; font-weight:700;">The schema is frozen</h3>
+          <p class="t-body">Once the star / snowflake schema is fixed, it <strong class="t-ink-bold">can't be modified mid-analysis</strong>. New dimension? Start from scratch &mdash; exploration can't "think while walking".</p>
+        </div>
+        <div class="card flex-col gap-10" style="padding:26px;">
+          <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">04</span>
+          <h3 style="font-size:22px; font-weight:700;">Intermediate results aren't reusable</h3>
+          <p class="t-body">In the case study, <strong class="t-ink-bold">the Publication&ndash;Organization join was computed 3 separate times</strong>. Every round starts fresh; the previous table is discarded.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 9: EXPLORATORY BI ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 30% 30%, rgba(0,113,227,0.09), transparent 50%), linear-gradient(160deg, #0e0e14, #0a0a0a);">
-    <div class="content grid-split">
-      <div class="flex-col gap-32">
-        <div class="flex-col gap-16">
-          <span class="t-caption t-accent">The Shift</span>
-          <h2 class="t-title">What If BI Could<br>Evolve With Your<br>Thinking?</h2>
-          <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:480px;">Instead of one-shot analysis, exploration should be iterative &mdash; each insight naturally leads to the next, better question.</p>
+  <!-- ========== SLIDE 11: EXPLORATORY BI ========== -->
+  <section class="slide slide-bg-blue">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption">Paradigm Shift</span>
+        <h2 class="t-title" style="text-align:center;">The same case, done differently&mdash;<br>Exploratory BI</h2>
+        <p class="t-subtitle" style="max-width:820px; text-align:center;">Not three wide tables, but <strong class="t-ink-bold">one dataset that keeps growing</strong>: each step is an increment on the previous result.</p>
+      </div>
+      <div class="grid-split" style="gap:36px; align-items:flex-start;">
+        <div class="flex-col gap-14">
+          <div class="img-frame">
+            <img src="assets/bi-workflow-step-4.png" alt="Exploratory BI workflow" style="padding:14px;" />
+          </div>
+          <p class="t-tiny" style="text-align:center;">The same case, as D<sub>1</sub> &rarr; D<sub>2</sub> &rarr; D<sub>3</sub>: <strong class="t-ink-bold">no rebuilds, no duplicated joins</strong>.</p>
         </div>
-        <div class="flex-col gap-20">
-          <div class="flex-row gap-16" style="align-items:flex-start;">
-            <div class="pillar-icon" style="background:var(--accent); flex-shrink:0;">1</div>
-            <div class="flex-col gap-4">
-              <span style="font-size:18px; font-weight:600;">Observe</span>
-              <span class="t-body" style="color:rgba(255,255,255,0.55); font-size:15px;">Start from one visible signal. Read the first pattern clearly.</span>
+        <div class="flex-col gap-14">
+          <div class="card flex-col gap-8">
+            <div class="flex-row gap-12">
+              <div class="pillar-icon bg-accent" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">1</sub></div>
+              <span style="font-size:16px; font-weight:600;">Step 1: Publication &harr; Organization</span>
             </div>
+            <p class="t-small">Russian publication counts over time.</p>
           </div>
-          <div class="flex-row gap-16" style="align-items:flex-start;">
-            <div class="pillar-icon" style="background:var(--accent-warm); flex-shrink:0;">2</div>
-            <div class="flex-col gap-4">
-              <span style="font-size:18px; font-weight:600;">Deepen</span>
-              <span class="t-body" style="color:rgba(255,255,255,0.55); font-size:15px;">Follow the evidence instead of rebuilding the whole process from zero.</span>
+          <div class="card flex-col gap-8">
+            <div class="flex-row gap-12">
+              <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">2</sub></div>
+              <span style="font-size:16px; font-weight:600;">Step 2: D<sub>1</sub> + Funding</span>
             </div>
+            <p class="t-small">Schema evolves in place. No new analysis round &mdash; <strong class="t-ink-bold">new dimension is grafted onto the previous result</strong>.</p>
           </div>
-          <div class="flex-row gap-16" style="align-items:flex-start;">
-            <div class="pillar-icon" style="background:var(--accent-green); flex-shrink:0;">3</div>
-            <div class="flex-col gap-4">
-              <span style="font-size:18px; font-weight:600;">Connect</span>
-              <span class="t-body" style="color:rgba(255,255,255,0.55); font-size:15px;">Carry forward what was already learned. Assemble the story progressively.</span>
+          <div class="card flex-col gap-8">
+            <div class="flex-row gap-12">
+              <div class="pillar-icon bg-green" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">3</sub></div>
+              <span style="font-size:16px; font-weight:600;">Step 3: D<sub>2</sub> + another Org</span>
             </div>
+            <p class="t-small">Rounds are <strong class="t-ink-bold">logically connected</strong>. Insights compose across steps, instead of living in three isolated reports.</p>
           </div>
         </div>
       </div>
-      <div class="flex-col gap-16">
-        <div class="img-frame">
-          <img src="assets/bi-workflow-step-4.png" alt="Exploratory BI workflow" style="padding:16px;" />
-        </div>
-        <p class="t-small" style="color:rgba(255,255,255,0.45); text-align:center;">From Paper I: analysis becomes <strong style="color:rgba(255,255,255,0.75);">cumulative rather than repetitive</strong>.</p>
-      </div>
+      <div class="blockquote" style="text-align:center; max-width:880px; margin:0 auto;">Two shifts: <strong class="t-ink-bold">schema evolves incrementally</strong>, and <strong class="t-ink-bold">rounds reuse &amp; compose</strong>. The rhythm changes from "repeat" to "accumulate".</div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 10: SAMPLING — CORE CONTRIBUTION ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 20% 70%, rgba(255,69,58,0.06), transparent 40%), radial-gradient(ellipse at 80% 20%, rgba(0,113,227,0.08), transparent 45%), linear-gradient(160deg, #111, #0a0a0a);">
+  <!-- ========== SLIDE 12: HYPERGRAPH DATA MODEL + OPERATORS ========== -->
+  <section class="slide slide-bg-purple">
     <div class="content flex-col gap-20">
       <div class="flex-col gap-10 center">
-        <span class="t-caption t-accent">Core Contribution</span>
-        <h2 class="t-title" style="text-align:center;">Making Exploration Feasible:<br>Sampling-Based Operators</h2>
-        <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:740px; text-align:center;">Iterative exploration means running <strong>Source</strong> and <strong>Join</strong> over and over. Both hit performance walls &mdash; sampling tears them down.</p>
+        <span class="t-caption-purple">Data Model &amp; Operators</span>
+        <h2 class="t-title" style="text-align:center;">To Power This Style of Exploration,<br>We Need a New Foundation</h2>
       </div>
-      <div class="grid-2" style="gap:18px;">
-        <div class="card-dark flex-col gap-10" style="padding:20px; border-top:3px solid var(--accent-red);">
-          <span class="t-caption t-red">Bottleneck 1 &mdash; Source</span>
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">Subgraph matching is <strong style="color:#fff;">NP-complete</strong>. Finding a 4-path on a tiny 9,892-vertex graph already takes <strong style="color:#fff;">~4 minutes</strong> &mdash; far from interactive.</p>
-        </div>
-        <div class="card-dark flex-col gap-10" style="padding:20px; border-top:3px solid var(--accent-warm);">
-          <span class="t-caption t-warm">Bottleneck 2 &mdash; Join Explosion</span>
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">Merging hypergraphs blows up fast. On OpenAIRE, a single citation join yields <strong style="color:#fff;">1.4 billion</strong> rows &mdash; and exploration keeps joining again.</p>
-        </div>
+
+      <!-- The key insight -->
+      <div class="blockquote" style="max-width:980px; margin:0 auto; text-align:center; border-left:none; border-top:4px solid var(--accent-purple);">
+        <strong class="t-ink-bold">Key observation:</strong> in classic BI, <strong class="t-ink-bold">"wide table = joining multiple tables"</strong> &mdash; and table joins are <strong class="t-ink-bold">essentially subgraph matching on a graph</strong>.<br>
+        If analysis is fundamentally a graph operation, let's model the data as a <strong style="color:var(--accent-purple);">HyperGraph</strong> directly.
       </div>
-      <div class="blockquote blockquote--dark" style="text-align:center; max-width:860px; margin:0 auto; padding:16px 22px; font-size:19px;"><strong style="color:#fff;">Key insight.</strong> BI analysts care about <em>aggregates</em> (COUNT, SUM, trends), not individual records. If the aggregate can be accurately estimated, the full result set is unnecessary.</div>
-      <div class="grid-3" style="gap:14px;">
-        <div class="card-dark flex-col gap-8" style="padding:18px; background:rgba(0,113,227,0.1); border-color:rgba(0,113,227,0.22);">
-          <div class="flex-row gap-10">
-            <div class="pillar-icon" style="background:var(--accent); width:32px; height:32px; font-size:14px;">S</div>
-            <span style="font-size:16px; font-weight:600;">Source-Sample</span>
+
+      <div class="grid-split" style="gap:28px; align-items:flex-start;">
+        <div class="flex-col gap-14">
+          <div class="card flex-col gap-10">
+            <span class="t-caption-purple">HyperGraph Data Model</span>
+            <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.8;">
+              <li><strong class="t-ink-bold">Vertex</strong>: entities &mdash; Publication, Organization, Funding&hellip;</li>
+              <li><strong class="t-ink-bold">Hyperedge</strong>: one pattern-match result &mdash; i.e. "a row in the wide table"</li>
+              <li><strong class="t-ink-bold">Grows incrementally</strong>: add new dimensions on top; no rebuild</li>
+            </ul>
           </div>
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">Adapt FaSTest tree sampling for subgraph matching &mdash; returns a uniform sample instead of enumerating every match.</p>
-        </div>
-        <div class="card-dark flex-col gap-8" style="padding:18px; background:rgba(255,103,35,0.1); border-color:rgba(255,103,35,0.22);">
-          <div class="flex-row gap-10">
-            <div class="pillar-icon" style="background:var(--accent-warm); width:32px; height:32px; font-size:14px;">J</div>
-            <span style="font-size:16px; font-weight:600;">Join-Sample</span>
+          <div class="callout callout-blue">
+            <strong class="t-ink-bold">Classic OLAP still works:</strong>
+            <span class="tag tag-blue" style="margin:2px 4px;">Drilldown</span>
+            <span class="tag tag-blue" style="margin:2px 4px;">Rollup</span>
+            <span class="tag tag-blue" style="margin:2px 4px;">Slice</span>
+            <span class="tag tag-blue" style="margin:2px 4px;">Dice</span>
+            &mdash; the hypergraph can be projected to a relational table at any time, so analysts don't learn anything new.
           </div>
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">Weighted group-sample on one side, then one match per sampled hyperedge &mdash; equivalent to uniform sampling of the full join result.</p>
         </div>
-        <div class="card-dark flex-col gap-8" style="padding:18px; background:rgba(48,209,88,0.1); border-color:rgba(48,209,88,0.22);">
-          <div class="flex-row gap-10">
-            <div class="pillar-icon" style="background:var(--accent-green); width:32px; height:32px; font-size:14px;">&#10003;</div>
-            <span style="font-size:16px; font-weight:600;">Unbiased End-to-End</span>
+
+        <div class="flex-col gap-10">
+          <span class="t-caption-purple" style="text-align:center;">Three new operators (what they do, not how)</span>
+          <div class="card flex-col gap-8" style="border-left:3px solid var(--accent);">
+            <div class="flex-row gap-10">
+              <div class="pillar-icon bg-accent" style="width:30px; height:30px; font-size:13px;">S</div>
+              <span style="font-size:17px; font-weight:600;">Source &middot; Extract from the graph</span>
+            </div>
+            <p class="t-small">Given a user-supplied pattern, find all matches in the underlying graph and package them as a hypergraph.</p>
           </div>
-          <p class="t-small" style="color:rgba(255,255,255,0.6);">We prove any composition of Source-Sample and Join-Sample still yields a uniform sample &mdash; so COUNT/SUM estimates remain unbiased across long exploratory chains.</p>
-        </div>
-      </div>
-      <div class="flex-row gap-32" style="justify-content:center; padding-top:2px;">
-        <div class="flex-col center gap-2">
-          <span class="metric-big t-accent" style="font-size:48px;">36.7&times;</span>
-          <span class="t-small" style="color:rgba(255,255,255,0.45);">end-to-end speedup vs. no-sample</span>
-        </div>
-        <div style="width:1px; height:44px; background:rgba(255,255,255,0.12); align-self:center;"></div>
-        <div class="flex-col center gap-2">
-          <span class="metric-big t-green" style="font-size:48px;">&lt;1%</span>
-          <span class="t-small" style="color:rgba(255,255,255,0.45);">error at 1M samples on SF1</span>
+          <div class="card flex-col gap-8" style="border-left:3px solid var(--accent-warm);">
+            <div class="flex-row gap-10">
+              <div class="pillar-icon bg-warm" style="width:30px; height:30px; font-size:13px;">J</div>
+              <span style="font-size:17px; font-weight:600;">Join &middot; Compose two hypergraphs</span>
+            </div>
+            <p class="t-small">Merge two hypergraphs by a condition &mdash; add a new dimension while keeping what was already there.</p>
+          </div>
+          <div class="card flex-col gap-8" style="border-left:3px solid var(--accent-green);">
+            <div class="flex-row gap-10">
+              <div class="pillar-icon bg-green" style="width:30px; height:30px; font-size:13px;">V</div>
+              <span style="font-size:17px; font-weight:600;">View &middot; Project back to a table</span>
+            </div>
+            <p class="t-small">Flatten the hypergraph into a relational table, handed back to the BI analyst's familiar surface.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 11: NEUGBI ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 50% 30%, rgba(0,113,227,0.1), transparent 50%), linear-gradient(160deg, #0e0e14, #0a0a0a);">
-    <div class="content flex-col gap-28">
-      <div class="flex-col gap-12 center">
-        <span class="t-caption t-accent">The Solution</span>
-        <h2 class="t-hero" style="text-align:center;"><span class="t-gradient">NeuGBI</span></h2>
-        <p class="t-subtitle" style="color:rgba(255,255,255,0.5); max-width:680px; text-align:center;">Exploratory BI &mdash; no predefined questions, no expert dependency. The system discovers insights step by step.</p>
+  <!-- ========== SLIDE 13: SAMPLING BOTTLENECKS ========== -->
+  <section class="slide slide-bg-red">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-red">Core Contribution &mdash; Part 1</span>
+        <h2 class="t-title" style="text-align:center;">Making Exploration Feasible:<br>Two Performance Walls</h2>
+        <p class="t-body" style="max-width:760px; text-align:center;">Exploratory BI runs <strong class="t-ink-bold">Source</strong> and <strong class="t-ink-bold">Join</strong> over and over &mdash; and both hit a wall instantly on graph data.</p>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-red);">
+          <span class="t-caption-red">Wall 1 &mdash; Source Operator</span>
+          <h3 style="font-size:22px; font-weight:700;">Subgraph matching is NP-complete</h3>
+          <div class="callout callout-red">
+            <strong class="t-ink-bold">Evidence:</strong> finding a 4-path on a graph with only <strong class="t-red">9,892</strong> vertices takes <strong class="t-red">~4 minutes</strong> under exact enumeration.<br>
+            For interactive analysis &mdash; even 4 seconds feels slow.
+          </div>
+          <p class="t-tiny">Worse: even if matching finishes, materializing every result into a hypergraph <strong class="t-ink-bold">blows the memory budget</strong>.</p>
+        </div>
+        <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-warm);">
+          <span class="t-caption-warm">Wall 2 &mdash; Join Explosion</span>
+          <h3 style="font-size:22px; font-weight:700;">Hypergraph joins blow up fast</h3>
+          <div class="callout callout-warm">
+            <strong class="t-ink-bold">Evidence:</strong> on OpenAIRE, a <strong class="t-warm">single citation join</strong> yields <strong class="t-warm">1.4 billion rows</strong>.<br>
+            Exploration keeps joining &mdash; the cascade is unsurvivable.
+          </div>
+          <p class="t-tiny">If the hypergraph isn't pre-sorted, naive join complexity jumps to <strong class="t-ink-bold">O(|E<sub>1</sub>|&nbsp;&middot;&nbsp;|E<sub>2</sub>|)</strong> &mdash; effectively unrunnable at scale.</p>
+        </div>
+      </div>
+      <div class="blockquote blockquote-warm" style="text-align:center; max-width:880px; margin:0 auto;">
+        <strong class="t-ink-bold">Key insight:</strong> BI analysts care about <strong class="t-ink-bold"><em>aggregates</em></strong> (COUNT / SUM / trends), not individual records.<br>
+        <em>If the aggregate can be estimated accurately &mdash; materializing the full result set is unnecessary.</em>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 14: SOURCE-SAMPLE ========== -->
+  <section class="slide slide-bg-blue">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10">
+        <span class="t-caption">Operator 1 &middot; Sampled</span>
+        <h2 class="t-title"><span class="t-accent">Source-Sample</span></h2>
+        <p class="t-subtitle" style="max-width:900px;">Sidestep Source's NP-complete enumeration &mdash; instead of finding <em>all</em> subgraph matches, draw a <strong class="t-ink-bold">genuinely uniform random sample</strong>.</p>
       </div>
       <div class="grid-2" style="gap:20px;">
-        <div class="card-dark flex-col gap-16" style="border-color:rgba(0,113,227,0.2);">
-          <div class="flex-col gap-6">
-            <span class="metric-label" style="color:var(--accent);">Traditional BI</span>
-            <p class="t-small" style="color:rgba(255,255,255,0.5);">Expert defines the question &rarr; builds the model &rarr; gets one answer. New question? Start over.</p>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
+          <span class="t-caption">Trait 1 &middot; No full enumeration</span>
+          <p class="t-body">Only <em>r</em> matches are drawn &mdash; the combinatorial explosion of subgraph matching <strong class="t-ink-bold">simply doesn't happen</strong>. Regardless of graph size or density, the cost is one sample's worth.</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
+          <span class="t-caption">Trait 2 &middot; The sample is uniform</span>
+          <p class="t-body">Every possible match has equal probability of being drawn. This is <strong class="t-ink-bold">the foundation for every downstream correctness guarantee</strong> &mdash; only a uniform sample makes COUNT / SUM unbiased.</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
+          <span class="t-caption">Trait 3 &middot; Native property-graph support</span>
+          <p class="t-body">We adapt <em>FaSTest</em>'s tree sampling to property graphs with <strong class="t-ink-bold">vertex / edge attribute filtering</strong> &mdash; conditions like "Russian institutions", "after 2022" go straight into the pattern query.</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
+          <span class="t-caption">Trait 4 &middot; Returns a hypergraph</span>
+          <p class="t-body">The output isn't just a count &mdash; it's a full <strong class="t-ink-bold">hypergraph</strong>. Downstream Join / View / Drilldown / Slice plug in seamlessly, <strong class="t-ink-bold">as the entry point for further exploration</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 15: JOIN-SAMPLE ========== -->
+  <section class="slide slide-bg-warm">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10">
+        <span class="t-caption-warm">Operator 2 &middot; Sampled</span>
+        <h2 class="t-title"><span class="t-warm">Join-Sample</span></h2>
+        <p class="t-subtitle" style="max-width:900px;">Never materialize the full join result &mdash; draw a sample that is <strong class="t-ink-bold">statistically equivalent to uniform sampling</strong> of the complete join.</p>
+      </div>
+      <div class="grid-2" style="gap:20px;">
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
+          <span class="t-caption-warm">Trait 1 &middot; No blow-up materialization</span>
+          <p class="t-body">OpenAIRE's 1.4-billion-row join result is <strong class="t-ink-bold">never constructed</strong>. Join-Sample locates exactly the <em>r</em> rows we need via weighted sampling, skipping the intermediate explosion entirely.</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
+          <span class="t-caption-warm">Trait 2 &middot; Equivalent to uniform sampling</span>
+          <p class="t-body">Although the mechanics are two-stage weighted, every final join result has equal selection probability. The output is <strong class="t-ink-bold">statistically equivalent</strong> to uniformly sampling the full join.</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
+          <span class="t-caption-warm">Trait 3 &middot; Composes with Source-Sample</span>
+          <p class="t-body">Join-Sample's inputs can be Source-Sample outputs, or the output of another Join-Sample. <strong class="t-ink-bold">Uniformity survives composition</strong> &mdash; the basis for reusing results across the whole exploration chain.</p>
+        </div>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
+          <span class="t-caption-warm">Trait 4 &middot; Scales to real graphs</span>
+          <p class="t-body">Exact joins routinely OOM or time out on OpenAIRE-scale data; Join-Sample <strong class="t-ink-bold">still produces stable answers on the queries where exact algorithms simply can't complete</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 16: END-TO-END UNBIASEDNESS ========== -->
+  <section class="slide slide-bg-green">
+    <div class="content flex-col gap-20">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-green">Core Contribution &mdash; Part 3</span>
+        <h2 class="t-title" style="text-align:center;">End-to-End Unbiasedness</h2>
+        <p class="t-body" style="max-width:780px; text-align:center;">Individual-operator uniformity is easy &mdash; the real challenge is: does the sample stay uniform <strong class="t-ink-bold">under arbitrary composition</strong>?</p>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card-lift flex-col gap-12">
+          <span class="t-caption-green">Theorem (End-to-End)</span>
+          <div class="formula">
+            For any exploration workflow built from<br>
+            <strong>Source-Sample</strong> &amp; <strong>Join-Sample</strong>, &mdash;<br>
+            <strong class="t-green">every hyperedge in the output hypergraph</strong><br>
+            is a <strong class="t-green">uniform sample</strong> of the true result.
           </div>
-          <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:14px;">
-            <span class="metric-label" style="color:var(--accent-green);">NeuGBI (Exploratory)</span>
-            <p class="t-small" style="color:rgba(255,255,255,0.7); margin-top:6px;">Start with a broad question &rarr; system explores autonomously &rarr; each finding leads to the next deeper question &rarr; final coherent report.</p>
+          <p class="t-tiny">Proof sketch: induction on workflow structure. If the last step is Source-Sample &mdash; from the lemma directly; if Join-Sample &mdash; one more nesting preserves the expectation identity.</p>
+        </div>
+        <div class="card-lift flex-col gap-12">
+          <span class="t-caption-green">Corollary &mdash; Unbiased Estimation</span>
+          <div class="formula">
+            &forall; hypergraph G built via<br>
+            Source-Sample / Join-Sample &mdash;<br>
+            <strong class="t-green">COUNT(G)</strong>: HT estimator is <strong class="t-green">unbiased</strong><br>
+            <strong class="t-green">SUM(G)</strong>: HT estimator is <strong class="t-green">unbiased</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;(Horvitz-Thompson estimator)
+          </div>
+          <p class="t-tiny">For DISTINCT / QUANTILE / MAX / MIN &mdash; a uniform sample is also the best input for GEE, t-digest, etc., with bounded error.</p>
+        </div>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card flex-col gap-10">
+          <span class="t-caption-green">Error Stability Across Multiple Joins</span>
+          <p class="t-body">The concern: do repeated joins <strong class="t-ink-bold">accumulate error</strong>?<br>Experiments (1&ndash;4 joins; path &amp; cycle patterns):</p>
+          <ul style="padding-left:18px; font-size:14px; color:var(--gray-600); line-height:1.6;">
+            <li>COUNT error stays &lt; 1%</li>
+            <li>MAX error stays ~0.01%</li>
+            <li>DISTINCT COUNT in 2&ndash;10% &mdash; <strong class="t-ink-bold">does NOT grow with hops</strong></li>
+          </ul>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-green">What This Actually Enables</span>
+          <p class="t-body">The core requirement of Exploratory BI &mdash; "every step continues on the previous step's sample" &mdash; is now <strong class="t-ink-bold">provably sound</strong>.<br>Numbers the analyst sees at any point are <strong class="t-ink-bold">unbiased estimates</strong> of the full-data answer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 17: SAMPLING EXPERIMENTS ========== -->
+  <section class="slide slide-bg-purple">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-purple">Empirical Validation</span>
+        <h2 class="t-title" style="text-align:center;">Speed &amp; Accuracy &mdash; Both Deliver</h2>
+        <p class="t-body" style="max-width:720px; text-align:center;">LDBC SNB, three scales (SF1 / SF3 / SF10), default sample size 1M.</p>
+      </div>
+      <div class="grid-4" style="gap:18px;">
+        <div class="card-lift flex-col gap-6 center">
+          <span class="metric-label">End-to-End Speedup</span>
+          <span class="metric-big t-accent">36.7&times;</span>
+          <span class="t-tiny">SF3 / Q2&nbsp;&middot;&nbsp; 40s vs. 1475s</span>
+        </div>
+        <div class="card-lift flex-col gap-6 center">
+          <span class="metric-label">COUNT Error</span>
+          <span class="metric-big t-green">&lt; 1%</span>
+          <span class="t-tiny">1M samples&nbsp;&middot;&nbsp; all SF1 queries</span>
+        </div>
+        <div class="card-lift flex-col gap-6 center">
+          <span class="metric-label">MAX Error</span>
+          <span class="metric-big t-green">~0.01%</span>
+          <span class="t-tiny">Stable, weakly sensitive to sample size</span>
+        </div>
+        <div class="card-lift flex-col gap-6 center">
+          <span class="metric-label">SF10 Completion</span>
+          <span class="metric-big t-accent">10 / 10</span>
+          <span class="t-tiny">No-sample baseline: 1 / 10 (rest OOM/OOT)</span>
+        </div>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card flex-col gap-10">
+          <span class="t-caption-purple">Robustness Beats Raw Speed</span>
+          <p class="t-body">At <strong class="t-ink-bold">SF10</strong> &mdash; the naive baseline <strong class="t-ink-bold">fails 9 of 10 queries</strong> (OOM or 2-hour timeout); the sampling version <strong class="t-ink-bold">completes 10 / 10</strong>.</p>
+          <p class="t-body">At scale, sampling isn't "optional" &mdash; it's required.</p>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-purple">Sample-Size Tradeoff</span>
+          <p class="t-body">Accuracy gains are steepest from 10K &rarr; 100K; <strong class="t-ink-bold">100K &rarr; 1M</strong> is the knee; <br><strong class="t-ink-bold">1M &rarr; 10M</strong> &mdash; marginal accuracy, but time grows ~<strong class="t-ink-bold">10&times;</strong> linearly.</p>
+          <p class="t-body"><strong class="t-ink-bold">Default 1M</strong> &mdash; the sweet spot.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 18: NEUGBI SYSTEM ========== -->
+  <section class="slide slide-bg-blue">
+    <div class="content flex-col gap-24">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption">The System</span>
+        <h2 class="t-hero" style="text-align:center;"><span class="t-gradient">NeuGBI</span></h2>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">Exploratory-BI paradigm + sampling operators, wrapped in an <strong class="t-ink-bold">autonomous agent system</strong> &mdash;<br>no predefined questions, no constant expert presence.</p>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card-lift flex-col gap-14">
+          <span class="t-caption">Classic BI Workflow</span>
+          <p class="t-body">Expert defines the question &rarr; builds the model &rarr; one answer.<br>A new question? &mdash; <strong class="t-ink-bold">start over.</strong></p>
+          <div style="border-top:1px solid var(--border); padding-top:14px;">
+            <span class="t-caption-green">NeuGBI &middot; Exploratory</span>
+            <p class="t-body" style="margin-top:6px;">User poses one broad question &rarr; system <strong class="t-ink-bold">explores autonomously</strong> &rarr; each finding leads to a deeper question &rarr; coherent final report.</p>
           </div>
         </div>
         <div class="flex-col gap-12">
-          <div class="pillar" style="padding:18px;">
-            <div class="flex-row gap-12">
-              <div class="pillar-icon" style="background:linear-gradient(135deg, #0071e3, #5ac8fa); width:40px; height:40px; min-width:40px; font-size:18px;">E</div>
-              <div class="flex-col gap-4">
-                <h3 style="font-size:17px; font-weight:600;">Exploratory</h3>
-                <p class="t-small" style="color:rgba(255,255,255,0.4);">No fixed questions needed. The analysis evolves naturally as each result reveals what to ask next.</p>
-              </div>
+          <div class="card flex-row gap-14" style="padding:18px;">
+            <div class="pillar-icon bg-accent">E</div>
+            <div class="flex-col gap-2">
+              <span style="font-size:17px; font-weight:600;">Exploratory</span>
+              <span class="t-small">No fixed questions &mdash; analysis <strong class="t-ink-bold">grows naturally</strong> from results.</span>
             </div>
           </div>
-          <div class="pillar" style="padding:18px;">
-            <div class="flex-row gap-12">
-              <div class="pillar-icon" style="background:linear-gradient(135deg, #ff6723, #ff9f43); width:40px; height:40px; min-width:40px; font-size:18px;">P</div>
-              <div class="flex-col gap-4">
-                <h3 style="font-size:17px; font-weight:600;">Progressive</h3>
-                <p class="t-small" style="color:rgba(255,255,255,0.4);">Step-by-step discovery. Each finding deepens the exploration automatically.</p>
-              </div>
+          <div class="card flex-row gap-14" style="padding:18px;">
+            <div class="pillar-icon bg-warm">P</div>
+            <div class="flex-col gap-2">
+              <span style="font-size:17px; font-weight:600;">Progressive</span>
+              <span class="t-small">Each finding automatically triggers the next layer of inquiry.</span>
             </div>
           </div>
-          <div class="pillar" style="padding:18px;">
-            <div class="flex-row gap-12">
-              <div class="pillar-icon" style="background:linear-gradient(135deg, #30d158, #63e6be); width:40px; height:40px; min-width:40px; font-size:18px;">R</div>
-              <div class="flex-col gap-4">
-                <h3 style="font-size:17px; font-weight:600;">Reusable</h3>
-                <p class="t-small" style="color:rgba(255,255,255,0.4);">Previous results are preserved &mdash; no repeated computation, no rebuilding from scratch.</p>
-              </div>
+          <div class="card flex-row gap-14" style="padding:18px;">
+            <div class="pillar-icon bg-green">R</div>
+            <div class="flex-col gap-2">
+              <span style="font-size:17px; font-weight:600;">Reusable</span>
+              <span class="t-small">Previous hypergraphs keep growing &mdash; no re-computation.</span>
             </div>
           </div>
-          <div class="pillar" style="padding:18px;">
-            <div class="flex-row gap-12">
-              <div class="pillar-icon" style="background:linear-gradient(135deg, #a78bfa, #c4b5fd); width:40px; height:40px; min-width:40px; font-size:18px;">A</div>
-              <div class="flex-col gap-4">
-                <h3 style="font-size:17px; font-weight:600;">Autonomous</h3>
-                <p class="t-small" style="color:rgba(255,255,255,0.4);">No expert dependency. AI agents decompose, validate, and synthesize on their own.</p>
-              </div>
+          <div class="card flex-row gap-14" style="padding:18px;">
+            <div class="pillar-icon bg-purple">A</div>
+            <div class="flex-col gap-2">
+              <span style="font-size:17px; font-weight:600;">Autonomous</span>
+              <span class="t-small">Agents decompose, validate, and synthesize on their own.</span>
             </div>
           </div>
         </div>
@@ -819,149 +1068,122 @@
     </div>
   </section>
 
-  <!-- ========== SLIDE 11: OPENCLAW INTRO ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 50% 30%, rgba(48,209,88,0.07), transparent 50%), linear-gradient(160deg, #0e0e12, #0a0a0a);">
-    <div class="content flex-col gap-24">
-      <div class="flex-col gap-12 center">
-        <span class="t-caption t-green">Usability</span>
-        <h2 class="t-title" style="text-align:center;">Enhancing Usability with<br>the OpenCLAW Platform</h2>
-        <p class="t-body" style="color:rgba(255,255,255,0.55); max-width:620px; text-align:center;">Powerful analysis is only valuable if people can actually use it. We integrated NeuGBI into <strong style="color:#fff;">OpenClaw</strong> and deployed it on <strong style="color:#fff;">Lark (Feishu)</strong>.</p>
+  <!-- ========== SLIDE 19: SKILL SUITE + OPENCLAW × LARK ========== -->
+  <section class="slide slide-bg-green">
+    <div class="content flex-col gap-18">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-green">Deployment</span>
+        <h2 class="t-title" style="text-align:center;">Making NeuGBI Platform-Agnostic</h2>
+        <p class="t-subtitle" style="max-width:880px; text-align:center;">NeuGBI ships with a <strong class="t-ink-bold">full Skill Suite</strong> &mdash; any Agent platform that loads these skills can host NeuGBI's exploratory analysis end-to-end.</p>
       </div>
-      <div class="grid-3" style="gap:16px; max-width:960px; margin:0 auto;">
-        <div class="card-dark flex-col gap-12" style="padding:22px;">
-          <div class="pillar-icon" style="background:linear-gradient(135deg, #0071e3, #5ac8fa); width:42px; height:42px;">
-            <span style="font-size:20px;">&#128172;</span>
+
+      <!-- Skill Suite card -->
+      <div class="card-lift" style="max-width:1160px; margin:0 auto;">
+        <div class="flex-col gap-10">
+          <div class="flex-row gap-10" style="align-items:center; flex-wrap:wrap;">
+            <span class="t-caption-green">NeuGBI Skill Suite &middot; 6 composable capabilities</span>
+            <span class="t-tiny" style="color:var(--gray-500);">(modular building blocks for the analysis layer)</span>
           </div>
-          <h3 style="font-size:18px; font-weight:600;">Natural Language Input</h3>
-          <p class="t-small" style="color:rgba(255,255,255,0.55);">Type questions in plain language &mdash; no SQL, no query builders, no schema knowledge required.</p>
-        </div>
-        <div class="card-dark flex-col gap-12" style="padding:22px;">
-          <div class="pillar-icon" style="background:linear-gradient(135deg, #ff6723, #ff9f43); width:42px; height:42px;">
-            <span style="font-size:20px;">&#128241;</span>
+          <div class="grid-3" style="gap:10px;">
+            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
+              <span style="font-size:14px; font-weight:600;">① Database &amp; Schema Understanding</span>
+            </div>
+            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
+              <span style="font-size:14px; font-weight:600;">② Entity Alignment</span>
+            </div>
+            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
+              <span style="font-size:14px; font-weight:600;">③ Question Decomposition</span>
+            </div>
+            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
+              <span style="font-size:14px; font-weight:600;">④ Query Generation</span>
+            </div>
+            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
+              <span style="font-size:14px; font-weight:600;">⑤ Control Group Design</span>
+            </div>
+            <div class="card-soft" style="padding:10px 14px; border-radius:12px;">
+              <span style="font-size:14px; font-weight:600;">⑥ Exploratory Analysis Pipeline</span>
+            </div>
           </div>
-          <h3 style="font-size:18px; font-weight:600;">Familiar Chat Interface</h3>
-          <p class="t-small" style="color:rgba(255,255,255,0.55);">Deployed as a bot within Lark (Feishu), the platform teams already use every day. Zero learning curve.</p>
-        </div>
-        <div class="card-dark flex-col gap-12" style="padding:22px;">
-          <div class="pillar-icon" style="background:linear-gradient(135deg, #30d158, #63e6be); width:42px; height:42px;">
-            <span style="font-size:20px;">&#128203;</span>
-          </div>
-          <h3 style="font-size:18px; font-weight:600;">Structured Report Output</h3>
-          <p class="t-small" style="color:rgba(255,255,255,0.55);">Generates professional reports with tables, key findings, and causal analysis &mdash; ready to share.</p>
         </div>
       </div>
-      <div class="grid-2" style="max-width:900px; margin:0 auto; gap:16px;">
-        <div class="card-dark" style="padding:20px;">
-          <p class="t-small" style="color:rgba(255,255,255,0.6);"><strong style="color:#fff;">Real-world scale.</strong> Connected to OpenAIRE with 22.4M vertices and 94.4M edges of publications, organizations, authors, and funding data.</p>
+
+      <!-- Concrete deployment line -->
+      <div class="blockquote blockquote-green" style="text-align:center; max-width:1000px; margin:0 auto; padding:14px 22px; font-size:18px;">
+        <strong class="t-ink-bold">For this demo:</strong> we host the skill suite on <strong class="t-ink-bold">OpenCLAW</strong> as the Agent platform, and deploy it inside <strong class="t-ink-bold">Lark (Feishu)</strong> &mdash; a chat tool users already touch daily. Zero learning curve.
+      </div>
+
+      <!-- 3-phone stages -->
+      <div class="flex-row gap-28" style="justify-content:center; align-items:flex-start; flex-wrap:wrap;">
+        <div class="flex-col center gap-8" style="max-width:210px;">
+          <div class="phone-mockup" style="max-width:200px;"><img src="assets/openclaw-schema.jpg" alt="Schema" style="height:300px;" /></div>
+          <div class="flex-row gap-8">
+            <div class="step-num bg-accent" style="width:24px; height:24px; font-size:11px;">1</div>
+            <span style="font-size:14px; font-weight:600;">Schema Exploration</span>
+          </div>
         </div>
-        <div class="card-dark" style="padding:20px;">
-          <p class="t-small" style="color:rgba(255,255,255,0.6);"><strong style="color:#fff;">From question to report.</strong> The entire Russia-Ukraine analysis was generated autonomously through this chat interface.</p>
+        <div class="flex-col center gap-8" style="max-width:210px;">
+          <div class="phone-mockup" style="max-width:200px;"><img src="assets/openclaw-analysis.jpg" alt="Analysis" style="height:300px;" /></div>
+          <div class="flex-row gap-8">
+            <div class="step-num bg-warm" style="width:24px; height:24px; font-size:11px;">2</div>
+            <span style="font-size:14px; font-weight:600;">Autonomous Analysis</span>
+          </div>
+        </div>
+        <div class="flex-col center gap-8" style="max-width:210px;">
+          <div class="phone-mockup" style="max-width:200px;"><img src="assets/openclaw-report.jpg" alt="Report" style="height:300px;" /></div>
+          <div class="flex-row gap-8">
+            <div class="step-num bg-green" style="width:24px; height:24px; font-size:11px;">3</div>
+            <span style="font-size:14px; font-weight:600;">Final Report</span>
+          </div>
         </div>
       </div>
+      <p class="t-tiny" style="text-align:center;">Connected to <strong class="t-ink-bold">OpenAIRE</strong> &mdash; 22.4M vertices, 94.4M edges. The full Russia-Ukraine analysis was generated autonomously via this bot.</p>
     </div>
   </section>
 
-  <!-- ========== SLIDE 12: OPENCLAW IN ACTION ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 40% 50%, rgba(48,209,88,0.06), transparent 40%), linear-gradient(160deg, #111, #0a0a0a);">
-    <div class="content flex-col gap-32">
-      <div class="flex-col gap-12 center">
-        <span class="t-caption t-green">Live Workflow</span>
-        <h2 class="t-title" style="text-align:center;">NeuGBI in Action on Lark</h2>
-        <p class="t-subtitle" style="color:rgba(255,255,255,0.4); max-width:600px; text-align:center;">Three stages of interaction, from schema exploration to the final report.</p>
+  <!-- ========== SLIDE 20: DEMO VIDEO ========== -->
+  <section class="slide slide-bg-title">
+    <div class="content flex-col gap-20 center">
+      <div class="flex-col gap-6 center">
+        <span class="t-caption">Demo</span>
+        <h2 class="t-title" style="text-align:center;">NeuGBI in Action</h2>
       </div>
-      <div class="flex-row gap-32 phone-row" style="justify-content:center; align-items:flex-start;">
-        <!-- Stage 1: Schema -->
-        <div class="flex-col center gap-16" style="max-width:260px;">
-          <div class="phone-mockup">
-            <img src="assets/openclaw-schema.jpg" alt="Schema exploration" />
-          </div>
-          <div class="flex-col center gap-6">
-            <div class="flex-row gap-8">
-              <div class="step-num" style="width:28px; height:28px; font-size:13px;">1</div>
-              <span style="font-size:16px; font-weight:600;">Schema Exploration</span>
-            </div>
-            <p class="t-small" style="color:rgba(255,255,255,0.4); text-align:center;">"Show me the schema" &mdash; the system presents the data structure and scale.</p>
-          </div>
-        </div>
-        <!-- Stage 2: Analysis -->
-        <div class="flex-col center gap-16" style="max-width:260px;">
-          <div class="phone-mockup">
-            <img src="assets/openclaw-analysis.jpg" alt="Autonomous analysis" />
-          </div>
-          <div class="flex-col center gap-6">
-            <div class="flex-row gap-8">
-              <div class="step-num" style="width:28px; height:28px; font-size:13px; background:var(--accent-warm);">2</div>
-              <span style="font-size:16px; font-weight:600;">Autonomous Analysis</span>
-            </div>
-            <p class="t-small" style="color:rgba(255,255,255,0.4); text-align:center;">The agent spawns subagents for root cause analysis and builds the report structure.</p>
-          </div>
-        </div>
-        <!-- Stage 3: Report -->
-        <div class="flex-col center gap-16" style="max-width:260px;">
-          <div class="phone-mockup">
-            <img src="assets/openclaw-report.jpg" alt="Final report" />
-          </div>
-          <div class="flex-col center gap-6">
-            <div class="flex-row gap-8">
-              <div class="step-num" style="width:28px; height:28px; font-size:13px; background:var(--accent-green);">3</div>
-              <span style="font-size:16px; font-weight:600;">Final Report</span>
-            </div>
-            <p class="t-small" style="color:rgba(255,255,255,0.4); text-align:center;">A complete analysis report with key findings, executive summary, and causal analysis.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 13: DEMO VIDEO & CLOSING ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 50% 40%, rgba(0,113,227,0.08), transparent 50%), radial-gradient(ellipse at 30% 70%, rgba(167,139,250,0.06), transparent 40%), linear-gradient(160deg, #111, #0a0a0a);">
-    <div class="content flex-col gap-24 center">
-      <div class="flex-col gap-8 center">
-        <span class="t-caption t-accent">Demo</span>
-        <h2 class="t-title" style="text-align:center;">See NeuGBI in Action</h2>
-      </div>
-      <div class="video-container" style="max-height:520px;">
-        <video controls preload="metadata" style="max-height:520px; width:100%; object-fit:contain;">
+      <div class="video-container" style="max-height:500px;">
+        <video controls preload="metadata" style="max-height:500px; width:100%; object-fit:contain;">
           <source src="assets/neugbi-demo.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
-      <div class="flex-col gap-16 center" style="max-width:800px;">
-        <div class="blockquote blockquote--dark" style="text-align:center; border-left:none; border-top:3px solid var(--accent); padding:16px 24px;">
-          Traditional BI answers <strong>known</strong> questions.<br>
-          NeuGBI discovers the <strong>next</strong> question &mdash; and keeps the full investigation coherent.
-        </div>
-        <p style="font-size:12px; color:rgba(255,255,255,0.2);">Exploratory BI (VLDB Journal) &nbsp;|&nbsp; NeuGBI (PVLDB Demo) &nbsp;|&nbsp; Russia-Ukraine Academic Impact Report</p>
+      <div class="blockquote" style="text-align:center; max-width:820px; border-left:none; border-top:4px solid var(--accent); padding:18px 26px;">
+        BI answers <strong class="t-ink-bold">known</strong> questions.<br>
+        NeuGBI discovers the <strong class="t-ink-bold">next</strong> question &mdash; and keeps the entire investigation <strong class="t-ink-bold">coherent</strong>.
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 14: TRY IT YOURSELF ========== -->
-  <section class="slide slide--dark" style="background: radial-gradient(ellipse at 50% 45%, rgba(0,113,227,0.12), transparent 50%), radial-gradient(ellipse at 30% 80%, rgba(48,209,88,0.06), transparent 40%), linear-gradient(160deg, #111, #0a0a0a);">
-    <div class="content flex-col gap-32 center">
-      <div class="flex-col gap-12 center">
-        <span class="t-caption t-green">Try It Yourself</span>
-        <h2 class="t-title" style="text-align:center;">Ready to Explore?</h2>
-        <p class="t-subtitle" style="color:rgba(255,255,255,0.5); max-width:580px; text-align:center;">We have packaged the entire environment. Scan the QR code or visit the link below to get started.</p>
-      </div>
-      <div style="background:#fff; border-radius:24px; padding:20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
-        <img src="assets/qr-neugbi-demo.png" alt="QR code to NeuGBI Demo" style="width:240px; height:240px; display:block; border-radius:8px;" />
-      </div>
+  <!-- ========== SLIDE 21: QR + THANK YOU ========== -->
+  <section class="slide slide-bg-title">
+    <div class="content flex-col gap-20 center">
       <div class="flex-col gap-8 center">
-        <a href="https://github.com/ShunyangLi/NeuGBI-Demo" target="_blank" style="color:var(--accent); font-size:18px; font-weight:600; text-decoration:none; letter-spacing:-0.01em;">github.com/ShunyangLi/NeuGBI-Demo</a>
-        <p class="t-small" style="color:rgba(255,255,255,0.35);">Dataset, demo system, and synthesized reports &mdash; all included.</p>
+        <span class="t-caption-green">Try It Yourself</span>
+        <h2 class="t-title" style="text-align:center;">Ready to Explore?</h2>
+        <p class="t-subtitle" style="max-width:560px; text-align:center;">Dataset, demo system, and generated reports &mdash; all packaged and ready to run.</p>
       </div>
-      <div class="flex-col gap-4 center" style="margin-top:16px;">
-        <p style="font-size:36px; font-weight:700; letter-spacing:-0.03em;"><span class="t-gradient">Thank You</span></p>
-        <p class="t-small" style="color:rgba(255,255,255,0.25);">Questions &amp; Discussion</p>
+      <div style="background:#fff; border-radius:24px; padding:16px; box-shadow:var(--shadow); border:1px solid var(--border);">
+        <img src="assets/qr-neugbi-demo.png" alt="QR code" style="width:200px; height:200px; display:block; border-radius:6px;" />
+      </div>
+      <div class="flex-col gap-4 center">
+        <a href="https://github.com/ShunyangLi/NeuGBI-Demo" target="_blank" style="color:var(--accent); font-size:17px; font-weight:600; text-decoration:none;">github.com/ShunyangLi/NeuGBI-Demo</a>
+      </div>
+      <div class="flex-col gap-4 center" style="margin-top:6px;">
+        <p style="font-size:40px; font-weight:700; letter-spacing:-0.03em;"><span class="t-gradient">Thank You</span></p>
+        <p class="t-small" style="color:var(--gray-400);">Questions &amp; Discussion</p>
       </div>
     </div>
   </section>
 
 </main>
 
-<!-- Navigation -->
-<div class="slide-counter" id="slideCounter">01 / 16</div>
+<div class="slide-counter" id="slideCounter">01 / 21</div>
 <div class="nav">
   <div class="nav-dots" id="navDots"></div>
   <button class="nav-btn" id="prevBtn">&#8592;</button>
@@ -969,7 +1191,6 @@
 </div>
 
 <script>
-  // Scale the fixed-size deck (1440x900) to fit the viewport uniformly.
   const deck = document.querySelector('.deck');
   const DESIGN_W = 1440, DESIGN_H = 900;
   function fitDeck() {
@@ -983,7 +1204,6 @@
   const total = slides.length;
   let current = 0;
 
-  // Build dots
   const dotsContainer = document.getElementById('navDots');
   slides.forEach((_, i) => {
     const dot = document.createElement('span');
@@ -1003,23 +1223,6 @@
     progressBar.style.width = ((current + 1) / total * 100) + '%';
     counter.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
 
-    // Adapt nav theme
-    const isDark = slides[current].classList.contains('slide--dark');
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-      btn.style.borderColor = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.12)';
-      btn.style.background = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.04)';
-      btn.style.color = isDark ? '#fff' : '#333';
-    });
-    dotsContainer.style.background = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.06)';
-    dotsContainer.style.borderColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)';
-    dots.forEach(d => {
-      d.style.background = d.classList.contains('active')
-        ? (isDark ? '#fff' : '#333')
-        : (isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.15)');
-    });
-    counter.style.color = isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.25)';
-
-    // Pause all videos when leaving a slide
     slides.forEach((s, i) => {
       if (i !== current) {
         s.querySelectorAll('video').forEach(v => v.pause());
@@ -1041,7 +1244,6 @@
     if (e.key === 'End') goTo(total - 1);
   });
 
-  // Touch support
   let touchStartX = 0;
   document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
   document.addEventListener('touchend', e => {
