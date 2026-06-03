@@ -91,12 +91,12 @@
     .t-body { font-size: 17px; font-weight: 400; line-height: 1.55; color: var(--gray-600); font-family: var(--font-body); }
     .t-small { font-size: 16px; line-height: 1.55; color: var(--gray-600); font-family: var(--font-body); }
     .t-tiny { font-size: 15px; line-height: 1.4; color: var(--gray-500); font-family: var(--font-body); }
-    .t-caption { font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
-    .t-caption-warm { font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-warm); }
-    .t-caption-red { font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-red); }
-    .t-caption-green { font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-green); }
-    .t-caption-yellow { font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: #b38800; }
-    .t-caption-purple { font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-purple); }
+    .t-caption { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+    .t-caption-warm { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-warm); }
+    .t-caption-red { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-red); }
+    .t-caption-green { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-green); }
+    .t-caption-yellow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: #b38800; }
+    .t-caption-purple { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent-purple); }
 
     .t-gradient {
       background: linear-gradient(120deg, #0071e3 0%, #7a5af8 55%, #ff6723 100%);
@@ -433,7 +433,7 @@
           <button type="button" data-lang="zh">中文</button>
         </div>
       </div>
-      <p class="t-tiny" style="letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:var(--gray-400);">Exploratory BI Framework &nbsp;&middot;&nbsp; Sampling Operators &nbsp;&middot;&nbsp; NeuGBI System &nbsp;&middot;&nbsp; Russia-Ukraine Case &nbsp;&middot;&nbsp; AI &amp; Employment Case</p>
+      <p class="t-tiny" style="letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:var(--gray-400);">Exploratory BI Framework &nbsp;&middot;&nbsp; Sampling Operators &nbsp;&middot;&nbsp; NeuGBI System &nbsp;&middot;&nbsp; Russia-Ukraine Case</p>
     </div>
   </section>
 
@@ -773,7 +773,7 @@
     <div class="content flex-col gap-24">
       <div class="flex-col gap-10 center">
         <span class="t-caption-red">Where This Workflow Breaks</span>
-        <h2 class="t-title" style="text-align:center;">Why Traditional BI Workflow<br>Can't Support Exploratory Analysis</h2>
+        <h2 class="t-title" style="text-align:center;">Why the Classic Workflow<br>Can't Carry Exploration</h2>
       </div>
       <div class="grid-2" style="gap:20px;">
         <div class="card flex-col gap-10" style="padding:26px;">
@@ -997,6 +997,55 @@
     </div>
   </section>
 
+  <!-- ========== SLIDE 16: END-TO-END UNBIASEDNESS (EN) ========== -->
+  <section class="slide lang-en slide-bg-green">
+    <div class="content flex-col gap-20">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-green">Core Contribution &mdash; Part 3</span>
+        <h2 class="t-title" style="text-align:center;">End-to-End Unbiasedness</h2>
+        <p class="t-body" style="max-width:780px; text-align:center;">Individual-operator uniformity is easy &mdash; the real challenge is: does the sample stay uniform <strong class="t-ink-bold">under arbitrary composition</strong>?</p>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card-lift flex-col gap-12">
+          <span class="t-caption-green">Theorem (End-to-End)</span>
+          <div class="formula">
+            For any exploration workflow built from<br>
+            <strong>Source-Sample</strong> &amp; <strong>Join-Sample</strong>, &mdash;<br>
+            <strong class="t-green">every hyperedge in the output hypergraph</strong><br>
+            is a <strong class="t-green">uniform sample</strong> of the true result.
+          </div>
+          <p class="t-tiny">Proof sketch: induction on workflow structure. If the last step is Source-Sample &mdash; from the lemma directly; if Join-Sample &mdash; one more nesting preserves the expectation identity.</p>
+        </div>
+        <div class="card-lift flex-col gap-12">
+          <span class="t-caption-green">Corollary &mdash; Unbiased Estimation</span>
+          <div class="formula">
+            &forall; hypergraph G built via<br>
+            Source-Sample / Join-Sample &mdash;<br>
+            <strong class="t-green">COUNT(G)</strong>: HT estimator is <strong class="t-green">unbiased</strong><br>
+            <strong class="t-green">SUM(G)</strong>: HT estimator is <strong class="t-green">unbiased</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;(Horvitz-Thompson estimator)
+          </div>
+          <p class="t-tiny">For DISTINCT / QUANTILE / MAX / MIN &mdash; a uniform sample is also the best input for GEE, t-digest, etc., with bounded error.</p>
+        </div>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card flex-col gap-10">
+          <span class="t-caption-green">Error Stability Across Multiple Joins</span>
+          <p class="t-body">The concern: do repeated joins <strong class="t-ink-bold">accumulate error</strong>?<br>Experiments (1&ndash;4 joins; path &amp; cycle patterns):</p>
+          <ul style="padding-left:18px; font-size:14px; color:var(--gray-600); line-height:1.6;">
+            <li>COUNT error stays &lt; 1%</li>
+            <li>MAX error stays ~0.01%</li>
+            <li>DISTINCT COUNT in 2&ndash;10% &mdash; <strong class="t-ink-bold">does NOT grow with hops</strong></li>
+          </ul>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-green">What This Actually Enables</span>
+          <p class="t-body">The core requirement of Exploratory BI &mdash; "every step continues on the previous step's sample" &mdash; is now <strong class="t-ink-bold">provably sound</strong>.<br>Numbers the analyst sees at any point are <strong class="t-ink-bold">unbiased estimates</strong> of the full-data answer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== SLIDE 17: SAMPLING EXPERIMENTS (EN) ========== -->
   <section class="slide lang-en slide-bg-purple">
     <div class="content flex-col gap-24">
@@ -1092,252 +1141,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ========== SLIDE 22: CASE 2 INTRO — AI & EMPLOYMENT (EN) ========== -->
-  <section class="slide lang-en slide-bg-warm">
-    <div class="content flex-col gap-18">
-      <div class="flex-col gap-10 center">
-        <span class="t-caption-warm">NeuGBI in Practice</span>
-        <h2 class="t-title" style="text-align:center;">Finer-Grained Findings<br>Than the Harvard Paper</h2>
-        <p class="t-subtitle" style="max-width:880px; text-align:center;">Same dataset, same question &mdash; NeuGBI's autonomous exploration uncovered patterns that months of manual research missed.</p>
-      </div>
-
-      <div class="grid-split" style="gap:28px; align-items:flex-start;">
-        <div class="flex-col gap-14">
-          <div class="card-lift flex-col gap-10" style="border-left:4px solid var(--accent-warm);">
-            <span class="t-caption-warm">The Harvard Paper</span>
-            <p style="font-size:14px; font-weight:600; color:var(--gray-700); line-height:1.4; margin-bottom:4px;"><em>Generative AI as Seniority-Biased Technological Change</em><br><span class="t-tiny">Hosseini &amp; Lichtinger, Harvard Business School, 2026</span></p>
-            <p class="t-body">Analyzed <strong class="t-ink-bold">65 million workers</strong> at 280K+ firms. Core conclusions:</p>
-            <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.7;">
-              <li>GenAI constitutes <strong class="t-ink-bold">"seniority-biased technological change"</strong></li>
-              <li>Junior employment <strong class="t-red">declines sharply</strong> at firms that adopt GenAI</li>
-              <li>Senior employment remains <strong class="t-green">largely unchanged</strong></li>
-              <li>Decline concentrates in <strong class="t-ink-bold">AI-exposed occupations</strong></li>
-              <li>Driven by <strong class="t-ink-bold">slower hiring</strong>, not increased layoffs</li>
-            </ul>
-          </div>
-          <div class="callout callout-warm">
-            <strong class="t-ink-bold">Limitation:</strong> the paper only splits workers into <strong class="t-warm">Junior vs. Senior</strong> &mdash; a binary division. The underlying data has <strong class="t-ink-bold">7 seniority levels</strong>.
-          </div>
-        </div>
-        <div class="flex-col gap-14">
-          <div class="card flex-col gap-10">
-            <span class="t-caption-warm">Dataset &middot; Revelio Labs</span>
-            <p class="t-body">The <strong class="t-ink-bold">same workforce dataset</strong> used by the Harvard team. US-wide actual employment records + tech job postings, 2021&ndash;2025.</p>
-            <div class="flex-row gap-24" style="flex-wrap:wrap;">
-              <div class="flex-col gap-2">
-                <span class="metric-label">Data Size</span>
-                <span class="metric-mid t-warm">~60 GB</span>
-              </div>
-              <div class="flex-col gap-2">
-                <span class="metric-label">Records</span>
-                <span class="metric-mid t-warm">~300M</span>
-              </div>
-              <div class="flex-col gap-2">
-                <span class="metric-label">Seniority Levels</span>
-                <span class="metric-mid t-warm">7</span>
-              </div>
-            </div>
-          </div>
-          <div class="card-lift flex-col gap-10" style="border-left:4px solid var(--accent-green);">
-            <span class="t-caption-green">What NeuGBI Found Differently</span>
-            <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.7;">
-              <li>Used all <strong class="t-ink-bold">7 seniority levels</strong>, not just 2</li>
-              <li>Collapse is <strong class="t-red">not uniform</strong> across all juniors</li>
-              <li>Specifically <strong class="t-ink-bold">Level 2</strong> (1&ndash;2 years in) is collapsing</li>
-              <li>DiD shows AI-exposed jobs <strong class="t-green">didn't drop more</strong></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 23: STRUCTURAL SHIFT (EN) ========== -->
-  <section class="slide lang-en slide-bg-red">
-    <div class="content grid-split">
-      <div class="flex-col gap-20">
-        <div class="flex-col gap-10">
-          <div class="flex-row gap-12">
-            <div class="step-num bg-red" style="width:40px; height:40px; font-size:16px;">1</div>
-            <span class="t-caption-red">Finding 1 &middot; Structural Shift</span>
-          </div>
-          <h2 class="t-title">Junior Positions<br>Are Collapsing</h2>
-        </div>
-        <div class="card flex-col gap-10">
-          <span class="t-caption-red">What the data shows</span>
-          <div class="grid-2" style="gap:14px;">
-            <div class="flex-col gap-4">
-              <span class="metric-label">Total Employment 22&rarr;24</span>
-              <span class="metric-mid t-red">&minus;26.5%</span>
-              <span class="t-tiny">21.55M &rarr; 15.80M</span>
-            </div>
-            <div class="flex-col gap-4">
-              <span class="metric-label">Junior Share</span>
-              <span class="metric-mid t-red">66% &rarr; 56%</span>
-              <span class="t-tiny">&minus;9.7 percentage points</span>
-            </div>
-          </div>
-        </div>
-        <div class="grid-2" style="gap:14px;">
-          <div class="card-soft flex-col gap-4" style="padding:16px; border-left:3px solid var(--accent-red);">
-            <span class="metric-label">Junior Decline</span>
-            <span class="metric-mid t-red">&minus;29.4%</span>
-          </div>
-          <div class="card-soft flex-col gap-4" style="padding:16px; border-left:3px solid var(--accent-green);">
-            <span class="metric-label">Senior Decline</span>
-            <span class="metric-mid t-green">&minus;5.8%</span>
-          </div>
-        </div>
-        <div class="callout callout-red">Junior positions dropped <strong class="t-ink-bold">5&times; faster</strong> than senior ones. Harvard confirmed the same pattern. But the next question: <strong class="t-red">is AI the cause?</strong></div>
-      </div>
-      <div class="flex-col gap-16">
-        <div class="img-frame"><img src="assets/q4_2_junior_share_v2.png" alt="Junior share trend" /></div>
-        <div class="img-frame"><img src="assets/q4_3_tech_demand.png" alt="Tech hiring demand" /></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 24: COUNTER-INTUITIVE DiD (EN) ========== -->
-  <section class="slide lang-en slide-bg-yellow">
-    <div class="content flex-col gap-20">
-      <div class="flex-col gap-10 center">
-        <span class="t-caption-yellow">Finding 2 &middot; Counter-Intuitive</span>
-        <h2 class="t-title" style="text-align:center;">Data Says No:<br>AI Isn't Specifically Targeting Juniors</h2>
-        <p class="t-body" style="max-width:780px; text-align:center;">If GenAI were specifically replacing junior positions, AI-exposed jobs should drop <strong class="t-ink-bold">more</strong> than non-AI jobs. The data shows the <strong class="t-ink-bold">opposite</strong>.</p>
-      </div>
-      <div class="grid-split" style="gap:28px; align-items:flex-start;">
-        <div class="flex-col gap-14">
-          <div class="card-lift flex-col gap-10" style="border-top:4px solid #e6b400;">
-            <span class="t-caption-yellow">DiD Analysis (Difference-in-Differences)</span>
-            <div class="grid-2" style="gap:14px;">
-              <div class="flex-col gap-4">
-                <span class="metric-label">AI High-Exposure Junior</span>
-                <span class="metric-mid" style="color:#b38800;">&minus;25.7%</span>
-                <span class="t-tiny">Computer, Office Admin, Legal, Business</span>
-              </div>
-              <div class="flex-col gap-4">
-                <span class="metric-label">AI Low-Exposure Junior</span>
-                <span class="metric-mid t-red">&minus;33.9%</span>
-                <span class="t-tiny">Construction, Food, Transport, Production</span>
-              </div>
-            </div>
-            <div class="formula" style="text-align:center; font-size:16px;">
-              DiD = &minus;25.7% &minus; (&minus;33.9%) = <strong class="t-green">+8.2pp</strong><br>
-              <span style="font-size:13px; color:var(--gray-500);">Direction is <strong>opposite</strong> to the GenAI replacement hypothesis</span>
-            </div>
-          </div>
-          <div class="callout callout-yellow">
-            <strong class="t-ink-bold">Biggest drops are in non-AI jobs:</strong><br>
-            Food Service <strong class="t-red">&minus;46.3%</strong> &nbsp;&middot;&nbsp; Production <strong class="t-red">&minus;44.4%</strong> &nbsp;&middot;&nbsp; Computer/Math only &minus;25.7%
-          </div>
-        </div>
-        <div class="flex-col gap-14">
-          <div class="img-frame"><img src="assets/q4_5_did.png" alt="DiD analysis" /></div>
-          <div class="card flex-col gap-8">
-            <span class="t-caption-green">Conclusion</span>
-            <p class="t-body">Junior positions are shrinking <strong class="t-ink-bold">across the board</strong> &mdash; consistent with macro-economic tightening (Fed rate hikes from 0% to 5.5%, tech layoff wave) rather than AI-specific displacement.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 25: SENIORITY 2 COLLAPSE (EN) ========== -->
-  <section class="slide lang-en slide-bg-purple">
-    <div class="content grid-split">
-      <div class="flex-col gap-20">
-        <div class="flex-col gap-10">
-          <span class="t-caption-purple">Finding 3 &middot; What Harvard Missed</span>
-          <h2 class="t-title">The Real Collapse:<br>Seniority Level&nbsp;2</h2>
-          <p class="t-body" style="max-width:500px;">Harvard only split workers into <strong class="t-ink-bold">Junior vs. Senior</strong>. NeuGBI used all <strong class="t-ink-bold">7 seniority levels</strong> &mdash; and found the collapse isn't uniform.</p>
-        </div>
-        <div class="grid-2" style="gap:14px;">
-          <div class="card-lift flex-col gap-6" style="border-top:3px solid var(--accent-purple);">
-            <span class="t-caption-purple">Software Dev L2</span>
-            <span class="metric-big t-red">&minus;48%</span>
-            <span class="t-tiny">271K &rarr; 141K (2022&rarr;2024)</span>
-          </div>
-          <div class="card-lift flex-col gap-6" style="border-top:3px solid var(--accent-purple);">
-            <span class="t-caption-purple">Data Scientist L2</span>
-            <span class="metric-big t-red">&minus;78%</span>
-            <span class="t-tiny">65.5K &rarr; 14.2K (2022&rarr;2024)</span>
-          </div>
-        </div>
-        <div class="callout callout-green" style="border-color:rgba(46,168,74,0.25);">
-          <strong class="t-green">Meanwhile, Seniority 3 holds steady:</strong><br>
-          Software Dev L3 <strong class="t-green">+7.5%</strong> &nbsp;&middot;&nbsp; Data Scientist L3 <strong class="t-green">&minus;0.4%</strong>
-        </div>
-      </div>
-      <div class="flex-col gap-14">
-        <div class="img-frame"><img src="assets/q4_6_swdev_seniority.png" alt="Seniority structure" /></div>
-        <div class="card flex-col gap-8">
-          <span class="t-caption-purple">The pattern</span>
-          <p class="t-body">It's not <em>all</em> juniors collapsing. <strong class="t-ink-bold">Level&nbsp;2 &mdash; people 1&ndash;2 years in, past probation but not yet independently impactful</strong> &mdash; is the specific layer being squeezed. Entry-level (L1) and mid-career (L3+) are relatively stable.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 26: WHY NEUGBI MADE THIS POSSIBLE (EN) ========== -->
-  <section class="slide lang-en slide-bg-blue">
-    <div class="content flex-col gap-20">
-      <div class="flex-col gap-10 center">
-        <span class="t-caption">NeuGBI in Action</span>
-        <h2 class="t-title" style="text-align:center;">From 60&thinsp;GB Raw Data<br>to Harvard-Level Analysis</h2>
-      </div>
-      <div class="grid-2" style="gap:22px;">
-        <div class="card-lift flex-col gap-14">
-          <span class="t-caption">What NeuGBI Enabled</span>
-          <div class="flex-col gap-10">
-            <div class="flex-row gap-12">
-              <div class="pillar-icon bg-accent" style="width:36px; height:36px; font-size:14px;">S</div>
-              <div class="flex-col gap-2">
-                <span style="font-size:16px; font-weight:600;">Sampling on 60&thinsp;GB</span>
-                <span class="t-small">NeuGBI's sampling operators made hundreds of fine-grained queries feasible in minutes, not days.</span>
-              </div>
-            </div>
-            <div class="flex-row gap-12">
-              <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">A</div>
-              <div class="flex-col gap-2">
-                <span style="font-size:16px; font-weight:600;">Autonomous Exploration</span>
-                <span class="t-small">The agent decomposed the question, designed control groups, ran DiD analysis, and iterated on its own &mdash; no human in the loop.</span>
-              </div>
-            </div>
-            <div class="flex-row gap-12">
-              <div class="pillar-icon bg-green" style="width:36px; height:36px; font-size:14px;">7</div>
-              <div class="flex-col gap-2">
-                <span style="font-size:16px; font-weight:600;">7-Level Granularity</span>
-                <span class="t-small">Harvard researchers used a coarse 2-level split to manage analysis complexity. NeuGBI had no such constraint.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex-col gap-14">
-          <div class="card flex-col gap-10" style="border-left:3px solid var(--accent-red);">
-            <span class="t-caption-red">Harvard Paper (Human Researchers)</span>
-            <ul style="padding-left:18px; font-size:14px; color:var(--gray-600); line-height:1.7;">
-              <li>Months of manual analysis</li>
-              <li>Coarse Junior / Senior binary split</li>
-              <li>Missed the L2 collapse pattern</li>
-              <li>Stronger causal identification (triple-diff, event study)</li>
-            </ul>
-          </div>
-          <div class="card flex-col gap-10" style="border-left:3px solid var(--accent-green);">
-            <span class="t-caption-green">NeuGBI (Autonomous Agent)</span>
-            <ul style="padding-left:18px; font-size:14px; color:var(--gray-600); line-height:1.7;">
-              <li>Fully autonomous, one question in</li>
-              <li>7-level seniority analysis</li>
-              <li>Found the L2 collapse pattern</li>
-              <li>Scored <strong class="t-ink-bold">8.5/10</strong> vs Harvard's baseline 10</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="blockquote" style="text-align:center; max-width:960px; margin:0 auto;">Two domains &mdash; <strong class="t-ink-bold">academic publishing</strong> and <strong class="t-ink-bold">labor economics</strong>. Two datasets &mdash; <strong class="t-ink-bold">22M vertices</strong> and <strong class="t-ink-bold">300M records</strong>.<br>Same NeuGBI, same autonomous exploration.</div>
-    </div>
-  </section>
-
 
   <!-- ========== SLIDE 19: NEUGBI SKILL SUITE (EN) ========== -->
   <section class="slide lang-en slide-bg-green">
@@ -1449,7 +1252,7 @@
     </div>
   </section>
 
-  <!-- ========== SLIDE 27: QR + THANK YOU (EN) ========== -->
+  <!-- ========== SLIDE 22: QR + THANK YOU (EN) ========== -->
   <section class="slide lang-en slide-bg-title">
     <div class="content flex-col gap-20 center">
       <div class="flex-col gap-8 center">
@@ -1487,7 +1290,7 @@
           <button type="button" data-lang="zh">中文</button>
         </div>
       </div>
-      <p class="t-tiny" style="letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:var(--gray-400);">探索式 BI 框架 &nbsp;&middot;&nbsp; 采样算子 &nbsp;&middot;&nbsp; NeuGBI 系统 &nbsp;&middot;&nbsp; 俄乌学术案例 &nbsp;&middot;&nbsp; AI 就业案例</p>
+      <p class="t-tiny" style="letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:var(--gray-400);">探索式 BI 框架 &nbsp;&middot;&nbsp; 采样算子 &nbsp;&middot;&nbsp; NeuGBI 系统 &nbsp;&middot;&nbsp; 俄乌学术案例</p>
     </div>
   </section>
 
@@ -1827,7 +1630,7 @@
     <div class="content flex-col gap-24">
       <div class="flex-col gap-10 center">
         <span class="t-caption-red">经典 BI 流程的困境</span>
-        <h2 class="t-title" style="text-align:center;">为什么传统 BI 工作流<br>撑不起探索式分析？</h2>
+        <h2 class="t-title" style="text-align:center;">为什么这套工作流<br>撑不起探索？</h2>
       </div>
       <div class="grid-2" style="gap:20px;">
         <div class="card flex-col gap-10" style="padding:26px;">
@@ -2051,6 +1854,55 @@
     </div>
   </section>
 
+  <!-- ========== SLIDE 16: END-TO-END UNBIASEDNESS (ZH) ========== -->
+  <section class="slide lang-zh slide-bg-green">
+    <div class="content flex-col gap-20">
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-green">核心贡献 &mdash; 第三部分</span>
+        <h2 class="t-title" style="text-align:center;">端到端的无偏保证</h2>
+        <p class="t-body" style="max-width:780px; text-align:center;">单个算子的均匀性好证明，真正难的是：<strong class="t-ink-bold">任意组合</strong>之后，样本还均匀吗？</p>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card-lift flex-col gap-12">
+          <span class="t-caption-green">定理 (End-to-End)</span>
+          <div class="formula">
+            对任意由 <strong>Source-Sample</strong> 与 <strong>Join-Sample</strong><br>
+            构成的探索流程&mdash;&mdash;<br>
+            <strong class="t-green">输出超图中的所有超边</strong><br>
+            都是对真实结果的<strong class="t-green">均匀采样</strong>。
+          </div>
+          <p class="t-tiny">证明思路：以工作流结构做归纳。若最后一步是 Source-Sample，由引理直接保证；若是 Join-Sample，嵌套一层期望等式依然成立。</p>
+        </div>
+        <div class="card-lift flex-col gap-12">
+          <span class="t-caption-green">推论 &mdash; 无偏估计</span>
+          <div class="formula">
+            &forall; 通过 Source-Sample / Join-Sample<br>
+            得到的超图 G &mdash;&mdash;<br>
+            <strong class="t-green">COUNT(G) 的 HT 估计是无偏的</strong><br>
+            <strong class="t-green">SUM(G) 的 HT 估计是无偏的</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;(Horvitz-Thompson 估计器)
+          </div>
+          <p class="t-tiny">对 DISTINCT / QUANTILE / MAX / MIN，均匀样本同样是 GEE、t-digest 等近似算法的最佳输入，误差界有保证。</p>
+        </div>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card flex-col gap-10">
+          <span class="t-caption-green">多跳 Join 的误差稳定性</span>
+          <p class="t-body">关键问题：多次 Join 会不会让误差<strong class="t-ink-bold">累积放大</strong>？<br>实验 (1&ndash;4 次 Join，path / cycle 两种模式)：</p>
+          <ul style="padding-left:18px; font-size:14px; color:var(--gray-600); line-height:1.6;">
+            <li>COUNT 误差始终 &lt; 1%</li>
+            <li>MAX 误差稳定在 0.01% 附近</li>
+            <li>DISTINCT COUNT 在 2&ndash;10%&mdash;&mdash;<strong class="t-ink-bold">不随跳数增加</strong></li>
+          </ul>
+        </div>
+        <div class="card flex-col gap-10">
+          <span class="t-caption-green">所以可以干什么？</span>
+          <p class="t-body">探索式 BI 的核心要求："每一步都在前一步的样本上继续走"，才真正<strong class="t-ink-bold">可证明地成立</strong>。<br>分析师随时看到的数字，都是对全量结果的<strong class="t-ink-bold">无偏估计</strong>。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== SLIDE 17: SAMPLING EXPERIMENTS (ZH) ========== -->
   <section class="slide lang-zh slide-bg-purple">
     <div class="content flex-col gap-24">
@@ -2146,252 +1998,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ========== SLIDE 22: CASE 2 INTRO — AI & EMPLOYMENT (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-warm">
-    <div class="content flex-col gap-18">
-      <div class="flex-col gap-10 center">
-        <span class="t-caption-warm">NeuGBI 实战</span>
-        <h2 class="t-title" style="text-align:center;">比哈佛论文更细致的结论</h2>
-        <p class="t-subtitle" style="max-width:880px; text-align:center;">同一份数据、同一个问题&mdash;&mdash;NeuGBI 的自主探索发现了人工研究数月未能触及的模式。</p>
-      </div>
-
-      <div class="grid-split" style="gap:28px; align-items:flex-start;">
-        <div class="flex-col gap-14">
-          <div class="card-lift flex-col gap-10" style="border-left:4px solid var(--accent-warm);">
-            <span class="t-caption-warm">哈佛论文</span>
-            <p style="font-size:14px; font-weight:600; color:var(--gray-700); line-height:1.4; margin-bottom:4px;"><em>Generative AI as Seniority-Biased Technological Change</em><br><span class="t-tiny">Hosseini &amp; Lichtinger, 哈佛商学院, 2026</span></p>
-            <p class="t-body">分析了 28 万家企业的 <strong class="t-ink-bold">6500 万名员工</strong>数据。核心结论：</p>
-            <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.7;">
-              <li>GenAI 构成<strong class="t-ink-bold">"资历偏向型技术变革"</strong></li>
-              <li>采用 GenAI 的企业中，初级岗就业<strong class="t-red">大幅下降</strong></li>
-              <li>资深岗就业<strong class="t-green">基本不变</strong></li>
-              <li>下降集中在 <strong class="t-ink-bold">AI 暴露度高的职业</strong></li>
-              <li>主要是<strong class="t-ink-bold">招聘放缓</strong>，而非裁员增加</li>
-            </ul>
-          </div>
-          <div class="callout callout-warm">
-            <strong class="t-ink-bold">局限：</strong>论文只把员工分成 <strong class="t-warm">Junior / Senior</strong> 两档。底层数据其实有 <strong class="t-ink-bold">7 个资历等级</strong>。
-          </div>
-        </div>
-        <div class="flex-col gap-14">
-          <div class="card flex-col gap-10">
-            <span class="t-caption-warm">数据集 &middot; Revelio Labs</span>
-            <p class="t-body">与哈佛团队使用的<strong class="t-ink-bold">同一份劳动力数据</strong>。覆盖全美实际任职记录 + 科技岗位招聘需求，2021&ndash;2025。</p>
-            <div class="flex-row gap-24" style="flex-wrap:wrap;">
-              <div class="flex-col gap-2">
-                <span class="metric-label">数据量</span>
-                <span class="metric-mid t-warm">~60 GB</span>
-              </div>
-              <div class="flex-col gap-2">
-                <span class="metric-label">记录数</span>
-                <span class="metric-mid t-warm">~3 亿</span>
-              </div>
-              <div class="flex-col gap-2">
-                <span class="metric-label">资历等级</span>
-                <span class="metric-mid t-warm">7 级</span>
-              </div>
-            </div>
-          </div>
-          <div class="card-lift flex-col gap-10" style="border-left:4px solid var(--accent-green);">
-            <span class="t-caption-green">NeuGBI 发现了什么不同</span>
-            <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.7;">
-              <li>使用了全部 <strong class="t-ink-bold">7 个资历等级</strong>，而非 2 档</li>
-              <li>崩塌在初级岗中<strong class="t-red">并不均匀</strong></li>
-              <li>具体是 <strong class="t-ink-bold">Level 2</strong>（工作 1&ndash;2 年）在崩塌</li>
-              <li>DiD 显示 AI 暴露度高的职业<strong class="t-green">跌幅反而更小</strong></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 23: STRUCTURAL SHIFT (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-red">
-    <div class="content grid-split">
-      <div class="flex-col gap-20">
-        <div class="flex-col gap-10">
-          <div class="flex-row gap-12">
-            <div class="step-num bg-red" style="width:40px; height:40px; font-size:16px;">1</div>
-            <span class="t-caption-red">发现一 &middot; 结构性偏移</span>
-          </div>
-          <h2 class="t-title">初级岗位<br>正在崩塌</h2>
-        </div>
-        <div class="card flex-col gap-10">
-          <span class="t-caption-red">数据显示</span>
-          <div class="grid-2" style="gap:14px;">
-            <div class="flex-col gap-4">
-              <span class="metric-label">总就业 22&rarr;24</span>
-              <span class="metric-mid t-red">&minus;26.5%</span>
-              <span class="t-tiny">2155 万 &rarr; 1580 万</span>
-            </div>
-            <div class="flex-col gap-4">
-              <span class="metric-label">初级岗占比</span>
-              <span class="metric-mid t-red">66% &rarr; 56%</span>
-              <span class="t-tiny">下降 9.7 个百分点</span>
-            </div>
-          </div>
-        </div>
-        <div class="grid-2" style="gap:14px;">
-          <div class="card-soft flex-col gap-4" style="padding:16px; border-left:3px solid var(--accent-red);">
-            <span class="metric-label">初级岗降幅</span>
-            <span class="metric-mid t-red">&minus;29.4%</span>
-          </div>
-          <div class="card-soft flex-col gap-4" style="padding:16px; border-left:3px solid var(--accent-green);">
-            <span class="metric-label">资深岗降幅</span>
-            <span class="metric-mid t-green">&minus;5.8%</span>
-          </div>
-        </div>
-        <div class="callout callout-red">初级岗位降速是资深岗位的 <strong class="t-ink-bold">5 倍</strong>。这和哈佛论文的结论一致。但下一个问题：<strong class="t-red">是 AI 导致的吗？</strong></div>
-      </div>
-      <div class="flex-col gap-16">
-        <div class="img-frame"><img src="assets/q4_2_junior_share_v2.png" alt="Junior share trend" /></div>
-        <div class="img-frame"><img src="assets/q4_3_tech_demand.png" alt="Tech hiring demand" /></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 24: COUNTER-INTUITIVE DiD (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-yellow">
-    <div class="content flex-col gap-20">
-      <div class="flex-col gap-10 center">
-        <span class="t-caption-yellow">发现二 &middot; 反直觉</span>
-        <h2 class="t-title" style="text-align:center;">数据说：<br>不是 AI 在针对初级岗</h2>
-        <p class="t-body" style="max-width:780px; text-align:center;">如果 GenAI 真的在特异性地替代初级岗位，那 AI 暴露度高的职业应该跌得<strong class="t-ink-bold">更狠</strong>。但数据显示的方向<strong class="t-ink-bold">恰恰相反</strong>。</p>
-      </div>
-      <div class="grid-split" style="gap:28px; align-items:flex-start;">
-        <div class="flex-col gap-14">
-          <div class="card-lift flex-col gap-10" style="border-top:4px solid #e6b400;">
-            <span class="t-caption-yellow">双重差分分析 (DiD)</span>
-            <div class="grid-2" style="gap:14px;">
-              <div class="flex-col gap-4">
-                <span class="metric-label">AI 高暴露组初级岗</span>
-                <span class="metric-mid" style="color:#b38800;">&minus;25.7%</span>
-                <span class="t-tiny">计算机、办公行政、法律、商务</span>
-              </div>
-              <div class="flex-col gap-4">
-                <span class="metric-label">AI 低暴露组初级岗</span>
-                <span class="metric-mid t-red">&minus;33.9%</span>
-                <span class="t-tiny">建筑、餐饮、运输、生产</span>
-              </div>
-            </div>
-            <div class="formula" style="text-align:center; font-size:16px;">
-              DiD = &minus;25.7% &minus; (&minus;33.9%) = <strong class="t-green">+8.2pp</strong><br>
-              <span style="font-size:13px; color:var(--gray-500);">方向与 GenAI 替代假说<strong>相反</strong></span>
-            </div>
-          </div>
-          <div class="callout callout-yellow">
-            <strong class="t-ink-bold">跌得最惨的恰恰不是 AI 相关岗位：</strong><br>
-            餐饮 <strong class="t-red">&minus;46.3%</strong> &nbsp;&middot;&nbsp; 生产 <strong class="t-red">&minus;44.4%</strong> &nbsp;&middot;&nbsp; 计算机/数学 仅 &minus;25.7%
-          </div>
-        </div>
-        <div class="flex-col gap-14">
-          <div class="img-frame"><img src="assets/q4_5_did.png" alt="DiD analysis" /></div>
-          <div class="card flex-col gap-8">
-            <span class="t-caption-green">结论</span>
-            <p class="t-body">初级岗在<strong class="t-ink-bold">全行业普遍收缩</strong>&mdash;&mdash;更符合宏观紧缩周期（联储利率从 0% 升至 5.5%、科技裁员潮）的表现，而非 AI 特异性替代。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 25: SENIORITY 2 COLLAPSE (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-purple">
-    <div class="content grid-split">
-      <div class="flex-col gap-20">
-        <div class="flex-col gap-10">
-          <span class="t-caption-purple">发现三 &middot; 哈佛论文没看到的</span>
-          <h2 class="t-title">真正崩塌的层级：<br>Seniority 2</h2>
-          <p class="t-body" style="max-width:500px;">哈佛论文只把员工分成<strong class="t-ink-bold"> Junior / Senior</strong> 两档。NeuGBI 用了全部 <strong class="t-ink-bold">7 个资历等级</strong>&mdash;&mdash;发现崩塌并不均匀。</p>
-        </div>
-        <div class="grid-2" style="gap:14px;">
-          <div class="card-lift flex-col gap-6" style="border-top:3px solid var(--accent-purple);">
-            <span class="t-caption-purple">软件开发 L2</span>
-            <span class="metric-big t-red">&minus;48%</span>
-            <span class="t-tiny">27.1 万 &rarr; 14.1 万 (22&rarr;24)</span>
-          </div>
-          <div class="card-lift flex-col gap-6" style="border-top:3px solid var(--accent-purple);">
-            <span class="t-caption-purple">数据科学 L2</span>
-            <span class="metric-big t-red">&minus;78%</span>
-            <span class="t-tiny">6.55 万 &rarr; 1.42 万 (22&rarr;24)</span>
-          </div>
-        </div>
-        <div class="callout callout-green" style="border-color:rgba(46,168,74,0.25);">
-          <strong class="t-green">与此同时，Seniority 3 稳如磐石：</strong><br>
-          软件开发 L3 <strong class="t-green">+7.5%</strong> &nbsp;&middot;&nbsp; 数据科学 L3 <strong class="t-green">&minus;0.4%</strong>
-        </div>
-      </div>
-      <div class="flex-col gap-14">
-        <div class="img-frame"><img src="assets/q4_6_swdev_seniority.png" alt="Seniority structure" /></div>
-        <div class="card flex-col gap-8">
-          <span class="t-caption-purple">规律</span>
-          <p class="t-body">不是所有"初级"都在崩塌。<strong class="t-ink-bold">Level 2&mdash;&mdash;工作一两年、刚过试用期但还没建立不可替代的专业深度</strong>&mdash;&mdash;才是被挤压的那个层级。应届生 (L1) 和中级 (L3+) 相对稳定。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SLIDE 26: WHY NEUGBI MADE THIS POSSIBLE (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-blue">
-    <div class="content flex-col gap-20">
-      <div class="flex-col gap-10 center">
-        <span class="t-caption">NeuGBI 的价值</span>
-        <h2 class="t-title" style="text-align:center;">从 60GB 原始数据<br>到哈佛级分析</h2>
-      </div>
-      <div class="grid-2" style="gap:22px;">
-        <div class="card-lift flex-col gap-14">
-          <span class="t-caption">NeuGBI 带来了什么</span>
-          <div class="flex-col gap-10">
-            <div class="flex-row gap-12">
-              <div class="pillar-icon bg-accent" style="width:36px; height:36px; font-size:14px;">S</div>
-              <div class="flex-col gap-2">
-                <span style="font-size:16px; font-weight:600;">60GB 上的采样</span>
-                <span class="t-small">NeuGBI 的采样算子让数百次细粒度查询在几分钟内跑完，而不是几天。</span>
-              </div>
-            </div>
-            <div class="flex-row gap-12">
-              <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">A</div>
-              <div class="flex-col gap-2">
-                <span style="font-size:16px; font-weight:600;">自主探索</span>
-                <span class="t-small">Agent 自己拆解问题、设计对照组、做 DiD 分析、反复迭代&mdash;&mdash;全程无人介入。</span>
-              </div>
-            </div>
-            <div class="flex-row gap-12">
-              <div class="pillar-icon bg-green" style="width:36px; height:36px; font-size:14px;">7</div>
-              <div class="flex-col gap-2">
-                <span style="font-size:16px; font-weight:600;">7 级粒度分析</span>
-                <span class="t-small">哈佛研究者为了降低分析复杂度只用了粗粒度的 2 档划分。NeuGBI 没有这个限制。</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex-col gap-14">
-          <div class="card flex-col gap-10" style="border-left:3px solid var(--accent-red);">
-            <span class="t-caption-red">哈佛论文 (人类研究者)</span>
-            <ul style="padding-left:18px; font-size:14px; color:var(--gray-600); line-height:1.7;">
-              <li>数月的人工分析</li>
-              <li>粗粒度 Junior / Senior 二分</li>
-              <li>没能发现 L2 崩塌的规律</li>
-              <li>因果识别更强 (三重差分、事件研究)</li>
-            </ul>
-          </div>
-          <div class="card flex-col gap-10" style="border-left:3px solid var(--accent-green);">
-            <span class="t-caption-green">NeuGBI (自主 Agent)</span>
-            <ul style="padding-left:18px; font-size:14px; color:var(--gray-600); line-height:1.7;">
-              <li>全自主，只需一个问题</li>
-              <li>7 级资历细分析</li>
-              <li>发现了 L2 崩塌的规律</li>
-              <li>以哈佛论文为 10 分基线，得分 <strong class="t-ink-bold">8.5</strong></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="blockquote" style="text-align:center; max-width:960px; margin:0 auto;">两个领域&mdash;&mdash;<strong class="t-ink-bold">学术出版</strong>与<strong class="t-ink-bold">劳动经济学</strong>。两份数据&mdash;&mdash;<strong class="t-ink-bold">2240 万顶点</strong>与 <strong class="t-ink-bold">3 亿条记录</strong>。<br>同一个 NeuGBI，同样的自主探索。</div>
-    </div>
-  </section>
-
 
   <!-- ========== SLIDE 19: NEUGBI SKILL SUITE (ZH) ========== -->
   <section class="slide lang-zh slide-bg-green">
@@ -2503,7 +2109,7 @@
     </div>
   </section>
 
-  <!-- ========== SLIDE 27: QR + THANK YOU (ZH) ========== -->
+  <!-- ========== SLIDE 22: QR + THANK YOU (ZH) ========== -->
   <section class="slide lang-zh slide-bg-title">
     <div class="content flex-col gap-20 center">
       <div class="flex-col gap-8 center">
