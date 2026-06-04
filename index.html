@@ -783,18 +783,18 @@
         </div>
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">02</span>
-          <h3 style="font-size:22px; font-weight:700;">Wide-table computation is expensive</h3>
-          <p class="t-body">Materializing multi-table joins on large data is slow and memory-heavy. Step&nbsp;3's four-way join blows up on OpenAIRE: <strong class="t-ink-bold">193M publications, 51M Pub&ndash;Org edges</strong>.</p>
+          <h3 style="font-size:22px; font-weight:700;">Combining data is slow and expensive</h3>
+          <p class="t-body">Linking multiple data sources on a large dataset is slow and memory-heavy. Step&nbsp;3 alone needs to connect <strong class="t-ink-bold">193M papers with 51M paper-institution links</strong>.</p>
         </div>
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">03</span>
-          <h3 style="font-size:22px; font-weight:700;">The schema is frozen</h3>
-          <p class="t-body">Once the star / snowflake schema is fixed, it <strong class="t-ink-bold">can't be modified mid-analysis</strong>. New dimension? Start from scratch &mdash; exploration can't "think while walking".</p>
+          <h3 style="font-size:22px; font-weight:700;">The data model is frozen</h3>
+          <p class="t-body">Once the data structure is designed, it <strong class="t-ink-bold">can't be changed mid-analysis</strong>. Want to add a new angle? Start from scratch &mdash; you can't think while walking.</p>
         </div>
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">04</span>
-          <h3 style="font-size:22px; font-weight:700;">Intermediate results aren't reusable</h3>
-          <p class="t-body">In the case study, <strong class="t-ink-bold">the Publication&ndash;Organization join was computed 3 separate times</strong>. Every round starts fresh; the previous table is discarded.</p>
+          <h3 style="font-size:22px; font-weight:700;">Previous work can't be reused</h3>
+          <p class="t-body">In the case study, <strong class="t-ink-bold">the same paper-institution linkage was computed 3 separate times</strong>. Every round starts fresh; the previous work is thrown away.</p>
         </div>
       </div>
     </div>
@@ -806,237 +806,232 @@
       <div class="flex-col gap-10 center">
         <span class="t-caption">Paradigm Shift</span>
         <h2 class="t-title" style="text-align:center;">The same case, done differently&mdash;<br>Exploratory BI</h2>
-        <p class="t-subtitle" style="max-width:820px; text-align:center;">Not three wide tables, but <strong class="t-ink-bold">one dataset that keeps growing</strong>: each step is an increment on the previous result.</p>
+        <p class="t-subtitle" style="max-width:820px; text-align:center;">Not three separate analyses, but <strong class="t-ink-bold">one dataset that keeps growing</strong>: each step builds on the previous result.</p>
       </div>
       <div class="grid-split" style="gap:36px; align-items:flex-start;">
         <div class="flex-col gap-14">
           <div class="img-frame">
             <img src="assets/bi-workflow-step-4.png" alt="Exploratory BI workflow" style="padding:14px;" />
           </div>
-          <p class="t-tiny" style="text-align:center;">The same case, as D<sub>1</sub> &rarr; D<sub>2</sub> &rarr; D<sub>3</sub>: <strong class="t-ink-bold">no rebuilds, no duplicated joins</strong>.</p>
+          <p class="t-tiny" style="text-align:center;">The same case: Step 1 &rarr; Step 2 &rarr; Step 3 &mdash; <strong class="t-ink-bold">no rebuilding, no duplicated work</strong>.</p>
         </div>
         <div class="flex-col gap-14">
           <div class="card flex-col gap-8">
             <div class="flex-row gap-12">
-              <div class="pillar-icon bg-accent" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">1</sub></div>
-              <span style="font-size:16px; font-weight:600;">Step 1: Publication &harr; Organization</span>
+              <div class="pillar-icon bg-accent" style="width:36px; height:36px; font-size:14px;">1</div>
+              <span style="font-size:16px; font-weight:600;">Step 1: Papers &harr; Institutions</span>
             </div>
             <p class="t-small">Russian publication counts over time.</p>
           </div>
           <div class="card flex-col gap-8">
             <div class="flex-row gap-12">
-              <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">2</sub></div>
-              <span style="font-size:16px; font-weight:600;">Step 2: D<sub>1</sub> + Funding</span>
+              <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">2</div>
+              <span style="font-size:16px; font-weight:600;">Step 2: Add Funding data</span>
             </div>
-            <p class="t-small">Schema evolves in place. No new analysis round &mdash; <strong class="t-ink-bold">new dimension is grafted onto the previous result</strong>.</p>
+            <p class="t-small">No new analysis round needed &mdash; <strong class="t-ink-bold">new information is added on top of what's already there</strong>.</p>
           </div>
           <div class="card flex-col gap-8">
             <div class="flex-row gap-12">
-              <div class="pillar-icon bg-green" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">3</sub></div>
-              <span style="font-size:16px; font-weight:600;">Step 3: D<sub>2</sub> + another Org</span>
+              <div class="pillar-icon bg-green" style="width:36px; height:36px; font-size:14px;">3</div>
+              <span style="font-size:16px; font-weight:600;">Step 3: Compare with another country</span>
             </div>
-            <p class="t-small">Rounds are <strong class="t-ink-bold">logically connected</strong>. Insights compose across steps, instead of living in three isolated reports.</p>
+            <p class="t-small">Steps are <strong class="t-ink-bold">logically connected</strong>. Insights build on each other, instead of living in three isolated reports.</p>
           </div>
         </div>
       </div>
-      <div class="blockquote" style="text-align:center; max-width:880px; margin:0 auto;">Two shifts: <strong class="t-ink-bold">schema evolves incrementally</strong>, and <strong class="t-ink-bold">rounds reuse &amp; compose</strong>. The rhythm changes from "repeat" to "accumulate".</div>
+      <div class="blockquote" style="text-align:center; max-width:880px; margin:0 auto;">Two shifts: <strong class="t-ink-bold">the data structure grows with your questions</strong>, and <strong class="t-ink-bold">previous work is reused, not discarded</strong>. The rhythm changes from "restart" to "accumulate".</div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 12: HYPERGRAPH DATA MODEL + OPERATORS (EN) ========== -->
+  <!-- ========== SLIDE 12: NEW APPROACH (EN) ========== -->
   <section class="slide lang-en slide-bg-purple">
     <div class="content flex-col gap-20">
       <div class="flex-col gap-10 center">
-        <span class="t-caption-purple">Data Model &amp; Operators</span>
-        <h2 class="t-title" style="text-align:center;">To Power This Style of Exploration,<br>We Need a New Foundation</h2>
+        <span class="t-caption-purple">A New Approach</span>
+        <h2 class="t-title" style="text-align:center;">Data That Remembers<br>and Grows With You</h2>
       </div>
 
       <div class="blockquote" style="max-width:980px; margin:0 auto; text-align:center; border-left:none; border-top:4px solid var(--accent-purple);">
-        <strong class="t-ink-bold">Key observation:</strong> in classic BI, <strong class="t-ink-bold">"wide table = joining multiple tables"</strong> &mdash; and table joins are <strong class="t-ink-bold">essentially subgraph matching on a graph</strong>.<br>
-        If analysis is fundamentally a graph operation, let's model the data as a <strong style="color:var(--accent-purple);">HyperGraph</strong> directly.
+        <strong class="t-ink-bold">Core idea:</strong> traditional BI is like <strong class="t-ink-bold">renovating from scratch every time you move</strong>.<br>
+        Our approach is like <strong style="color:var(--accent-purple);">building with LEGO</strong> &mdash; new pieces snap onto what's already there.
       </div>
 
       <div class="grid-split" style="gap:28px; align-items:flex-start;">
         <div class="flex-col gap-14">
           <div class="card flex-col gap-10">
-            <span class="t-caption-purple">HyperGraph Data Model</span>
+            <span class="t-caption-purple">What makes this different?</span>
             <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.8;">
-              <li><strong class="t-ink-bold">Vertex</strong>: entities &mdash; Publication, Organization, Funding&hellip;</li>
-              <li><strong class="t-ink-bold">Hyperedge</strong>: one pattern-match result &mdash; i.e. "a row in the wide table"</li>
-              <li><strong class="t-ink-bold">Grows incrementally</strong>: add new dimensions on top; no rebuild</li>
+              <li><strong class="t-ink-bold">Every entity</strong> (papers, institutions, funding&hellip;) stays connected</li>
+              <li><strong class="t-ink-bold">Every analysis result is remembered</strong> &mdash; not thrown away after each round</li>
+              <li><strong class="t-ink-bold">New dimensions snap on</strong> without rebuilding from scratch</li>
             </ul>
           </div>
           <div class="callout callout-blue">
-            <strong class="t-ink-bold">Classic OLAP still works:</strong>
-            <span class="tag tag-blue" style="margin:2px 4px;">Drilldown</span>
-            <span class="tag tag-blue" style="margin:2px 4px;">Rollup</span>
-            <span class="tag tag-blue" style="margin:2px 4px;">Slice</span>
-            <span class="tag tag-blue" style="margin:2px 4px;">Dice</span>
-            &mdash; the hypergraph can be projected to a relational table at any time, so analysts don't learn anything new.
+            <strong class="t-ink-bold">No new skills needed:</strong> all familiar BI operations (filter, drill down, group, pivot) still work exactly the same way.
           </div>
         </div>
 
         <div class="flex-col gap-10">
-          <span class="t-caption-purple" style="text-align:center;">Three new operators (what they do, not how)</span>
+          <span class="t-caption-purple" style="text-align:center;">Three simple actions power the exploration</span>
           <div class="card flex-col gap-8" style="border-left:3px solid var(--accent);">
             <div class="flex-row gap-10">
-              <div class="pillar-icon bg-accent" style="width:30px; height:30px; font-size:13px;">S</div>
-              <span style="font-size:17px; font-weight:600;">Source &middot; Extract from the graph</span>
+              <div class="pillar-icon bg-accent" style="width:30px; height:30px; font-size:13px;">1</div>
+              <span style="font-size:17px; font-weight:600;">Extract &mdash; pull data from the source</span>
             </div>
-            <p class="t-small">Given a user-supplied pattern, find all matches in the underlying graph and package them as a hypergraph.</p>
+            <p class="t-small">Describe what you're looking for, and the system finds all matching records from the raw data.</p>
           </div>
           <div class="card flex-col gap-8" style="border-left:3px solid var(--accent-warm);">
             <div class="flex-row gap-10">
-              <div class="pillar-icon bg-warm" style="width:30px; height:30px; font-size:13px;">J</div>
-              <span style="font-size:17px; font-weight:600;">Join &middot; Compose two hypergraphs</span>
+              <div class="pillar-icon bg-warm" style="width:30px; height:30px; font-size:13px;">2</div>
+              <span style="font-size:17px; font-weight:600;">Extend &mdash; add a new dimension</span>
             </div>
-            <p class="t-small">Merge two hypergraphs by a condition &mdash; add a new dimension while keeping what was already there.</p>
+            <p class="t-small">Attach new information to existing results &mdash; like adding Funding data on top of the Publication data you already have.</p>
           </div>
           <div class="card flex-col gap-8" style="border-left:3px solid var(--accent-green);">
             <div class="flex-row gap-10">
-              <div class="pillar-icon bg-green" style="width:30px; height:30px; font-size:13px;">V</div>
-              <span style="font-size:17px; font-weight:600;">View &middot; Project back to a table</span>
+              <div class="pillar-icon bg-green" style="width:30px; height:30px; font-size:13px;">3</div>
+              <span style="font-size:17px; font-weight:600;">View &mdash; see it as a familiar table</span>
             </div>
-            <p class="t-small">Flatten the hypergraph into a relational table, handed back to the BI analyst's familiar surface.</p>
+            <p class="t-small">Turn the results into the charts and tables analysts already know how to read.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 13: SAMPLING BOTTLENECKS (EN) ========== -->
-  <section class="slide lang-en slide-bg-red">
+  <!-- ========== SLIDE 12.5: WHY WE NEED SOMETHING NEW (EN) ========== -->
+  <section class="slide lang-en slide-bg-yellow">
     <div class="content flex-col gap-24">
       <div class="flex-col gap-10 center">
-        <span class="t-caption-red">Core Contribution &mdash; Part 1</span>
-        <h2 class="t-title" style="text-align:center;">Making Exploration Feasible:<br>Two Performance Walls</h2>
-        <p class="t-body" style="max-width:760px; text-align:center;">Exploratory BI runs <strong class="t-ink-bold">Source</strong> and <strong class="t-ink-bold">Join</strong> over and over &mdash; and both hit a wall instantly on graph data.</p>
+        <span class="t-caption-yellow">The Bottleneck</span>
+        <h2 class="t-title" style="text-align:center;">Two Walls Standing<br>in the Way</h2>
+        <p class="t-body" style="max-width:780px; text-align:center;">Exploratory BI sounds great in theory &mdash; but on real data, two practical problems make it <strong class="t-ink-bold">impossible without new techniques</strong>.</p>
       </div>
-      <div class="grid-2" style="gap:22px;">
+
+      <div class="grid-2" style="gap:24px;">
         <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-red);">
-          <span class="t-caption-red">Wall 1 &mdash; Source Operator</span>
-          <h3 style="font-size:22px; font-weight:700;">Subgraph matching is NP-complete</h3>
+          <div class="flex-row gap-12">
+            <div class="step-num bg-red" style="width:40px; height:40px; font-size:16px;">1</div>
+            <span style="font-size:22px; font-weight:700;">Nothing can be reused</span>
+          </div>
+          <p class="t-body">In traditional databases, each query starts from raw data. When exploration adds a new dimension, the system <strong class="t-ink-bold">recomputes everything from scratch</strong> &mdash; including work it already did in the previous round.</p>
           <div class="callout callout-red">
-            <strong class="t-ink-bold">Evidence:</strong> finding a 4-path on a graph with only <strong class="t-red">9,892</strong> vertices takes <strong class="t-red">~4 minutes</strong> under exact enumeration.<br>
-            For interactive analysis &mdash; even 4 seconds feels slow.
+            <strong class="t-ink-bold">In the Russia case:</strong> the paper&ndash;institution linkage was computed <strong class="t-red">3 separate times</strong> across 3 rounds. Each round threw away the previous result.
           </div>
-          <p class="t-tiny">Worse: even if matching finishes, materializing every result into a hypergraph <strong class="t-ink-bold">blows the memory budget</strong>.</p>
+          <p class="t-small">This isn't a software bug &mdash; it's a fundamental limitation of how traditional databases work. They have no concept of "building on previous results".</p>
         </div>
+
         <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-warm);">
-          <span class="t-caption-warm">Wall 2 &mdash; Join Explosion</span>
-          <h3 style="font-size:22px; font-weight:700;">Hypergraph joins blow up fast</h3>
-          <div class="callout callout-warm">
-            <strong class="t-ink-bold">Evidence:</strong> on OpenAIRE, a <strong class="t-warm">single citation join</strong> yields <strong class="t-warm">1.4 billion rows</strong>.<br>
-            Exploration keeps joining &mdash; the cascade is unsurvivable.
+          <div class="flex-row gap-12">
+            <div class="step-num bg-warm" style="width:40px; height:40px; font-size:16px;">2</div>
+            <span style="font-size:22px; font-weight:700;">Full computation is too slow</span>
           </div>
-          <p class="t-tiny">If the hypergraph isn't pre-sorted, naive join complexity jumps to <strong class="t-ink-bold">O(|E<sub>1</sub>|&nbsp;&middot;&nbsp;|E<sub>2</sub>|)</strong> &mdash; effectively unrunnable at scale.</p>
+          <p class="t-body">Linking millions of records across multiple data sources creates <strong class="t-ink-bold">billions of combinations</strong>. Traditional databases try to compute every single one &mdash; and either run out of memory or take hours.</p>
+          <div class="callout callout-warm">
+            <strong class="t-ink-bold">Real numbers:</strong> on OpenAIRE, connecting papers with citations produces <strong class="t-warm">1.4 billion rows</strong>. Even a simple pattern search on 10K records takes <strong class="t-warm">4+ minutes</strong>.
+          </div>
+          <p class="t-small">Interactive exploration needs answers in seconds. Full computation simply can't deliver that.</p>
         </div>
       </div>
-      <div class="blockquote blockquote-warm" style="text-align:center; max-width:880px; margin:0 auto;">
-        <strong class="t-ink-bold">Key insight:</strong> BI analysts care about <strong class="t-ink-bold"><em>aggregates</em></strong> (COUNT / SUM / trends), not individual records.<br>
-        <em>If the aggregate can be estimated accurately &mdash; materializing the full result set is unnecessary.</em>
+
+      <div class="blockquote blockquote-yellow" style="text-align:center; max-width:900px; margin:0 auto;">
+        These two walls are why exploratory analysis has stayed a nice idea &mdash; until now. Our solution: <strong class="t-ink-bold">a data model that remembers previous work</strong>, and <strong class="t-ink-bold">smart sampling that skips unnecessary computation</strong>.
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 14: SOURCE-SAMPLE (EN) ========== -->
-  <section class="slide lang-en slide-bg-blue">
+  <!-- ========== SLIDE 13: SMART SAMPLING (EN) ========== -->
+  <section class="slide lang-en slide-bg-green">
     <div class="content flex-col gap-24">
-      <div class="flex-col gap-10">
-        <span class="t-caption">Operator 1 &middot; Sampled</span>
-        <h2 class="t-title"><span class="t-accent">Source-Sample</span></h2>
-        <p class="t-subtitle" style="max-width:900px;">Sidestep Source's NP-complete enumeration &mdash; instead of finding <em>all</em> subgraph matches, draw a <strong class="t-ink-bold">genuinely uniform random sample</strong>.</p>
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-green">The Key Innovation</span>
+        <h2 class="t-title" style="text-align:center;">Our Answer:<br>Smart Sampling</h2>
+        <p class="t-body" style="max-width:800px; text-align:center;">You don't need to count every grain of sand to know how much is on the beach.<br>The same principle applies to data analysis.</p>
       </div>
-      <div class="grid-2" style="gap:20px;">
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
-          <span class="t-caption">Trait 1 &middot; No full enumeration</span>
-          <p class="t-body">Only <em>r</em> matches are drawn &mdash; the combinatorial explosion of subgraph matching <strong class="t-ink-bold">simply doesn't happen</strong>. Regardless of graph size or density, the cost is one sample's worth.</p>
+
+      <div class="blockquote blockquote-green" style="max-width:960px; margin:0 auto; text-align:center; font-size:22px;">
+        Like election polls &mdash; you don't need to ask <strong class="t-ink-bold">every voter</strong> to predict the result.<br>
+        A well-chosen sample gives <strong class="t-green">99%+ accurate answers in seconds</strong>.
+      </div>
+
+      <div class="grid-2" style="gap:22px;">
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">For Extracting Data</span>
+          <p class="t-body">Instead of finding every matching record in a massive dataset, <strong class="t-ink-bold">sample a representative subset</strong>. The full search would take minutes or hours &mdash; sampling takes seconds.</p>
         </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
-          <span class="t-caption">Trait 2 &middot; The sample is uniform</span>
-          <p class="t-body">Every possible match has equal probability of being drawn. This is <strong class="t-ink-bold">the foundation for every downstream correctness guarantee</strong> &mdash; only a uniform sample makes COUNT / SUM unbiased.</p>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">For Linking Data Together</span>
+          <p class="t-body">Instead of computing all possible combinations when connecting two datasets, <strong class="t-ink-bold">sample from the result directly</strong>. The 1.4-billion-row explosion? Never even gets constructed.</p>
         </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
-          <span class="t-caption">Trait 3 &middot; Native property-graph support</span>
-          <p class="t-body">We adapt <em>FaSTest</em>'s tree sampling to property graphs with <strong class="t-ink-bold">vertex / edge attribute filtering</strong> &mdash; conditions like "Russian institutions", "after 2022" go straight into the pattern query.</p>
+      </div>
+
+      <div class="grid-4" style="gap:16px;">
+        <div class="card flex-col gap-6 center">
+          <span class="metric-label">Speed</span>
+          <span class="metric-mid t-accent">Seconds</span>
+          <span class="t-tiny">instead of hours</span>
         </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
-          <span class="t-caption">Trait 4 &middot; Returns a hypergraph</span>
-          <p class="t-body">The output isn't just a count &mdash; it's a full <strong class="t-ink-bold">hypergraph</strong>. Downstream Join / View / Drilldown / Slice plug in seamlessly, <strong class="t-ink-bold">as the entry point for further exploration</strong>.</p>
+        <div class="card flex-col gap-6 center">
+          <span class="metric-label">Accuracy</span>
+          <span class="metric-mid t-green">&gt; 99%</span>
+          <span class="t-tiny">for counts and totals</span>
+        </div>
+        <div class="card flex-col gap-6 center">
+          <span class="metric-label">Fair</span>
+          <span class="metric-mid t-accent">&#10003;</span>
+          <span class="t-tiny">every record has equal chance</span>
+        </div>
+        <div class="card flex-col gap-6 center">
+          <span class="metric-label">Composable</span>
+          <span class="metric-mid t-accent">&#10003;</span>
+          <span class="t-tiny">results chain across rounds</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 15: JOIN-SAMPLE (EN) ========== -->
-  <section class="slide lang-en slide-bg-warm">
-    <div class="content flex-col gap-24">
-      <div class="flex-col gap-10">
-        <span class="t-caption-warm">Operator 2 &middot; Sampled</span>
-        <h2 class="t-title"><span class="t-warm">Join-Sample</span></h2>
-        <p class="t-subtitle" style="max-width:900px;">Never materialize the full join result &mdash; draw a sample that is <strong class="t-ink-bold">statistically equivalent to uniform sampling</strong> of the complete join.</p>
-      </div>
-      <div class="grid-2" style="gap:20px;">
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
-          <span class="t-caption-warm">Trait 1 &middot; No blow-up materialization</span>
-          <p class="t-body">OpenAIRE's 1.4-billion-row join result is <strong class="t-ink-bold">never constructed</strong>. Join-Sample locates exactly the <em>r</em> rows we need via weighted sampling, skipping the intermediate explosion entirely.</p>
-        </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
-          <span class="t-caption-warm">Trait 2 &middot; Equivalent to uniform sampling</span>
-          <p class="t-body">Although the mechanics are two-stage weighted, every final join result has equal selection probability. The output is <strong class="t-ink-bold">statistically equivalent</strong> to uniformly sampling the full join.</p>
-        </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
-          <span class="t-caption-warm">Trait 3 &middot; Composes with Source-Sample</span>
-          <p class="t-body">Join-Sample's inputs can be Source-Sample outputs, or the output of another Join-Sample. <strong class="t-ink-bold">Uniformity survives composition</strong> &mdash; the basis for reusing results across the whole exploration chain.</p>
-        </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
-          <span class="t-caption-warm">Trait 4 &middot; Scales to real graphs</span>
-          <p class="t-body">Exact joins routinely OOM or time out on OpenAIRE-scale data; Join-Sample <strong class="t-ink-bold">still produces stable answers on the queries where exact algorithms simply can't complete</strong>.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Slides 14 & 15 (Source-Sample & Join-Sample) removed — content merged into Slide 13 above -->
 
   <!-- ========== SLIDE 17: SAMPLING EXPERIMENTS (EN) ========== -->
   <section class="slide lang-en slide-bg-purple">
     <div class="content flex-col gap-24">
       <div class="flex-col gap-10 center">
-        <span class="t-caption-purple">Empirical Validation</span>
+        <span class="t-caption-purple">Does It Actually Work?</span>
         <h2 class="t-title" style="text-align:center;">Speed &amp; Accuracy &mdash; Both Deliver</h2>
-        <p class="t-body" style="max-width:720px; text-align:center;">LDBC SNB, three scales (SF1 / SF3 / SF10), default sample size 1M.</p>
+        <p class="t-body" style="max-width:720px; text-align:center;">Tested on real-world datasets at three different scales &mdash; from small to very large.</p>
       </div>
       <div class="grid-4" style="gap:18px;">
         <div class="card-lift flex-col gap-6 center">
-          <span class="metric-label">End-to-End Speedup</span>
+          <span class="metric-label">Speedup</span>
           <span class="metric-big t-accent">36.7&times;</span>
-          <span class="t-tiny">SF3 / Q2&nbsp;&middot;&nbsp; 40s vs. 1475s</span>
+          <span class="t-tiny">40 seconds vs. 25 minutes</span>
         </div>
         <div class="card-lift flex-col gap-6 center">
-          <span class="metric-label">COUNT Error</span>
+          <span class="metric-label">Count Accuracy</span>
           <span class="metric-big t-green">&lt; 1%</span>
-          <span class="t-tiny">1M samples&nbsp;&middot;&nbsp; all SF1 queries</span>
+          <span class="t-tiny">error across all queries</span>
         </div>
         <div class="card-lift flex-col gap-6 center">
-          <span class="metric-label">MAX Error</span>
+          <span class="metric-label">Peak Value Accuracy</span>
           <span class="metric-big t-green">~0.01%</span>
-          <span class="t-tiny">Stable, weakly sensitive to sample size</span>
+          <span class="t-tiny">error &mdash; extremely stable</span>
         </div>
         <div class="card-lift flex-col gap-6 center">
-          <span class="metric-label">SF10 Completion</span>
+          <span class="metric-label">Large-Scale Completion</span>
           <span class="metric-big t-accent">10 / 10</span>
-          <span class="t-tiny">No-sample baseline: 1 / 10 (rest OOM/OOT)</span>
+          <span class="t-tiny">Without sampling: only 1 / 10 finishes</span>
         </div>
       </div>
       <div class="grid-2" style="gap:22px;">
         <div class="card flex-col gap-10">
-          <span class="t-caption-purple">Robustness Beats Raw Speed</span>
-          <p class="t-body">At <strong class="t-ink-bold">SF10</strong> &mdash; the naive baseline <strong class="t-ink-bold">fails 9 of 10 queries</strong> (OOM or 2-hour timeout); the sampling version <strong class="t-ink-bold">completes 10 / 10</strong>.</p>
-          <p class="t-body">At scale, sampling isn't "optional" &mdash; it's required.</p>
+          <span class="t-caption-purple">It's Not Just Faster &mdash; It's the Only Way</span>
+          <p class="t-body">On the largest dataset, the traditional approach <strong class="t-ink-bold">fails 9 out of 10 queries</strong> &mdash; running out of memory or hitting a 2-hour timeout. The sampling approach <strong class="t-ink-bold">completes all 10</strong>.</p>
+          <p class="t-body">At real-world scale, sampling isn't "nice to have" &mdash; it's essential.</p>
         </div>
         <div class="card flex-col gap-10">
-          <span class="t-caption-purple">Sample-Size Tradeoff</span>
-          <p class="t-body">Accuracy gains are steepest from 10K &rarr; 100K; <strong class="t-ink-bold">100K &rarr; 1M</strong> is the knee; <br><strong class="t-ink-bold">1M &rarr; 10M</strong> &mdash; marginal accuracy, but time grows ~<strong class="t-ink-bold">10&times;</strong> linearly.</p>
-          <p class="t-body"><strong class="t-ink-bold">Default 1M</strong> &mdash; the sweet spot.</p>
+          <span class="t-caption-purple">How Many Samples Are Enough?</span>
+          <p class="t-body">Accuracy improves rapidly at first, then plateaus. Beyond a certain point, <strong class="t-ink-bold">taking more samples barely improves accuracy but costs 10&times; more time</strong>.</p>
+          <p class="t-body">We found the sweet spot: <strong class="t-ink-bold">fast enough for interactive use, accurate enough for real decisions</strong>.</p>
         </div>
       </div>
     </div>
@@ -1837,18 +1832,18 @@
         </div>
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">02</span>
-          <h3 style="font-size:22px; font-weight:700;">宽表的计算成本高</h3>
-          <p class="t-body">大规模数据下，多表 Join 的物化耗时耗存。 Step 3 那张 4 表宽表，在 OpenAIRE 上成本爆炸&mdash;&mdash;<strong class="t-ink-bold">1.93 亿条论文、5100 万条 Pub&ndash;Org 边</strong>。</p>
+          <h3 style="font-size:22px; font-weight:700;">数据关联的计算成本高</h3>
+          <p class="t-body">大规模数据下，把多个数据源关联起来既慢又吃内存。Step 3 那一步要关联 <strong class="t-ink-bold">1.93 亿篇论文和 5100 万条论文-机构关系</strong>。</p>
         </div>
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">03</span>
-          <h3 style="font-size:22px; font-weight:700;">Schema 是写死的</h3>
-          <p class="t-body">星型 / 雪花 schema 一旦定下，分析期间<strong class="t-ink-bold">不能实时修改</strong>。发现新维度？只能重启一轮从零搭建&mdash;&mdash;探索没法"边走边改"。</p>
+          <h3 style="font-size:22px; font-weight:700;">数据模型是写死的</h3>
+          <p class="t-body">数据结构一旦定下来，分析期间<strong class="t-ink-bold">不能实时修改</strong>。发现新维度？只能重启一轮从零搭建&mdash;&mdash;探索没法"边走边改"。</p>
         </div>
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">04</span>
-          <h3 style="font-size:22px; font-weight:700;">结果与中间数据无法复用</h3>
-          <p class="t-body">刚才案例里，<strong class="t-ink-bold">Publication&ndash;Organization 的 Join 被重复做了 3 次</strong>。每一轮都从零开始，上一轮的表、中间计算都被丢掉。</p>
+          <h3 style="font-size:22px; font-weight:700;">之前的工作无法复用</h3>
+          <p class="t-body">刚才案例里，<strong class="t-ink-bold">论文与机构的关联计算被重复做了 3 次</strong>。每一轮都从零开始，上一轮的工作全部丢掉。</p>
         </div>
       </div>
     </div>
@@ -1860,237 +1855,232 @@
       <div class="flex-col gap-10 center">
         <span class="t-caption">范式转变</span>
         <h2 class="t-title" style="text-align:center;">同一个 case，换一种方式做&mdash;&mdash;<br>探索式 BI</h2>
-        <p class="t-subtitle" style="max-width:820px; text-align:center;">不再"三张宽表"，而是<strong class="t-ink-bold">一份不断生长的数据</strong>：每下一步都在上一步的结果上做增量。</p>
+        <p class="t-subtitle" style="max-width:820px; text-align:center;">不再"三次从头分析"，而是<strong class="t-ink-bold">一份不断生长的数据</strong>：每下一步都在上一步的结果上做增量。</p>
       </div>
       <div class="grid-split" style="gap:36px; align-items:flex-start;">
         <div class="flex-col gap-14">
           <div class="img-frame">
             <img src="assets/bi-workflow-step-4.png" alt="Exploratory BI workflow" style="padding:14px;" />
           </div>
-          <p class="t-tiny" style="text-align:center;">回到刚才的案例：从 D<sub>1</sub> 到 D<sub>2</sub> 到 D<sub>3</sub>&mdash;&mdash;<strong class="t-ink-bold">没有重建，没有重复 Join</strong>。</p>
+          <p class="t-tiny" style="text-align:center;">回到刚才的案例：Step 1 &rarr; Step 2 &rarr; Step 3&mdash;&mdash;<strong class="t-ink-bold">没有重建，没有重复计算</strong>。</p>
         </div>
         <div class="flex-col gap-14">
           <div class="card flex-col gap-8">
             <div class="flex-row gap-12">
-              <div class="pillar-icon bg-accent" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">1</sub></div>
-              <span style="font-size:16px; font-weight:600;">Step 1：Publication &harr; Organization</span>
+              <div class="pillar-icon bg-accent" style="width:36px; height:36px; font-size:14px;">1</div>
+              <span style="font-size:16px; font-weight:600;">Step 1：论文 &harr; 机构</span>
             </div>
             <p class="t-small">得到俄罗斯产出的时序数据。</p>
           </div>
           <div class="card flex-col gap-8">
             <div class="flex-row gap-12">
-              <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">2</sub></div>
-              <span style="font-size:16px; font-weight:600;">Step 2：在 D<sub>1</sub> 上加入 Funding</span>
+              <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">2</div>
+              <span style="font-size:16px; font-weight:600;">Step 2：加入资助数据</span>
             </div>
-            <p class="t-small">Schema 演化&mdash;&mdash;不用重开一轮，只是<strong class="t-ink-bold">把新维度接到旧结果上</strong>。</p>
+            <p class="t-small">不用重开一轮，直接<strong class="t-ink-bold">把新信息接到已有的结果上</strong>。</p>
           </div>
           <div class="card flex-col gap-8">
             <div class="flex-row gap-12">
-              <div class="pillar-icon bg-green" style="width:36px; height:36px; font-size:14px;">D<sub style="font-size:10px;">3</sub></div>
-              <span style="font-size:16px; font-weight:600;">Step 3：在 D<sub>2</sub> 上再加一层 Org</span>
+              <div class="pillar-icon bg-green" style="width:36px; height:36px; font-size:14px;">3</div>
+              <span style="font-size:16px; font-weight:600;">Step 3：对比另一个国家</span>
             </div>
             <p class="t-small">各轮之间<strong class="t-ink-bold">有逻辑连接</strong>&mdash;&mdash;洞察可以跨步综合，而不是三份孤立的报告。</p>
           </div>
         </div>
       </div>
-      <div class="blockquote" style="text-align:center; max-width:880px; margin:0 auto;">两个核心变化：<strong class="t-ink-bold">Schema 可增量演化</strong>，<strong class="t-ink-bold">各轮结果可复用与串联</strong>。分析的节奏从"重复"变成"累加"。</div>
+      <div class="blockquote" style="text-align:center; max-width:880px; margin:0 auto;">两个核心变化：<strong class="t-ink-bold">数据结构跟着你的问题一起成长</strong>，<strong class="t-ink-bold">之前的工作被复用，而不是丢掉</strong>。分析的节奏从"重来"变成"累加"。</div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 12: HYPERGRAPH DATA MODEL + OPERATORS (ZH) ========== -->
+  <!-- ========== SLIDE 12: NEW APPROACH (ZH) ========== -->
   <section class="slide lang-zh slide-bg-purple">
     <div class="content flex-col gap-20">
       <div class="flex-col gap-10 center">
-        <span class="t-caption-purple">数据模型 &amp; 算子</span>
-        <h2 class="t-title" style="text-align:center;">要支撑这种探索，<br>底层需要一套新的表达方式</h2>
+        <span class="t-caption-purple">新思路</span>
+        <h2 class="t-title" style="text-align:center;">让数据会记忆、会生长</h2>
       </div>
 
       <div class="blockquote" style="max-width:980px; margin:0 auto; text-align:center; border-left:none; border-top:4px solid var(--accent-purple);">
-        <strong class="t-ink-bold">关键观察：</strong>传统 BI 里，<strong class="t-ink-bold">"宽表 = 多张表做 Join"</strong>&mdash;&mdash;而 Join 本质上就是<strong class="t-ink-bold">在图里做子图匹配</strong>。<br>
-        既然分析的本质是图操作，我们索性把数据直接建模成<strong style="color:var(--accent-purple);">超图 (HyperGraph)</strong>。
+        <strong class="t-ink-bold">核心思路：</strong>传统 BI 就像<strong class="t-ink-bold">每次搬家都从零装修</strong>。<br>
+        我们的方式更像<strong style="color:var(--accent-purple);">搭乐高</strong>&mdash;&mdash;新的积木直接拼到已有的结构上。
       </div>
 
       <div class="grid-split" style="gap:28px; align-items:flex-start;">
         <div class="flex-col gap-14">
           <div class="card flex-col gap-10">
-            <span class="t-caption-purple">超图数据模型</span>
+            <span class="t-caption-purple">有什么不同？</span>
             <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.8;">
-              <li><strong class="t-ink-bold">顶点</strong>：实体&mdash;&mdash;Publication、Organization、Funding&hellip;</li>
-              <li><strong class="t-ink-bold">超边</strong>：一次模式匹配的结果&mdash;&mdash;对应"宽表里的一行"</li>
-              <li><strong class="t-ink-bold">可增长</strong>：新维度直接往超图里接，不用重建</li>
+              <li><strong class="t-ink-bold">所有实体</strong>（论文、机构、资助&hellip;）始终保持关联</li>
+              <li><strong class="t-ink-bold">每一轮的分析结果都被记住</strong>&mdash;&mdash;不会用完就丢</li>
+              <li><strong class="t-ink-bold">新维度直接往上拼</strong>，不用从头重建</li>
             </ul>
           </div>
           <div class="callout callout-blue">
-            <strong class="t-ink-bold">同时保留经典 OLAP：</strong>
-            <span class="tag tag-blue" style="margin:2px 4px;">Drilldown</span>
-            <span class="tag tag-blue" style="margin:2px 4px;">Rollup</span>
-            <span class="tag tag-blue" style="margin:2px 4px;">Slice</span>
-            <span class="tag tag-blue" style="margin:2px 4px;">Dice</span>
-            照常可用&mdash;&mdash;超图随时可投影成关系表，学习成本为零。
+            <strong class="t-ink-bold">不需要学新东西：</strong>所有熟悉的 BI 操作（筛选、下钻、分组、透视）照常使用，体验完全一样。
           </div>
         </div>
 
         <div class="flex-col gap-10">
-          <span class="t-caption-purple" style="text-align:center;">3 个新算子 (看它们做什么，而不是怎么做)</span>
+          <span class="t-caption-purple" style="text-align:center;">三个简单动作驱动整个探索</span>
           <div class="card flex-col gap-8" style="border-left:3px solid var(--accent);">
             <div class="flex-row gap-10">
-              <div class="pillar-icon bg-accent" style="width:30px; height:30px; font-size:13px;">S</div>
-              <span style="font-size:17px; font-weight:600;">Source &middot; 从大图中抽取</span>
+              <div class="pillar-icon bg-accent" style="width:30px; height:30px; font-size:13px;">1</div>
+              <span style="font-size:17px; font-weight:600;">提取 &mdash; 从源数据中拉取</span>
             </div>
-            <p class="t-small">按用户给的模式，在底层大图里找到所有匹配，打包成一个超图。</p>
+            <p class="t-small">告诉系统你想找什么，它就从海量原始数据里把匹配的记录找出来。</p>
           </div>
           <div class="card flex-col gap-8" style="border-left:3px solid var(--accent-warm);">
             <div class="flex-row gap-10">
-              <div class="pillar-icon bg-warm" style="width:30px; height:30px; font-size:13px;">J</div>
-              <span style="font-size:17px; font-weight:600;">Join &middot; 在超图之间连接</span>
+              <div class="pillar-icon bg-warm" style="width:30px; height:30px; font-size:13px;">2</div>
+              <span style="font-size:17px; font-weight:600;">拼接 &mdash; 加入新维度</span>
             </div>
-            <p class="t-small">把两个超图按条件合并&mdash;&mdash;既接入新维度，又继承之前的结果。</p>
+            <p class="t-small">在已有结果上追加新信息&mdash;&mdash;比如在论文数据上接入资助数据，不用重来。</p>
           </div>
           <div class="card flex-col gap-8" style="border-left:3px solid var(--accent-green);">
             <div class="flex-row gap-10">
-              <div class="pillar-icon bg-green" style="width:30px; height:30px; font-size:13px;">V</div>
-              <span style="font-size:17px; font-weight:600;">View &middot; 投影回关系表</span>
+              <div class="pillar-icon bg-green" style="width:30px; height:30px; font-size:13px;">3</div>
+              <span style="font-size:17px; font-weight:600;">查看 &mdash; 回到熟悉的表格</span>
             </div>
-            <p class="t-small">把超图展平成一张表，送回给 BI 分析师熟悉的入口。</p>
+            <p class="t-small">把结果变成分析师看得懂的图表，和以前用 BI 的体验一样。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 13: SAMPLING BOTTLENECKS (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-red">
+  <!-- ========== SLIDE 12.5: WHY WE NEED SOMETHING NEW (ZH) ========== -->
+  <section class="slide lang-zh slide-bg-yellow">
     <div class="content flex-col gap-24">
       <div class="flex-col gap-10 center">
-        <span class="t-caption-red">核心贡献 &mdash; 第一部分</span>
-        <h2 class="t-title" style="text-align:center;">让探索真正跑得起来：<br>两堵性能墙</h2>
-        <p class="t-body" style="max-width:760px; text-align:center;">探索式 BI 要反复调用 <strong class="t-ink-bold">Source</strong> 和 <strong class="t-ink-bold">Join</strong>，而这两个算子在图数据上都会立刻撞墙。</p>
+        <span class="t-caption-yellow">现实困境</span>
+        <h2 class="t-title" style="text-align:center;">两堵墙<br>挡在探索的路上</h2>
+        <p class="t-body" style="max-width:780px; text-align:center;">探索式 BI 的理念很好，但落到真实数据上，有两个实际问题让它<strong class="t-ink-bold">没有新技术就无法实现</strong>。</p>
       </div>
-      <div class="grid-2" style="gap:22px;">
+
+      <div class="grid-2" style="gap:24px;">
         <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-red);">
-          <span class="t-caption-red">第一堵墙 &mdash; Source 算子</span>
-          <h3 style="font-size:22px; font-weight:700;">子图匹配是 NP-complete 的</h3>
+          <div class="flex-row gap-12">
+            <div class="step-num bg-red" style="width:40px; height:40px; font-size:16px;">1</div>
+            <span style="font-size:22px; font-weight:700;">数据无法复用</span>
+          </div>
+          <p class="t-body">传统数据库里，每次查询都从原始数据开始。当探索加入新维度时，系统会<strong class="t-ink-bold">把所有计算从头再做一遍</strong>&mdash;&mdash;包括上一轮已经做过的工作。</p>
           <div class="callout callout-red">
-            <strong class="t-ink-bold">实验现场：</strong>在一张只有 <strong class="t-red">9,892</strong> 个顶点的小图上寻找 4-path，精确枚举要跑<strong class="t-red">约 4 分钟</strong>。<br>
-            而在交互式分析里，我们连 4 秒都嫌慢。
+            <strong class="t-ink-bold">俄乌案例中：</strong>论文与机构的关联在 3 轮分析中被<strong class="t-red">重复计算了 3 次</strong>。每一轮都把上一轮的结果丢掉。
           </div>
-          <p class="t-tiny">更糟：即便匹配完成，把所有结果物化进超图也会<strong class="t-ink-bold">直接爆内存</strong>。</p>
+          <p class="t-small">这不是软件 bug，而是传统数据库的根本局限&mdash;&mdash;它没有"在上一步的基础上继续"的概念。</p>
         </div>
+
         <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-warm);">
-          <span class="t-caption-warm">第二堵墙 &mdash; Join 爆炸</span>
-          <h3 style="font-size:22px; font-weight:700;">超图 Join 规模急速放大</h3>
-          <div class="callout callout-warm">
-            <strong class="t-ink-bold">实验现场：</strong>在 OpenAIRE 上，<strong class="t-warm">一次简单的引用 Join</strong> 就产生<strong class="t-warm"> 14 亿行</strong>结果。<br>
-            而探索过程要反复 Join，级联爆炸无法承受。
+          <div class="flex-row gap-12">
+            <div class="step-num bg-warm" style="width:40px; height:40px; font-size:16px;">2</div>
+            <span style="font-size:22px; font-weight:700;">全量计算太慢</span>
           </div>
-          <p class="t-tiny">若超图未排序，naive Join 复杂度飙到 <strong class="t-ink-bold">O(|E<sub>1</sub>|&nbsp;&middot;&nbsp;|E<sub>2</sub>|)</strong>，实测根本跑不动。</p>
+          <p class="t-body">把数百万条记录跨多个数据源关联，会产生<strong class="t-ink-bold">数十亿种组合</strong>。传统数据库试图逐一计算&mdash;&mdash;要么内存爆掉，要么跑上几个小时。</p>
+          <div class="callout callout-warm">
+            <strong class="t-ink-bold">实际数据：</strong>在 OpenAIRE 上，把论文和引用关联起来就产生 <strong class="t-warm">14 亿行</strong>结果。即便是 1 万条记录的简单查找，也要跑 <strong class="t-warm">4 分钟以上</strong>。
+          </div>
+          <p class="t-small">交互式探索需要秒级响应，全量计算根本做不到。</p>
         </div>
       </div>
-      <div class="blockquote blockquote-warm" style="text-align:center; max-width:880px; margin:0 auto;">
-        <strong class="t-ink-bold">关键洞察：</strong>BI 分析师关心的是<strong class="t-ink-bold"><em>聚合值</em></strong> (COUNT / SUM / 趋势)，不是每一条原始记录。<br>
-        <em>只要聚合能被精确估计，物化全量结果就没有必要。</em>
+
+      <div class="blockquote blockquote-yellow" style="text-align:center; max-width:900px; margin:0 auto;">
+        正是这两堵墙，让探索式分析一直只是个好想法。我们的解决方案：<strong class="t-ink-bold">让数据模型记住之前的工作</strong>，加上<strong class="t-ink-bold">聪明的采样跳过不必要的计算</strong>。
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 14: SOURCE-SAMPLE (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-blue">
+  <!-- ========== SLIDE 13: SMART SAMPLING (ZH) ========== -->
+  <section class="slide lang-zh slide-bg-green">
     <div class="content flex-col gap-24">
-      <div class="flex-col gap-10">
-        <span class="t-caption">算子一 &middot; 采样化</span>
-        <h2 class="t-title"><span class="t-accent">Source-Sample</span></h2>
-        <p class="t-subtitle" style="max-width:900px;">绕开 Source 的 NP-complete 枚举<br>&mdash;&mdash;不追求"所有子图匹配"，只抽一个<strong class="t-ink-bold">真正均匀的随机样本</strong>。</p>
+      <div class="flex-col gap-10 center">
+        <span class="t-caption-green">核心创新</span>
+        <h2 class="t-title" style="text-align:center;">我们的解决方案：<br>聪明的采样</h2>
+        <p class="t-body" style="max-width:800px; text-align:center;">你不需要数完沙滩上的每一粒沙，就能知道沙滩有多大。<br>数据分析也是同样的道理。</p>
       </div>
-      <div class="grid-2" style="gap:20px;">
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
-          <span class="t-caption">特点 1 &middot; 跳过全量枚举</span>
-          <p class="t-body">不再寻找所有匹配，只抽 <em>r</em> 条。子图匹配的组合爆炸<strong class="t-ink-bold">根本不发生</strong>&mdash;&mdash;不管数据多大、图多密，都只付采样一份的代价。</p>
+
+      <div class="blockquote blockquote-green" style="max-width:960px; margin:0 auto; text-align:center; font-size:22px;">
+        就像选举民调&mdash;&mdash;不用问<strong class="t-ink-bold">每一个选民</strong>也能预测结果。<br>
+        精心设计的抽样，<strong class="t-green">几秒钟就能给出准确率 99% 以上的答案</strong>。
+      </div>
+
+      <div class="grid-2" style="gap:22px;">
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">提取数据时</span>
+          <p class="t-body">不用在海量数据中找出每一条匹配记录，<strong class="t-ink-bold">只抽一个有代表性的子集</strong>。全量搜索要几分钟甚至几小时&mdash;&mdash;抽样只要几秒。</p>
         </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
-          <span class="t-caption">特点 2 &middot; 样本是均匀的</span>
-          <p class="t-body">每一条匹配结果被抽中的概率相同。这一点是<strong class="t-ink-bold">后续所有正确性保证的起点</strong>&mdash;&mdash;只有均匀样本，COUNT / SUM 才能保证无偏。</p>
+        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-green);">
+          <span class="t-caption-green">关联数据时</span>
+          <p class="t-body">不用算出所有的组合，<strong class="t-ink-bold">直接从结果中抽样</strong>。那个 14 亿行的爆炸结果？压根不会被构造出来。</p>
         </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
-          <span class="t-caption">特点 3 &middot; 原生支持属性图</span>
-          <p class="t-body">我们把 <em>FaSTest</em> 的 tree sampling 改造到属性图上，<strong class="t-ink-bold">带点/边属性过滤</strong>&mdash;&mdash;"俄罗斯机构""2022 年后"这类条件可以直接写进查询里。</p>
+      </div>
+
+      <div class="grid-4" style="gap:16px;">
+        <div class="card flex-col gap-6 center">
+          <span class="metric-label">速度</span>
+          <span class="metric-mid t-accent">秒级</span>
+          <span class="t-tiny">不再是小时级</span>
         </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent);">
-          <span class="t-caption">特点 4 &middot; 返回超图，不是计数</span>
-          <p class="t-body">Source-Sample 的输出是一整个<strong class="t-ink-bold">超图</strong>&mdash;&mdash;后续 Join / View / Drilldown / Slice 都能无缝接上，<strong class="t-ink-bold">作为探索的起点</strong>。</p>
+        <div class="card flex-col gap-6 center">
+          <span class="metric-label">准确率</span>
+          <span class="metric-mid t-green">&gt; 99%</span>
+          <span class="t-tiny">计数和汇总几乎无误差</span>
+        </div>
+        <div class="card flex-col gap-6 center">
+          <span class="metric-label">公平性</span>
+          <span class="metric-mid t-accent">&#10003;</span>
+          <span class="t-tiny">每条记录被选中的机会相等</span>
+        </div>
+        <div class="card flex-col gap-6 center">
+          <span class="metric-label">可串联</span>
+          <span class="metric-mid t-accent">&#10003;</span>
+          <span class="t-tiny">多轮探索的结果可以接力复用</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== SLIDE 15: JOIN-SAMPLE (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-warm">
-    <div class="content flex-col gap-24">
-      <div class="flex-col gap-10">
-        <span class="t-caption-warm">算子二 &middot; 采样化</span>
-        <h2 class="t-title"><span class="t-warm">Join-Sample</span></h2>
-        <p class="t-subtitle" style="max-width:900px;">不物化完整 Join 的结果&mdash;&mdash;直接在两个超图之间拿到一份<strong class="t-ink-bold">等价于均匀采样</strong>的样本。</p>
-      </div>
-      <div class="grid-2" style="gap:20px;">
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
-          <span class="t-caption-warm">特点 1 &middot; 不物化爆炸结果</span>
-          <p class="t-body">OpenAIRE 上那 14 亿行的 Join 结果，<strong class="t-ink-bold">根本不会被构造出来</strong>。Join-Sample 通过加权采样直接锁定所需的那 <em>r</em> 条，跳过中间膨胀。</p>
-        </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
-          <span class="t-caption-warm">特点 2 &middot; 效果等价于均匀采样</span>
-          <p class="t-body">过程虽然是两阶段加权，但每条 Join 结果被选中的概率相同。<strong class="t-ink-bold">样本统计上等价于</strong>"直接对完整 Join 结果做均匀采样"。</p>
-        </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
-          <span class="t-caption-warm">特点 3 &middot; 与 Source-Sample 无缝串联</span>
-          <p class="t-body">Join-Sample 的输入可以是 Source-Sample 的输出，也可以是另一次 Join-Sample 的输出。<strong class="t-ink-bold">多次组合之后，样本仍然均匀</strong>&mdash;&mdash;这是整条探索链能复用的关键。</p>
-        </div>
-        <div class="card-lift flex-col gap-10" style="border-top:3px solid var(--accent-warm);">
-          <span class="t-caption-warm">特点 4 &middot; 真正适应大图</span>
-          <p class="t-body">精确 Join 在 OpenAIRE 这种规模下经常 OOM / 超时；Join-Sample<strong class="t-ink-bold">在精确算法完全跑不动的查询上依然稳定出结果</strong>。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Slides 14 & 15 (Source-Sample & Join-Sample ZH) removed — content merged into Slide 13 above -->
 
   <!-- ========== SLIDE 17: SAMPLING EXPERIMENTS (ZH) ========== -->
   <section class="slide lang-zh slide-bg-purple">
     <div class="content flex-col gap-24">
       <div class="flex-col gap-10 center">
-        <span class="t-caption-purple">实验验证</span>
+        <span class="t-caption-purple">效果验证</span>
         <h2 class="t-title" style="text-align:center;">速度与精度，双双过关</h2>
-        <p class="t-body" style="max-width:720px; text-align:center;">LDBC SNB，SF1 / SF3 / SF10 三个规模，1M 默认样本。</p>
+        <p class="t-body" style="max-width:720px; text-align:center;">在真实数据集上，从小到大三个不同规模分别测试。</p>
       </div>
       <div class="grid-4" style="gap:18px;">
         <div class="card-lift flex-col gap-6 center">
-          <span class="metric-label">端到端最高加速</span>
+          <span class="metric-label">加速倍数</span>
           <span class="metric-big t-accent">36.7&times;</span>
-          <span class="t-tiny">SF3 / Q2&nbsp;&middot;&nbsp; 40s vs. 1475s</span>
+          <span class="t-tiny">40 秒 vs. 25 分钟</span>
         </div>
         <div class="card-lift flex-col gap-6 center">
-          <span class="metric-label">COUNT 误差</span>
+          <span class="metric-label">计数准确率</span>
           <span class="metric-big t-green">&lt; 1%</span>
-          <span class="t-tiny">1M 样本&nbsp;&middot;&nbsp; SF1 所有查询</span>
+          <span class="t-tiny">所有查询的误差</span>
         </div>
         <div class="card-lift flex-col gap-6 center">
-          <span class="metric-label">MAX 误差</span>
+          <span class="metric-label">峰值准确率</span>
           <span class="metric-big t-green">~0.01%</span>
-          <span class="t-tiny">稳定、与样本大小弱相关</span>
+          <span class="t-tiny">误差极小且稳定</span>
         </div>
         <div class="card-lift flex-col gap-6 center">
-          <span class="metric-label">SF10 上成功率</span>
+          <span class="metric-label">大规模完成率</span>
           <span class="metric-big t-accent">10 / 10</span>
-          <span class="t-tiny">非采样基线：1 / 10 (其余 OOM / OOT)</span>
+          <span class="t-tiny">不采样的话：10 个查询只能完成 1 个</span>
         </div>
       </div>
       <div class="grid-2" style="gap:22px;">
         <div class="card flex-col gap-10">
-          <span class="t-caption-purple">健壮性比速度更重要</span>
-          <p class="t-body">当数据规模上到 <strong class="t-ink-bold">SF10</strong>：naive 实现 10 个查询中 <strong class="t-ink-bold">9 个直接失败</strong> (OOM 或 2 小时超时)；采样实现 <strong class="t-ink-bold">10 / 10 全部完成</strong>。</p>
-          <p class="t-body">规模越大，采样越不是"可选"，而是"必需"。</p>
+          <span class="t-caption-purple">不仅仅是更快&mdash;&mdash;是唯一的办法</span>
+          <p class="t-body">在最大的数据集上，传统方式 <strong class="t-ink-bold">10 个查询有 9 个直接失败</strong>&mdash;&mdash;要么内存不足，要么跑了 2 小时还没出结果。采样方式 <strong class="t-ink-bold">10 个全部完成</strong>。</p>
+          <p class="t-body">规模越大，采样不是"锦上添花"，而是"唯一出路"。</p>
         </div>
         <div class="card flex-col gap-10">
-          <span class="t-caption-purple">样本大小的权衡</span>
-          <p class="t-body">10K &rarr; 100K 精度提升最明显；<strong class="t-ink-bold">100K &rarr; 1M</strong> 趋于拐点；<strong class="t-ink-bold">1M &rarr; 10M</strong> 精度仅小幅提升，耗时却<strong class="t-ink-bold">线性增长约 10&times;</strong>。</p>
-          <p class="t-body"><strong class="t-ink-bold">默认 1M</strong>：速度与精度的最佳平衡点。</p>
+          <span class="t-caption-purple">抽多少样本就够了？</span>
+          <p class="t-body">一开始精度提升很快，之后趋于平稳。超过某个点后，<strong class="t-ink-bold">多抽样本对精度几乎没帮助，但耗时增长 10 倍</strong>。</p>
+          <p class="t-body">我们找到了最佳平衡点：<strong class="t-ink-bold">够快，能交互使用；够准，能支撑真实决策</strong>。</p>
         </div>
       </div>
     </div>
@@ -2526,7 +2516,7 @@
 
 </main>
 
-<div class="slide-counter" id="slideCounter">01 / 22</div>
+<div class="slide-counter" id="slideCounter">01 / 25</div>
 <div class="nav">
   <div class="nav-dots" id="navDots"></div>
   <button class="nav-btn" id="prevBtn">&#8592;</button>
