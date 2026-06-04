@@ -444,7 +444,7 @@
         <div class="flex-col gap-12">
           <span class="t-caption">Background</span>
           <h2 class="t-title">What is<br>Business Intelligence (BI)?</h2>
-          <p class="t-body" style="max-width:520px;">BI turns raw data into actionable insight. <strong class="t-ink-bold">&mdash; provided you already know exactly what to ask.</strong></p>
+          <p class="t-body" style="max-width:520px;">BI helps organizations turn raw data into actionable insight. <strong class="t-ink-bold">&mdash; provided you already know exactly what to ask.</strong></p>
         </div>
         <div class="grid-3" style="gap:16px;">
           <div class="card" style="padding:18px;">
@@ -458,18 +458,18 @@
             <div class="flex-col gap-10">
               <div class="step-num bg-warm">2</div>
               <span style="font-size:18px; font-weight:600;">Shape</span>
-              <span class="t-small">Engineers build a wide table / data model to match.</span>
+              <span class="t-small">Engineers merge multiple tables into one big combined table for cross-querying.</span>
             </div>
           </div>
           <div class="card" style="padding:18px;">
             <div class="flex-col gap-10">
               <div class="step-num bg-green">3</div>
               <span style="font-size:18px; font-weight:600;">Read</span>
-              <span class="t-small">The business side reads charts and decides.</span>
+              <span class="t-small">The business side reads charts, makes decisions, and outputs reports.</span>
             </div>
           </div>
         </div>
-        <div class="blockquote">BI is like assembling a puzzle when <strong class="t-ink-bold">you already know the picture on the box</strong>.</div>
+        <div class="blockquote">BI is like assembling a puzzle when you already know the picture on the box &mdash; <strong class="t-ink-bold">the outline of the answer is already set</strong>.</div>
       </div>
       <div class="img-frame">
         <img src="assets/bi-workflow-step-1.png" alt="BI workflow" style="padding:20px;" />
@@ -477,41 +477,15 @@
     </div>
   </section>
 
-  <!-- ========== SLIDE 3: TRADITIONAL BI FLOW (EN) ========== -->
+  <!-- ========== SLIDE 3: TRANSITION TO CASE (EN) ========== -->
   <section class="slide lang-en slide-bg-blue">
-    <div class="content flex-col gap-24">
-      <div class="flex-col gap-10 center">
-        <span class="t-caption">A Concrete Question</span>
-        <h2 class="t-title" style="text-align:center;">How Does BI<br>Answer a Single Question?</h2>
-        <p class="t-body" style="max-width:720px; text-align:center;">A researcher asks: <em class="t-ink-bold">"How has Russian publication output changed recently?"</em><br>A typical BI workflow must walk through three steps before giving the first answer.</p>
+    <div class="content flex-col center gap-32">
+      <div class="flex-col center gap-16">
+        <span class="t-caption">But There's a Catch</span>
+        <h2 class="t-title" style="text-align:center;">Every Answer<br>Raises New Questions</h2>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">BI handles <strong class="t-ink-bold">one known question</strong> well. But real investigation is rarely just one question &mdash; each answer sparks the next. Let's see what that looks like in practice.</p>
       </div>
-      <div class="grid-3" style="gap:20px;">
-        <div class="card flex-col gap-14" style="padding:22px;">
-          <div class="flex-row gap-10">
-            <div class="step-num bg-accent">1</div>
-            <span style="font-size:17px; font-weight:600;">Communicate Requirements</span>
-          </div>
-          <p class="t-small">The analyst meets with domain experts and DBAs to agree on <strong class="t-ink-bold">sources, time range, "what counts as Russia"</strong>.</p>
-          <div class="callout callout-blue">No data has been touched yet &mdash; time is already gone.</div>
-        </div>
-        <div class="card flex-col gap-14" style="padding:22px;">
-          <div class="flex-row gap-10">
-            <div class="step-num bg-warm">2</div>
-            <span style="font-size:17px; font-weight:600;">Build the Wide Table</span>
-          </div>
-          <p class="t-small">Manually join <strong class="t-ink-bold">Publication &times; Organization</strong> by country and year &mdash; heavy dependency on schema knowledge.</p>
-          <div class="callout callout-warm">This step takes the longest and gets reworked the most.</div>
-        </div>
-        <div class="card flex-col gap-14" style="padding:22px;">
-          <div class="flex-row gap-10">
-            <div class="step-num bg-green">3</div>
-            <span style="font-size:17px; font-weight:600;">Analyze &amp; Visualize</span>
-          </div>
-          <p class="t-small">Finally aggregate, slice, draw a trend chart. One question answered.</p>
-          <div class="callout callout-green"><strong class="t-ink-bold">But if the result raises a new question &mdash; the whole pipeline restarts from Step 1.</strong></div>
-        </div>
-      </div>
-      <div class="blockquote" style="text-align:center; max-width:900px; margin:0 auto;">BI can answer <strong class="t-ink-bold">one known question</strong> well. But real investigation is <strong class="t-ink-bold">rarely just one question</strong> &mdash; each answer leads to the next.</div>
+      <p class="t-body" style="text-align:center; max-width:700px; color:var(--gray-500);">Let's walk through a real case to see exactly where traditional BI breaks down &mdash; and why <strong class="t-ink-bold">three rounds of questions</strong> expose its limits.</p>
     </div>
   </section>
 
@@ -573,7 +547,7 @@
       </div>
 
       <div class="flex-col gap-10 center">
-        <p class="t-body" style="max-width:820px; text-align:center;">We'll walk through this question step by step &mdash; <strong class="t-ink-bold">three questions, three wide tables</strong>:</p>
+        <p class="t-body" style="max-width:820px; text-align:center;">We'll walk through this question step by step &mdash; <strong class="t-ink-bold">three questions, three separate data preparations</strong>:</p>
         <div class="grid-3" style="gap:14px; max-width:1100px;">
           <div class="card-soft flex-col gap-4" style="padding:14px;">
             <span class="t-caption-warm">Step 1</span>
@@ -605,7 +579,7 @@
         </div>
         <div class="card flex-col gap-10">
           <span class="t-caption-red">What BI has to do</span>
-          <p class="t-body">The analyst first walks to the DBA: <strong class="t-ink-bold">"How do Publication and Organization join? Which field defines <em>Russia</em>?"</strong> After rounds of back-and-forth, a wide table is <strong class="t-ink-bold">manually constructed</strong>, then aggregated by year.</p>
+          <p class="t-body">The analyst first asks the database team: <strong class="t-ink-bold">"How do we connect papers to institutions? Which field identifies <em>Russia</em>?"</strong> After rounds of back-and-forth, a combined table is <strong class="t-ink-bold">manually built</strong>, then grouped by year.</p>
         </div>
         <div class="img-frame"><img src="assets/bi-workflow-step-1.png" alt="Step 1 wide table" style="padding:12px;" /></div>
       </div>
@@ -641,7 +615,7 @@
         <div class="img-frame"><img src="assets/bi-workflow-step-2.png" alt="Step 2 rebuilt wide table" style="padding:12px;" /></div>
         <div class="callout callout-warm">
           <strong class="t-ink-bold">The whole process starts over.</strong><br>
-          Fresh requirements meeting, fresh wide table, fresh full join.<br>
+          Fresh requirements meeting, fresh combined table, fresh full computation.<br>
           <strong class="t-warm">Nothing from Step 1 can really be carried forward.</strong>
         </div>
       </div>
@@ -655,7 +629,7 @@
         </div>
         <div class="card flex-col gap-10">
           <span class="t-caption-warm">What BI has to do</span>
-          <p class="t-body">To look at funding, BI needs a <strong class="t-ink-bold">brand-new wide table: Publication &times; Organization &times; Funding</strong>. The schema is static &mdash; you can't graft Funding onto Step&nbsp;1's result. So the analyst loops through the whole "communicate &rarr; build &rarr; query" cycle again.</p>
+          <p class="t-body">Output has dropped, so the analyst wants to look at funding &mdash; but that requires <strong class="t-ink-bold">re-combining papers, institutions, and funding data from scratch</strong>. The data structure is fixed; you can't add Funding onto Step&nbsp;1's result. So the analyst must re-align with the database team, rebuild the table, and recompute everything.</p>
         </div>
         <div class="callout callout-warm">
           <strong class="t-ink-bold">Result:</strong> Russian institutions had several funding sources in 2020&ndash;2021; <strong class="t-warm">all of them cut off from 2022</strong>. Funding collapse and output decline arrive together.
@@ -677,13 +651,13 @@
         </div>
         <div class="card flex-col gap-10">
           <span class="t-caption-green">What BI has to do</span>
-          <p class="t-body">Comparing Russia's funding to Ukraine's needs yet <strong class="t-ink-bold">another Organization table</strong> &mdash; the wide table is now a four-way join. Another DBA conversation, another rebuild, another full recompute.</p>
+          <p class="t-body">Comparing Russia's funding to Ukraine's needs yet <strong class="t-ink-bold">another data source</strong> &mdash; now linking four tables together. Another conversation with the database team, another rebuild, another full recompute.</p>
         </div>
         <div class="callout callout-green">
           <strong class="t-ink-bold">Result:</strong> the European Commission fits the pattern &mdash; funded both pre-war, <strong class="t-green">cut Russia in 2022, continued Ukraine</strong>. Confirmed against the EC's official site.
         </div>
         <div class="callout callout-red" style="background:#fff; border-color:rgba(217,52,42,0.25);">
-          <strong class="t-red">Three rounds, three wide tables.</strong> The Publication &times; Organization join has been computed 3 separate times &mdash; every round pays the same build cost, with zero reuse.
+          <strong class="t-red">Three rounds, three separate data builds.</strong> The paper-institution linkage has been computed 3 separate times &mdash; every round pays the same cost, with zero reuse.
         </div>
       </div>
       <div class="flex-col gap-14">
@@ -699,7 +673,7 @@
       <div class="flex-col gap-10 center">
         <span class="t-caption-yellow">Going Deeper</span>
         <h2 class="t-title" style="text-align:center;">Beyond the first three rounds,<br>what else shows up?</h2>
-        <p class="t-subtitle" style="max-width:720px; text-align:center;">If you're willing to run more BI rounds &mdash; and pay for more wide tables &mdash; the data hides even stranger signals.</p>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">If you're willing to keep digging &mdash; and pay for more rounds of data preparation &mdash; the data hides even stranger signals.</p>
       </div>
       <div class="grid-3" style="gap:20px;">
         <div class="card-lift flex-col gap-10">
@@ -779,7 +753,7 @@
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">01</span>
           <h3 style="font-size:22px; font-weight:700;">Heavy dependence on expert knowledge</h3>
-          <p class="t-body">Analysts must identify all relevant tables <em>upfront</em> and coordinate with the DBA to build them. <strong class="t-ink-bold">Miss or misjudge &mdash; the conclusion skews.</strong></p>
+          <p class="t-body">Analysts must identify all relevant data sources <em>upfront</em> and coordinate with the database team to prepare them. <strong class="t-ink-bold">Miss or misjudge &mdash; the conclusion skews.</strong></p>
         </div>
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">02</span>
@@ -789,7 +763,7 @@
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">03</span>
           <h3 style="font-size:22px; font-weight:700;">The data model is frozen</h3>
-          <p class="t-body">Once the data structure is designed, it <strong class="t-ink-bold">can't be changed mid-analysis</strong>. Want to add a new angle? Start from scratch &mdash; you can't think while walking.</p>
+          <p class="t-body">Once the data structure is designed, it <strong class="t-ink-bold">can't be changed mid-analysis</strong>. Discovered a new dimension? You can only restart from scratch &mdash; you can't modify while exploring.</p>
         </div>
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">04</span>
@@ -912,13 +886,13 @@
         <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-red);">
           <div class="flex-row gap-12">
             <div class="step-num bg-red" style="width:40px; height:40px; font-size:16px;">1</div>
-            <span style="font-size:22px; font-weight:700;">Nothing can be reused</span>
+            <span style="font-size:22px; font-weight:700;">Data cannot be reused</span>
           </div>
           <p class="t-body">In traditional databases, each query starts from raw data. When exploration adds a new dimension, the system <strong class="t-ink-bold">recomputes everything from scratch</strong> &mdash; including work it already did in the previous round.</p>
           <div class="callout callout-red">
             <strong class="t-ink-bold">In the Russia case:</strong> the paper&ndash;institution linkage was computed <strong class="t-red">3 separate times</strong> across 3 rounds. Each round threw away the previous result.
           </div>
-          <p class="t-small">This isn't a software bug &mdash; it's a fundamental limitation of how traditional databases work. They have no concept of "building on previous results".</p>
+          <p class="t-small">This isn't a software bug &mdash; it's a fundamental limitation of how traditional databases work. They have no concept of &ldquo;building on previous results.&rdquo;</p>
         </div>
 
         <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-warm);">
@@ -928,7 +902,7 @@
           </div>
           <p class="t-body">Linking millions of records across multiple data sources creates <strong class="t-ink-bold">billions of combinations</strong>. Traditional databases try to compute every single one &mdash; and either run out of memory or take hours.</p>
           <div class="callout callout-warm">
-            <strong class="t-ink-bold">Real numbers:</strong> on OpenAIRE, connecting papers with citations produces <strong class="t-warm">1.4 billion rows</strong>. Even a simple pattern search on 10K records takes <strong class="t-warm">4+ minutes</strong>.
+            <strong class="t-ink-bold">Real numbers:</strong> OpenAIRE has 17.9M papers, but each paper can cite many others &mdash; when you expand all citation pairs, the result explodes to <strong class="t-warm">1.4 billion rows</strong>. Even a simple pattern search on 10K records takes <strong class="t-warm">4+ minutes</strong>.
           </div>
           <p class="t-small">Interactive exploration needs answers in seconds. Full computation simply can't deliver that.</p>
         </div>
@@ -951,7 +925,7 @@
 
       <div class="blockquote blockquote-green" style="max-width:960px; margin:0 auto; text-align:center; font-size:22px;">
         Like election polls &mdash; you don't need to ask <strong class="t-ink-bold">every voter</strong> to predict the result.<br>
-        A well-chosen sample gives <strong class="t-green">99%+ accurate answers in seconds</strong>.
+        A well-chosen sample gives <strong class="t-green">99%+ accurate counts and totals in seconds</strong>.
       </div>
 
       <div class="grid-2" style="gap:22px;">
@@ -974,7 +948,7 @@
         <div class="card flex-col gap-6 center">
           <span class="metric-label">Accuracy</span>
           <span class="metric-mid t-green">&gt; 99%</span>
-          <span class="t-tiny">for counts and totals</span>
+          <span class="t-tiny">for COUNT, SUM, and trend queries</span>
         </div>
         <div class="card flex-col gap-6 center">
           <span class="metric-label">Fair</span>
@@ -998,7 +972,7 @@
       <div class="flex-col gap-10 center">
         <span class="t-caption-purple">Does It Actually Work?</span>
         <h2 class="t-title" style="text-align:center;">Speed &amp; Accuracy &mdash; Both Deliver</h2>
-        <p class="t-body" style="max-width:720px; text-align:center;">Tested on real-world datasets at three different scales &mdash; from small to very large.</p>
+        <p class="t-body" style="max-width:720px; text-align:center;">Tested on a social-network benchmark at three scales: <strong class="t-ink-bold">330K</strong>, <strong class="t-ink-bold">1M</strong>, and <strong class="t-ink-bold">3.6M</strong> vertices.</p>
       </div>
       <div class="grid-4" style="gap:18px;">
         <div class="card-lift flex-col gap-6 center">
@@ -1073,7 +1047,7 @@
             <div class="pillar-icon bg-green">R</div>
             <div class="flex-col gap-2">
               <span style="font-size:17px; font-weight:600;">Reusable</span>
-              <span class="t-small">Previous hypergraphs keep growing &mdash; no re-computation.</span>
+              <span class="t-small">Previous results keep growing &mdash; no re-computation.</span>
             </div>
           </div>
           <div class="card flex-row gap-14" style="padding:18px;">
@@ -1094,7 +1068,7 @@
       <div class="flex-col gap-10 center">
         <span class="t-caption-warm">NeuGBI in Practice</span>
         <h2 class="t-title" style="text-align:center;">Finer-Grained Findings<br>Than the Harvard Paper</h2>
-        <p class="t-subtitle" style="max-width:880px; text-align:center;">Same dataset, same question &mdash; NeuGBI's autonomous exploration uncovered patterns that months of manual research missed.</p>
+        <p class="t-subtitle" style="max-width:880px; text-align:center;">Using the same data source as the Harvard team, asking the same question &mdash; NeuGBI's autonomous exploration uncovered patterns that months of manual research missed.</p>
       </div>
 
       <div class="grid-split" style="gap:28px; align-items:flex-start;">
@@ -1140,7 +1114,7 @@
               <li>Used all <strong class="t-ink-bold">7 seniority levels</strong>, not just 2</li>
               <li>Collapse is <strong class="t-red">not uniform</strong> across all juniors</li>
               <li>Specifically <strong class="t-ink-bold">Level 2</strong> (1&ndash;2 years in) is collapsing</li>
-              <li>DiD shows AI-exposed jobs <strong class="t-green">didn't drop more</strong></li>
+              <li>Group comparison shows AI-exposed jobs <strong class="t-green">actually dropped less</strong></li>
             </ul>
           </div>
         </div>
@@ -1204,7 +1178,7 @@
       <div class="grid-split" style="gap:28px; align-items:flex-start;">
         <div class="flex-col gap-14">
           <div class="card-lift flex-col gap-10" style="border-top:4px solid #e6b400;">
-            <span class="t-caption-yellow">DiD Analysis (Difference-in-Differences)</span>
+            <span class="t-caption-yellow">Comparing Two Groups to Find the Cause</span>
             <div class="grid-2" style="gap:14px;">
               <div class="flex-col gap-4">
                 <span class="metric-label">AI High-Exposure Junior</span>
@@ -1218,8 +1192,8 @@
               </div>
             </div>
             <div class="formula" style="text-align:center; font-size:16px;">
-              DiD = &minus;25.7% &minus; (&minus;33.9%) = <strong class="t-green">+8.2pp</strong><br>
-              <span style="font-size:13px; color:var(--gray-500);">Direction is <strong>opposite</strong> to the GenAI replacement hypothesis</span>
+              Gap: &minus;25.7% &minus; (&minus;33.9%) = <strong class="t-green">+8.2pp</strong><br>
+              <span style="font-size:13px; color:var(--gray-500);">If AI were the cause, AI-exposed jobs should fall <strong>more</strong> &mdash; but they fell <strong>less</strong></span>
             </div>
           </div>
           <div class="callout callout-yellow">
@@ -1245,7 +1219,7 @@
         <div class="flex-col gap-10">
           <span class="t-caption-purple">Finding 3 &middot; What Harvard Missed</span>
           <h2 class="t-title">The Real Collapse:<br>Seniority Level&nbsp;2</h2>
-          <p class="t-body" style="max-width:500px;">Harvard only split workers into <strong class="t-ink-bold">Junior vs. Senior</strong>. NeuGBI used all <strong class="t-ink-bold">7 seniority levels</strong> &mdash; and found the collapse isn't uniform.</p>
+          <p class="t-body" style="max-width:500px;">Harvard only split workers into <strong class="t-ink-bold">Junior vs. Senior</strong> &mdash; just 2 buckets. NeuGBI used all <strong class="t-ink-bold">7 seniority levels</strong> &mdash; and found the collapse isn't uniform.</p>
         </div>
         <div class="grid-2" style="gap:14px;">
           <div class="card-lift flex-col gap-6" style="border-top:3px solid var(--accent-purple);">
@@ -1268,7 +1242,7 @@
         <div class="img-frame"><img src="assets/q4_6_swdev_seniority.png" alt="Seniority structure" /></div>
         <div class="card flex-col gap-8">
           <span class="t-caption-purple">The pattern</span>
-          <p class="t-body">It's not <em>all</em> juniors collapsing. <strong class="t-ink-bold">Level&nbsp;2 &mdash; people 1&ndash;2 years in, past probation but not yet independently impactful</strong> &mdash; is the specific layer being squeezed. Entry-level (L1) and mid-career (L3+) are relatively stable.</p>
+          <p class="t-body">It's not <em>all</em> juniors collapsing. <strong class="t-ink-bold">Level&nbsp;2 &mdash; people 1&ndash;2 years in, past probation but haven't yet built irreplaceable professional depth</strong> &mdash; is the specific layer being squeezed. Fresh graduates (L1) and mid-career (L3+) are relatively stable.</p>
         </div>
       </div>
     </div>
@@ -1296,7 +1270,7 @@
               <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">A</div>
               <div class="flex-col gap-2">
                 <span style="font-size:16px; font-weight:600;">Autonomous Exploration</span>
-                <span class="t-small">The agent decomposed the question, designed control groups, ran DiD analysis, and iterated on its own &mdash; no human in the loop.</span>
+                <span class="t-small">The agent decomposed the question, designed control groups, ran comparative analysis, and iterated on its own &mdash; no human in the loop.</span>
               </div>
             </div>
             <div class="flex-row gap-12">
@@ -1358,7 +1332,7 @@
         </div>
         <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
           <span class="t-caption-green">④ Query Generation</span>
-          <p class="t-small">For each sub-question, generate the right graph query and dispatch it to the compute layer (Source / Join / View).</p>
+          <p class="t-small">For each sub-question, generate the right query and dispatch it to the compute layer (Extract / Extend / View).</p>
         </div>
         <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
           <span class="t-caption-green">⑤ Control Group Design</span>
@@ -1507,7 +1481,7 @@
             <div class="flex-col gap-10">
               <div class="step-num bg-warm">2</div>
               <span style="font-size:18px; font-weight:600;">建模构建</span>
-              <span class="t-small">工程师按需求做宽表、建数据模型。</span>
+              <span class="t-small">工程师把多张表拼成一张大表，方便交叉查询。</span>
             </div>
           </div>
           <div class="card" style="padding:18px;">
@@ -1526,41 +1500,15 @@
     </div>
   </section>
 
-  <!-- ========== SLIDE 3: TRADITIONAL BI FLOW (ZH) ========== -->
+  <!-- ========== SLIDE 3: TRANSITION TO CASE (ZH) ========== -->
   <section class="slide lang-zh slide-bg-blue">
-    <div class="content flex-col gap-24">
-      <div class="flex-col gap-10 center">
-        <span class="t-caption">一个具体的问题</span>
-        <h2 class="t-title" style="text-align:center;">BI 如何回答一个问题？</h2>
-        <p class="t-body" style="max-width:720px; text-align:center;">研究员问：<em class="t-ink-bold">"俄罗斯最近几年的论文产出有变化吗？"</em><br>一套典型的 BI 流程，要走完以下三步才能给出第一个答案。</p>
+    <div class="content flex-col center gap-32">
+      <div class="flex-col center gap-16">
+        <span class="t-caption">但问题来了</span>
+        <h2 class="t-title" style="text-align:center;">每个答案背后，<br>都藏着新的问题</h2>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">BI 很擅长把<strong class="t-ink-bold">某一个已知问题</strong>答清楚。但真实研究里，每个答案往往都会引出下一个问题。让我们用一个真实案例来看看这意味着什么。</p>
       </div>
-      <div class="grid-3" style="gap:20px;">
-        <div class="card flex-col gap-14" style="padding:22px;">
-          <div class="flex-row gap-10">
-            <div class="step-num bg-accent">1</div>
-            <span style="font-size:17px; font-weight:600;">沟通需求</span>
-          </div>
-          <p class="t-small">分析师要和领域专家、DBA 反复确认：<strong class="t-ink-bold">用哪些数据源</strong>？时间窗口？"俄罗斯"怎么定义？</p>
-          <div class="callout callout-blue">数据还没动，时间已经过去了。</div>
-        </div>
-        <div class="card flex-col gap-14" style="padding:22px;">
-          <div class="flex-row gap-10">
-            <div class="step-num bg-warm">2</div>
-            <span style="font-size:17px; font-weight:600;">构建宽表</span>
-          </div>
-          <p class="t-small">手动把 <strong class="t-ink-bold">Publication &times; Organization</strong> 按国家、年份 Join 起来&mdash;&mdash;强依赖 schema 知识。</p>
-          <div class="callout callout-warm">这一步通常最耗时，也最容易返工。</div>
-        </div>
-        <div class="card flex-col gap-14" style="padding:22px;">
-          <div class="flex-row gap-10">
-            <div class="step-num bg-green">3</div>
-            <span style="font-size:17px; font-weight:600;">分析与出图</span>
-          </div>
-          <p class="t-small">终于开始聚合、切片、画趋势图。一个问题，终于回答了。</p>
-          <div class="callout callout-green"><strong class="t-ink-bold">但如果结果引出了新问题&mdash;&mdash;整条流水线要从第一步重来。</strong></div>
-        </div>
-      </div>
-      <div class="blockquote" style="text-align:center; max-width:900px; margin:0 auto;">BI 很擅长把<strong class="t-ink-bold">某一个已知问题</strong>答清楚。但真实研究里，<strong class="t-ink-bold">很少会停在"就这一问一答"</strong></br>&mdash;&mdash;每个答案往往都会引出下一个问题。</div>
+      <p class="t-body" style="text-align:center; max-width:700px; color:var(--gray-500);">让我们用一个真实案例来看看传统 BI 到底卡在哪里&mdash;&mdash;<strong class="t-ink-bold">三轮追问</strong>会彻底暴露它的局限。</p>
     </div>
   </section>
 
@@ -1622,7 +1570,7 @@
       </div>
 
       <div class="flex-col gap-10 center">
-        <p class="t-body" style="max-width:820px; text-align:center;">下面我们就在这张图上，用 BI 一步一步尝试回答&mdash;&mdash;<strong class="t-ink-bold">三个问题，三次建表</strong>：</p>
+        <p class="t-body" style="max-width:820px; text-align:center;">下面我们就在这张图上，用 BI 一步一步尝试回答&mdash;&mdash;<strong class="t-ink-bold">三个问题，三次从头准备数据</strong>：</p>
         <div class="grid-3" style="gap:14px; max-width:1100px;">
           <div class="card-soft flex-col gap-4" style="padding:14px;">
             <span class="t-caption-warm">Step 1</span>
@@ -1654,7 +1602,7 @@
         </div>
         <div class="card flex-col gap-10">
           <span class="t-caption-red">BI 要怎么做这一步？</span>
-          <p class="t-body">分析师先找 DBA 沟通：<strong class="t-ink-bold">Publication 和 Organization 怎么连？"俄罗斯"按哪个字段筛选？</strong>反复确认之后，手动 Join 出一张宽表，再按年份聚合。</p>
+          <p class="t-body">分析师先找数据库管理员沟通：<strong class="t-ink-bold">论文和机构的数据怎么关联？"俄罗斯"按哪个字段筛选？</strong>反复确认之后，手动把多张表拼成一张大表，再按年份汇总。</p>
         </div>
         <div class="img-frame"><img src="assets/bi-workflow-step-1.png" alt="Step 1 wide table" style="padding:12px;" /></div>
       </div>
@@ -1690,7 +1638,7 @@
         <div class="img-frame"><img src="assets/bi-workflow-step-2.png" alt="Step 2 rebuilt wide table" style="padding:12px;" /></div>
         <div class="callout callout-warm">
           <strong class="t-ink-bold">整个流程又来了一遍。</strong><br>
-          新一轮的需求沟通、新一张宽表、新一次全量 Join。<br>
+          新一轮的需求沟通、新一张拼接表、新一次全量计算。<br>
           <strong class="t-warm">Step 1 的工作几乎不能复用。</strong>
         </div>
       </div>
@@ -1704,7 +1652,7 @@
         </div>
         <div class="card flex-col gap-10">
           <span class="t-caption-warm">BI 要怎么做这一步？</span>
-          <p class="t-body">产出掉了，想看资助&mdash;&mdash;<strong class="t-ink-bold">需要一张全新的宽表：Publication &times; Organization &times; Funding</strong>。Schema 是写死的，没办法把 Funding 加到上一步的结果里；分析师只能重新和 DBA 对齐、重新建表、重新计算。</p>
+          <p class="t-body">产出掉了，想看资助&mdash;&mdash;<strong class="t-ink-bold">需要重新把论文、机构、资助三份数据拼到一起</strong>。数据结构是写死的，没办法把资助信息加到上一步的结果里；分析师只能重新和数据库管理员对齐、重新建表、重新计算。</p>
         </div>
         <div class="callout callout-warm">
           <strong class="t-ink-bold">查询结果：</strong>俄罗斯机构在 2020&ndash;2021 年拿到过多个来源的资助；<strong class="t-warm">2022 年起全部断掉</strong>。资助切断与产出下降几乎同步发生。
@@ -1726,13 +1674,13 @@
         </div>
         <div class="card flex-col gap-10">
           <span class="t-caption-green">BI 要怎么做这一步？</span>
-          <p class="t-body">要对比俄乌的资助关系，还得<strong class="t-ink-bold">再加一张 Organization 表</strong>&mdash;&mdash;变成 4 张表的 Join。分析师再一次和 DBA 沟通、再一次重建宽表、再一次全量计算。</p>
+          <p class="t-body">要对比俄乌的资助关系，还得<strong class="t-ink-bold">再加入一份新的数据</strong>&mdash;&mdash;现在要把 4 份数据拼在一起。分析师再一次和数据库管理员沟通、再一次重建、再一次全量计算。</p>
         </div>
         <div class="callout callout-green">
           <strong class="t-ink-bold">查询结果：</strong>欧盟委员会 (EC) 命中这个模式&mdash;&mdash;战前同时资助俄、乌；<strong class="t-green">2022 年起停止俄罗斯资助，继续支持乌克兰</strong>。已由 EC 官网证实。
         </div>
         <div class="callout callout-red" style="background:#fff; border-color:rgba(217,52,42,0.25);">
-          <strong class="t-red">3 轮分析，3 张宽表。</strong> Publication &times; Organization 的 Join 被重复做了 3 次&mdash;&mdash;每一轮都在付同样的建表代价，却没有一次复用。
+          <strong class="t-red">3 轮分析，3 次从头建表。</strong>论文与机构的关联被重复计算了 3 次&mdash;&mdash;每一轮都在付同样的代价，却没有一次复用。
         </div>
       </div>
       <div class="flex-col gap-14">
@@ -1748,7 +1696,7 @@
       <div class="flex-col gap-10 center">
         <span class="t-caption-yellow">继续深挖</span>
         <h2 class="t-title" style="text-align:center;">三轮分析之外，<br>还能看到什么？</h2>
-        <p class="t-subtitle" style="max-width:720px; text-align:center;">如果愿意继续再开几轮 BI 分析、再搭几张宽表&mdash;&mdash;数据里还藏着更反常识的信号。</p>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">如果愿意继续深挖、再多做几轮数据准备&mdash;&mdash;数据里还藏着更反常识的信号。</p>
       </div>
       <div class="grid-3" style="gap:20px;">
         <div class="card-lift flex-col gap-10">
@@ -1828,7 +1776,7 @@
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">01</span>
           <h3 style="font-size:22px; font-weight:700;">重度依赖专家经验</h3>
-          <p class="t-body">分析师必须预先识别所有可能相关的表，和 DBA 反复沟通才能建表。<strong class="t-ink-bold">遗漏或误判，结论就偏。</strong></p>
+          <p class="t-body">分析师必须预先识别所有可能相关的数据源，和数据库管理员反复沟通才能准备数据。<strong class="t-ink-bold">遗漏或误判，结论就偏。</strong></p>
         </div>
         <div class="card flex-col gap-10" style="padding:26px;">
           <span style="font-size:48px; font-weight:700; color:rgba(0,0,0,0.08); line-height:1;">02</span>
@@ -1977,7 +1925,7 @@
           </div>
           <p class="t-body">把数百万条记录跨多个数据源关联，会产生<strong class="t-ink-bold">数十亿种组合</strong>。传统数据库试图逐一计算&mdash;&mdash;要么内存爆掉，要么跑上几个小时。</p>
           <div class="callout callout-warm">
-            <strong class="t-ink-bold">实际数据：</strong>在 OpenAIRE 上，把论文和引用关联起来就产生 <strong class="t-warm">14 亿行</strong>结果。即便是 1 万条记录的简单查找，也要跑 <strong class="t-warm">4 分钟以上</strong>。
+            <strong class="t-ink-bold">实际数据：</strong>OpenAIRE 有 1790 万篇论文，但每篇可以引用多篇其他论文&mdash;&mdash;展开所有引用对后，结果膨胀到 <strong class="t-warm">14 亿行</strong>。即便是 1 万条记录的简单查找，也要跑 <strong class="t-warm">4 分钟以上</strong>。
           </div>
           <p class="t-small">交互式探索需要秒级响应，全量计算根本做不到。</p>
         </div>
@@ -2000,7 +1948,7 @@
 
       <div class="blockquote blockquote-green" style="max-width:960px; margin:0 auto; text-align:center; font-size:22px;">
         就像选举民调&mdash;&mdash;不用问<strong class="t-ink-bold">每一个选民</strong>也能预测结果。<br>
-        精心设计的抽样，<strong class="t-green">几秒钟就能给出准确率 99% 以上的答案</strong>。
+        精心设计的抽样，<strong class="t-green">几秒钟就能给出计数和趋势准确率 99% 以上的答案</strong>。
       </div>
 
       <div class="grid-2" style="gap:22px;">
@@ -2023,7 +1971,7 @@
         <div class="card flex-col gap-6 center">
           <span class="metric-label">准确率</span>
           <span class="metric-mid t-green">&gt; 99%</span>
-          <span class="t-tiny">计数和汇总几乎无误差</span>
+          <span class="t-tiny">适用于计数、求和、趋势类查询</span>
         </div>
         <div class="card flex-col gap-6 center">
           <span class="metric-label">公平性</span>
@@ -2047,7 +1995,7 @@
       <div class="flex-col gap-10 center">
         <span class="t-caption-purple">效果验证</span>
         <h2 class="t-title" style="text-align:center;">速度与精度，双双过关</h2>
-        <p class="t-body" style="max-width:720px; text-align:center;">在真实数据集上，从小到大三个不同规模分别测试。</p>
+        <p class="t-body" style="max-width:720px; text-align:center;">在社交网络基准数据集上，分三个规模测试：<strong class="t-ink-bold">33 万</strong>、<strong class="t-ink-bold">100 万</strong>、<strong class="t-ink-bold">360 万</strong>个节点。</p>
       </div>
       <div class="grid-4" style="gap:18px;">
         <div class="card-lift flex-col gap-6 center">
@@ -2122,7 +2070,7 @@
             <div class="pillar-icon bg-green">R</div>
             <div class="flex-col gap-2">
               <span style="font-size:17px; font-weight:600;">Reusable &middot; 可复用</span>
-              <span class="t-small">前一步的超图继续生长，不重算。</span>
+              <span class="t-small">前一步的结果继续生长，不重算。</span>
             </div>
           </div>
           <div class="card flex-row gap-14" style="padding:18px;">
@@ -2143,7 +2091,7 @@
       <div class="flex-col gap-10 center">
         <span class="t-caption-warm">NeuGBI 实战</span>
         <h2 class="t-title" style="text-align:center;">比哈佛论文更细致的结论</h2>
-        <p class="t-subtitle" style="max-width:880px; text-align:center;">同一份数据、同一个问题&mdash;&mdash;NeuGBI 的自主探索发现了人工研究数月未能触及的模式。</p>
+        <p class="t-subtitle" style="max-width:880px; text-align:center;">使用与哈佛团队相同的数据源、问同一个问题&mdash;&mdash;NeuGBI 的自主探索发现了人工研究数月未能触及的模式。</p>
       </div>
 
       <div class="grid-split" style="gap:28px; align-items:flex-start;">
@@ -2189,7 +2137,7 @@
               <li>使用了全部 <strong class="t-ink-bold">7 个资历等级</strong>，而非 2 档</li>
               <li>崩塌在初级岗中<strong class="t-red">并不均匀</strong></li>
               <li>具体是 <strong class="t-ink-bold">Level 2</strong>（工作 1&ndash;2 年）在崩塌</li>
-              <li>DiD 显示 AI 暴露度高的职业<strong class="t-green">跌幅反而更小</strong></li>
+              <li>分组对比显示 AI 暴露度高的职业<strong class="t-green">跌幅反而更小</strong></li>
             </ul>
           </div>
         </div>
@@ -2253,7 +2201,7 @@
       <div class="grid-split" style="gap:28px; align-items:flex-start;">
         <div class="flex-col gap-14">
           <div class="card-lift flex-col gap-10" style="border-top:4px solid #e6b400;">
-            <span class="t-caption-yellow">双重差分分析 (DiD)</span>
+            <span class="t-caption-yellow">对比两组变化，找出真正的原因</span>
             <div class="grid-2" style="gap:14px;">
               <div class="flex-col gap-4">
                 <span class="metric-label">AI 高暴露组初级岗</span>
@@ -2267,8 +2215,8 @@
               </div>
             </div>
             <div class="formula" style="text-align:center; font-size:16px;">
-              DiD = &minus;25.7% &minus; (&minus;33.9%) = <strong class="t-green">+8.2pp</strong><br>
-              <span style="font-size:13px; color:var(--gray-500);">方向与 GenAI 替代假说<strong>相反</strong></span>
+              差值：&minus;25.7% &minus; (&minus;33.9%) = <strong class="t-green">+8.2pp</strong><br>
+              <span style="font-size:13px; color:var(--gray-500);">如果 AI 是原因，AI 相关岗位应该跌得<strong>更多</strong>&mdash;&mdash;但实际跌得<strong>更少</strong></span>
             </div>
           </div>
           <div class="callout callout-yellow">
@@ -2345,7 +2293,7 @@
               <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">A</div>
               <div class="flex-col gap-2">
                 <span style="font-size:16px; font-weight:600;">自主探索</span>
-                <span class="t-small">Agent 自己拆解问题、设计对照组、做 DiD 分析、反复迭代&mdash;&mdash;全程无人介入。</span>
+                <span class="t-small">Agent 自己拆解问题、设计对照组、做分组对比分析、反复迭代&mdash;&mdash;全程无人介入。</span>
               </div>
             </div>
             <div class="flex-row gap-12">
@@ -2407,7 +2355,7 @@
         </div>
         <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
           <span class="t-caption-green">④ 查询生成</span>
-          <p class="t-small">针对每个子问题，生成合适的图查询，交给计算层 (Source / Join / View) 执行。</p>
+          <p class="t-small">针对每个子问题，生成合适的查询，交给计算层（提取 / 拼接 / 查看）执行。</p>
         </div>
         <div class="card-lift flex-col gap-8" style="border-top:3px solid var(--accent-green);">
           <span class="t-caption-green">⑤ 对照组设计</span>
