@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(meeting.alibaba-inc.com)",
+      "WebFetch(zhuanlan.zhihu.com)",
+      "WebFetch(finance.sina.com.cn)",
+      "WebFetch(www.cls.cn)",
+      "WebFetch(www.google.com)",
+      "WebFetch(www.eastmoney.com)"
+    ]
+  },
+  "$version": 4
+}

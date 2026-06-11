@@ -1446,7 +1446,7 @@
     <div class="content flex-col center gap-28">
       <div class="flex-col center gap-16">
         <h1 class="t-hero" style="text-align:center;">从 BI<br><span class="t-gradient">到 NeuGBI</span></h1>
-        <p class="t-subtitle" style="max-width:720px; text-align:center;">商业智能的演进：从静态仪表盘，到可迭代、由问题驱动的自主探索式分析。</p>
+        <p class="t-subtitle" style="max-width:720px; text-align:center;">基于Agent的大规模数据自主探索式分析方法</p>
       </div>
       <div class="divider" style="margin:0 auto;"></div>
       <div class="flex-col center gap-10">
@@ -1467,7 +1467,7 @@
         <div class="flex-col gap-12">
           <span class="t-caption">背景</span>
           <h2 class="t-title">什么是商业智能 (BI)？</h2>
-          <p class="t-body" style="max-width:520px;">BI 帮助组织把原始数据转化为可行动的洞察。<strong class="t-ink-bold"></br>——前提是你已经知道要问什么。</strong></p>
+          <p class="t-body" style="max-width:520px;">解决看数难，分析慢等痛点。将零散的原始数据转化为直观的图表和洞察</p>
         </div>
         <div class="grid-3" style="gap:16px;">
           <div class="card" style="padding:18px;">
@@ -1495,6 +1495,7 @@
         <div class="blockquote">BI 就像拼一幅你已经看过封面的拼图&mdash;&mdash;<strong class="t-ink-bold">答案的轮廓早已确定</strong>。</div>
       </div>
       <div class="img-frame">
+        <img src="assets/bi.png" alt="BI workflow" style="padding:20px;" />
         <img src="assets/bi-workflow-step-1.png" alt="BI workflow" style="padding:20px;" />
       </div>
     </div>
@@ -1509,6 +1510,9 @@
         <p class="t-subtitle" style="max-width:720px; text-align:center;">BI 很擅长把<strong class="t-ink-bold">某一个已知问题</strong>答清楚。但真实研究里，每个答案往往都会引出下一个问题。让我们用一个真实案例来看看这意味着什么。</p>
       </div>
       <p class="t-body" style="text-align:center; max-width:700px; color:var(--gray-500);">让我们用一个真实案例来看看传统 BI 到底卡在哪里&mdash;&mdash;<strong class="t-ink-bold">三轮追问</strong>会彻底暴露它的局限。</p>
+      <div class="img-frame">
+        <img src="assets/bi-workflow-step-1.png" alt="BI workflow" style="padding:20px;" />
+      </div>
     </div>
   </section>
 
@@ -1561,8 +1565,12 @@
                 <span class="t-small"><strong class="t-ink-bold">401K</strong></span>
               </div>
               <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.12); border-radius:10px;">
-                <span style="font-size:14px; font-weight:600;">Funding 资助方 &middot; Datasource &middot; &hellip;</span>
-                <span class="t-small"><strong class="t-ink-bold">185 &middot; 142K</strong></span>
+                <span style="font-size:14px; font-weight:600;">Funding 资助方</span>
+                <span class="t-small"><strong class="t-ink-bold">185</strong></span>
+              </div>
+              <div class="flex-row justify-between" style="padding:8px 14px; background:var(--accent-warm-soft); border:1px solid rgba(255,103,35,0.12); border-radius:10px;">
+                <span style="font-size:14px; font-weight:600;">Datasource 数据源</span>
+                <span class="t-small"><strong class="t-ink-bold">142K</strong></span>
               </div>
             </div>
           </div>
@@ -1729,7 +1737,7 @@
   </section>
 
   <!-- ========== SLIDE 9: CAUSAL CHAIN (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-purple">
+  <!-- <section class="slide lang-zh slide-bg-purple">
     <div class="content flex-col gap-28">
       <div class="flex-col gap-10 center">
         <span class="t-caption-purple">根因分析</span>
@@ -1763,7 +1771,7 @@
       </div>
       <div class="blockquote" style="text-align:center; max-width:860px; margin:0 auto;">这种<strong class="t-ink-bold">多层次、假设驱动</strong>的调查&mdash;&mdash;恰恰是经典 BI 流程最难支持的。</div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ========== SLIDE 10: WHY TRADITIONAL BI FAILS (ZH) ========== -->
   <section class="slide lang-zh slide-bg-red">
@@ -1793,6 +1801,9 @@
           <h3 style="font-size:22px; font-weight:700;">之前的工作无法复用</h3>
           <p class="t-body">刚才案例里，<strong class="t-ink-bold">论文与机构的关联计算被重复做了 3 次</strong>。每一轮都从零开始，上一轮的工作全部丢掉。</p>
         </div>
+      </div>
+      <div class="img-frame">
+        <img src="assets/bi-workflow-step-1.png" alt="BI workflow" style="padding:20px; width: 50%; height: auto;" />
       </div>
     </div>
   </section>
@@ -1841,7 +1852,7 @@
   </section>
 
   <!-- ========== SLIDE 12: NEW APPROACH (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-purple">
+  <!-- <section class="slide lang-zh slide-bg-purple">
     <div class="content flex-col gap-20">
       <div class="flex-col gap-10 center">
         <span class="t-caption-purple">新思路</span>
@@ -1894,7 +1905,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ========== SLIDE 12.5: WHY WE NEED SOMETHING NEW (ZH) ========== -->
   <section class="slide lang-zh slide-bg-yellow">
@@ -1902,20 +1913,20 @@
       <div class="flex-col gap-10 center">
         <span class="t-caption-yellow">现实困境</span>
         <h2 class="t-title" style="text-align:center;">两堵墙<br>挡在探索的路上</h2>
-        <p class="t-body" style="max-width:780px; text-align:center;">探索式 BI 的理念很好，但落到真实数据上，有两个实际问题让它<strong class="t-ink-bold">没有新技术就无法实现</strong>。</p>
+        <p class="t-body" style="max-width:780px; text-align:center;">探索式 BI 的理念很好，但落到真实数据上，有两个实际问题让它<strong class="t-ink-bold">难以实现</strong>。</p>
       </div>
 
       <div class="grid-2" style="gap:24px;">
         <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-red);">
           <div class="flex-row gap-12">
             <div class="step-num bg-red" style="width:40px; height:40px; font-size:16px;">1</div>
-            <span style="font-size:22px; font-weight:700;">数据无法复用</span>
+            <span style="font-size:22px; font-weight:700;">上下文太长</span>
           </div>
-          <p class="t-body">传统数据库里，每次查询都从原始数据开始。当探索加入新维度时，系统会<strong class="t-ink-bold">把所有计算从头再做一遍</strong>&mdash;&mdash;包括上一轮已经做过的工作。</p>
+          <p class="t-body">Agent 做探索式分析不是一次问答，而是一串连续决策：问题拆解、查询语句、中间结果、异常分支和解释口径都会不断累积，最终形成<strong class="t-ink-bold">越来越长的上下文</strong>。</p>
           <div class="callout callout-red">
-            <strong class="t-ink-bold">俄乌案例中：</strong>论文与机构的关联在 3 轮分析中被<strong class="t-red">重复计算了 3 次</strong>。每一轮都把上一轮的结果丢掉。
+            <strong class="t-ink-bold">俄乌案例中：</strong>三轮追问会累积国家口径、机构映射、论文筛选、合作关系和时间窗口等信息。后续每一步都要从<strong class="t-red">冗长历史</strong>里找出真正相关的约束。
           </div>
-          <p class="t-small">这不是软件 bug，而是传统数据库的根本局限&mdash;&mdash;它没有"在上一步的基础上继续"的概念。</p>
+          <p class="t-small">上下文越长，成本越高、响应越慢，关键约束也越容易被稀释或遗忘。</p>
         </div>
 
         <div class="card-lift flex-col gap-14" style="border-top:4px solid var(--accent-warm);">
@@ -1932,7 +1943,7 @@
       </div>
 
       <div class="blockquote blockquote-yellow" style="text-align:center; max-width:900px; margin:0 auto;">
-        正是这两堵墙，让探索式分析一直只是个好想法。我们的解决方案：<strong class="t-ink-bold">让数据模型记住之前的工作</strong>，加上<strong class="t-ink-bold">聪明的采样跳过不必要的计算</strong>。
+        正是这两堵墙，让探索式分析一直只是个好想法。我们的解决方案：<strong class="t-ink-bold">使用BI压缩上下文</strong>，加上<strong class="t-ink-bold">聪明地采样跳过不必要的计算</strong>。
       </div>
     </div>
   </section>
@@ -2091,28 +2102,15 @@
       <div class="flex-col gap-10 center">
         <span class="t-caption-warm">NeuGBI 实战</span>
         <h2 class="t-title" style="text-align:center;">比哈佛论文更细致的结论</h2>
-        <p class="t-subtitle" style="max-width:880px; text-align:center;">使用与哈佛团队相同的数据源、问同一个问题&mdash;&mdash;NeuGBI 的自主探索发现了人工研究数月未能触及的模式。</p>
+        <!-- <p class="t-subtitle" style="max-width:880px; text-align:center;">使用与哈佛团队相同的数据源、问同一个问题&mdash;&mdash;NeuGBI 的自主探索发现了人工研究数月未能触及的模式。</p> -->
       </div>
 
-      <div class="grid-split" style="gap:28px; align-items:flex-start;">
+      <div class="grid-split" style="gap:28px; align-items:flex-start; padding-top:20px;">
         <div class="flex-col gap-14">
-          <div class="card-lift flex-col gap-10" style="border-left:4px solid var(--accent-warm);">
-            <span class="t-caption-warm">哈佛论文</span>
-            <p style="font-size:14px; font-weight:600; color:var(--gray-700); line-height:1.4; margin-bottom:4px;"><em>Generative AI as Seniority-Biased Technological Change</em><br><span class="t-tiny">Hosseini &amp; Lichtinger, 哈佛商学院, 2026</span></p>
-            <p class="t-body">分析了 28 万家企业的 <strong class="t-ink-bold">6500 万名员工</strong>数据。核心结论：</p>
-            <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.7;">
-              <li>GenAI 构成<strong class="t-ink-bold">"资历偏向型技术变革"</strong></li>
-              <li>采用 GenAI 的企业中，初级岗就业<strong class="t-red">大幅下降</strong></li>
-              <li>资深岗就业<strong class="t-green">基本不变</strong></li>
-              <li>下降集中在 <strong class="t-ink-bold">AI 暴露度高的职业</strong></li>
-              <li>主要是<strong class="t-ink-bold">招聘放缓</strong>，而非裁员增加</li>
-            </ul>
-          </div>
-          <div class="callout callout-warm">
+          
+          <!-- <div class="callout callout-warm">
             <strong class="t-ink-bold">局限：</strong>论文只把员工分成 <strong class="t-warm">Junior / Senior</strong> 两档。底层数据其实有 <strong class="t-ink-bold">7 个资历等级</strong>。
-          </div>
-        </div>
-        <div class="flex-col gap-14">
+          </div> -->
           <div class="card flex-col gap-10">
             <span class="t-caption-warm">数据集 &middot; Revelio Labs</span>
             <p class="t-body">与哈佛团队使用的<strong class="t-ink-bold">同一份劳动力数据</strong>。覆盖全美实际任职记录 + 科技岗位招聘需求，2021&ndash;2025。</p>
@@ -2131,22 +2129,39 @@
               </div>
             </div>
           </div>
+
+          <div class="card-lift flex-col gap-10" style="border-left:4px solid var(--accent-warm);">
+            <span class="t-caption-warm">哈佛论文</span>
+            <p style="font-size:14px; font-weight:600; color:var(--gray-700); line-height:1.4; margin-bottom:4px;"><em>Generative AI as Seniority-Biased Technological Change</em><br><span class="t-tiny">Hosseini &amp; Lichtinger, 哈佛商学院, 2026</span></p>
+            <p class="t-body">分析了 28 万家企业的 <strong class="t-ink-bold">6500 万名员工</strong>数据。核心结论：</p>
+            <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.7;">
+              <li><strong class="t-red">初级岗</strong> = L1入门级 + L2初级；<strong class="t-red">资深岗</strong> = 其他岗位</li>
+              <li>采用 GenAI 的企业中，初级岗就业<strong class="t-red">大幅下降</strong></li>
+              <li>资深岗就业<strong class="t-green">基本不变</strong></li>
+            </ul>
+          </div>
+
+          
+        </div>
+        <div class="flex-col gap-14">
+          <div class="img-frame"><img src="assets/q4_6_swdev_seniority.png" alt="Seniority structure" /></div>
           <div class="card-lift flex-col gap-10" style="border-left:4px solid var(--accent-green);">
             <span class="t-caption-green">NeuGBI 发现了什么不同</span>
             <ul style="padding-left:18px; font-size:15px; color:var(--gray-600); line-height:1.7;">
-              <li>使用了全部 <strong class="t-ink-bold">7 个资历等级</strong>，而非 2 档</li>
+              <li>使用了全部 <strong class="t-ink-bold">7 个资历等级</strong>，而未粗粒度划分</li>
               <li>崩塌在初级岗中<strong class="t-red">并不均匀</strong></li>
               <li>具体是 <strong class="t-ink-bold">Level 2</strong>（工作 1&ndash;2 年）在崩塌</li>
               <li>分组对比显示 AI 暴露度高的职业<strong class="t-green">跌幅反而更小</strong></li>
             </ul>
           </div>
+          
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========== SLIDE 23: STRUCTURAL SHIFT (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-red">
+  <!-- <section class="slide lang-zh slide-bg-red">
     <div class="content grid-split">
       <div class="flex-col gap-20">
         <div class="flex-col gap-10">
@@ -2188,10 +2203,10 @@
         <div class="img-frame"><img src="assets/q4_3_tech_demand.png" alt="Tech hiring demand" /></div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ========== SLIDE 24: COUNTER-INTUITIVE DiD (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-yellow">
+  <!-- <section class="slide lang-zh slide-bg-yellow">
     <div class="content flex-col gap-20">
       <div class="flex-col gap-10 center">
         <span class="t-caption-yellow">发现二 &middot; 反直觉</span>
@@ -2236,7 +2251,7 @@
   </section>
 
   <!-- ========== SLIDE 25: SENIORITY 2 COLLAPSE (ZH) ========== -->
-  <section class="slide lang-zh slide-bg-purple">
+  <!-- <section class="slide lang-zh slide-bg-purple">
     <div class="content grid-split">
       <div class="flex-col gap-20">
         <div class="flex-col gap-10">
@@ -2269,64 +2284,18 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --> 
 
   <!-- ========== SLIDE 26: WHY NEUGBI MADE THIS POSSIBLE (ZH) ========== -->
   <section class="slide lang-zh slide-bg-blue">
     <div class="content flex-col gap-20">
       <div class="flex-col gap-10 center">
         <span class="t-caption">NeuGBI 的价值</span>
-        <h2 class="t-title" style="text-align:center;">从 60GB 原始数据<br>到哈佛级分析</h2>
+        <h2 class="t-title" style="text-align:center;">NeuGBI的跨模型有效性</h2>
       </div>
-      <div class="grid-2" style="gap:22px;">
-        <div class="card-lift flex-col gap-14">
-          <span class="t-caption">NeuGBI 带来了什么</span>
-          <div class="flex-col gap-10">
-            <div class="flex-row gap-12">
-              <div class="pillar-icon bg-accent" style="width:36px; height:36px; font-size:14px;">S</div>
-              <div class="flex-col gap-2">
-                <span style="font-size:16px; font-weight:600;">60GB 上的采样</span>
-                <span class="t-small">NeuGBI 的采样算子让数百次细粒度查询在几分钟内跑完，而不是几天。</span>
-              </div>
-            </div>
-            <div class="flex-row gap-12">
-              <div class="pillar-icon bg-warm" style="width:36px; height:36px; font-size:14px;">A</div>
-              <div class="flex-col gap-2">
-                <span style="font-size:16px; font-weight:600;">自主探索</span>
-                <span class="t-small">Agent 自己拆解问题、设计对照组、做分组对比分析、反复迭代&mdash;&mdash;全程无人介入。</span>
-              </div>
-            </div>
-            <div class="flex-row gap-12">
-              <div class="pillar-icon bg-green" style="width:36px; height:36px; font-size:14px;">7</div>
-              <div class="flex-col gap-2">
-                <span style="font-size:16px; font-weight:600;">7 级粒度分析</span>
-                <span class="t-small">哈佛研究者为了降低分析复杂度只用了粗粒度的 2 档划分。NeuGBI 没有这个限制。</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex-col gap-14">
-          <div class="card flex-col gap-10" style="border-left:3px solid var(--accent-red);">
-            <span class="t-caption-red">哈佛论文 (人类研究者)</span>
-            <ul style="padding-left:18px; font-size:14px; color:var(--gray-600); line-height:1.7;">
-              <li>数月的人工分析</li>
-              <li>粗粒度 Junior / Senior 二分</li>
-              <li>没能发现 L2 崩塌的规律</li>
-              <li>因果识别更强 (三重差分、事件研究)</li>
-            </ul>
-          </div>
-          <div class="card flex-col gap-10" style="border-left:3px solid var(--accent-green);">
-            <span class="t-caption-green">NeuGBI (自主 Agent)</span>
-            <ul style="padding-left:18px; font-size:14px; color:var(--gray-600); line-height:1.7;">
-              <li>全自主，只需一个问题</li>
-              <li>7 级资历细分析</li>
-              <li>发现了 L2 崩塌的规律</li>
-              <li>以哈佛论文为 10 分基线，得分 <strong class="t-ink-bold">8.5</strong></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="blockquote" style="text-align:center; max-width:960px; margin:0 auto;">两个领域&mdash;&mdash;<strong class="t-ink-bold">学术出版</strong>与<strong class="t-ink-bold">劳动经济学</strong>。两份数据&mdash;&mdash;<strong class="t-ink-bold">2240 万顶点</strong>与 <strong class="t-ink-bold">3 亿条记录</strong>。<br>同一个 NeuGBI，同样的自主探索。</div>
+      <div class="img-frame" style="max-width:800px; margin:0 auto;"><img src="assets/mark.png" alt="Seniority structure" /></div>
+
+      <!-- <div class="blockquote" style="text-align:center; max-width:960px; margin:0 auto;">两个领域&mdash;&mdash;<strong class="t-ink-bold">学术出版</strong>与<strong class="t-ink-bold">劳动经济学</strong>。两份数据&mdash;&mdash;<strong class="t-ink-bold">2240 万顶点</strong>与 <strong class="t-ink-bold">3 亿条记录</strong>。<br>同一个 NeuGBI，同样的自主探索。</div> -->
     </div>
   </section>
 
